@@ -23,22 +23,10 @@ export default function Home() {
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center space-x-4">
               <h1 className="text-xl sm:text-2xl font-bold text-blue-600">求人サイト</h1>
-              <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-600">
+              <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
                 <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded">全国掲載件数</span>
-                <span className="font-bold">248,267件</span>
+                <span className="font-bold text-gray-900">248,267件</span>
               </div>
-            </div>
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <button className="hidden sm:inline-flex items-center px-3 py-2 text-sm text-gray-600 hover:text-gray-900">
-                検索履歴
-              </button>
-              <button className="hidden sm:inline-flex items-center px-3 py-2 text-sm text-gray-600 hover:text-gray-900">
-                保存した条件
-              </button>
-              <button className="flex items-center px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200">
-                お気に入り
-                <span className="ml-1 bg-blue-600 text-white rounded-full px-1.5 py-0.5 text-xs">0</span>
-              </button>
             </div>
           </div>
           
@@ -46,15 +34,15 @@ export default function Home() {
           <div className="border-t py-2">
             <div className="flex items-center space-x-4 text-sm">
               <div className="flex items-center space-x-2">
-                <span className="text-gray-600">エリア:</span>
+                <span className="text-gray-800 font-medium">エリア:</span>
                 <button className="text-blue-600 font-medium hover:underline">全国</button>
-                <span className="text-gray-400">変更</span>
+                <button className="text-blue-500 hover:underline">変更</button>
               </div>
               <div className="hidden sm:flex items-center space-x-4">
-                <span className="text-gray-500">|</span>
-                <span className="text-gray-600">職種: 未選択</span>
-                <span className="text-gray-500">|</span>
-                <span className="text-gray-600">給与: こだわらない</span>
+                <span className="text-gray-400">|</span>
+                <span className="text-gray-800">職種: 未選択</span>
+                <span className="text-gray-400">|</span>
+                <span className="text-gray-800">給与: こだわらない</span>
               </div>
             </div>
           </div>
