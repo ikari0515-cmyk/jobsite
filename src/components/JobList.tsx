@@ -130,65 +130,136 @@ export function JobList() {
 
   return (
     <div className="space-y-6">
-      {/* 検索結果の件数 */}
-      <div className="flex justify-between items-center">
-        <p className="text-gray-600">
-          {pagination.total}件の求人が見つかりました
-        </p>
+      {/* 検索結果ヘッダー - バイトル風 */}
+      <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-6">
+            <div className="flex items-center space-x-2">
+              <span className="text-blue-600 font-bold text-lg">{pagination.total}件</span>
+              <span className="text-gray-600 text-sm">の求人が見つかりました</span>
+            </div>
+            <div className="flex items-center space-x-4 text-sm">
+              <div className="flex items-center space-x-1">
+                <span className="text-gray-500">平均時給</span>
+                <span className="font-bold text-green-600">1,550円</span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <span className="text-gray-500">平均月給</span>
+                <span className="font-bold text-green-600">25万円</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <button className="text-blue-600 hover:underline text-sm">
+              この条件を保存する
+            </button>
+            <select className="border rounded px-3 py-1 text-sm">
+              <option>おすすめ順</option>
+              <option>新着順</option>
+              <option>時給順</option>
+              <option>月給順</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       {/* 求人リスト */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {jobs.map((job) => (
           <Link
             key={job.id}
             href={`/jobs/${job.id}`}
-            className="block bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow"
+            className="block bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-200 hover:border-blue-200"
           >
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {job.title}
-                  </h3>
-                  <div className="flex items-center text-gray-600 mb-2">
-                    <Building size={16} className="mr-2" />
-                    <span>{job.company}</span>
-                  </div>
+            <div className="p-4 sm:p-6">
+              {/* 上部: 雇用形態タグと投稿日 */}
+              <div className="flex justify-between items-start mb-3">
+                <div className="flex items-center space-x-2">
+                  <span className="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded font-medium">
+                    {getEmploymentTypeLabel(job.employment_type)}
+                  </span>
+                  {job.salary_type !== 'negotiable' && (
+                    <span className="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
+                      高時給
+                    </span>
+                  )}
+                  <span className="inline-block bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">
+                    NEW
+                  </span>
                 </div>
-                <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
-                  {getEmploymentTypeLabel(job.employment_type)}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-                <div className="flex items-center">
-                  <MapPin size={16} className="mr-2" />
-                  <span>{job.location}</span>
-                </div>
-                <div className="flex items-center">
-                  <DollarSign size={16} className="mr-2" />
-                  <span>{formatSalary(job)}</span>
-                </div>
-              </div>
-
-              {job.description && (
-                <p className="mt-4 text-gray-700 line-clamp-2">
-                  {job.description.substring(0, 150)}
-                  {job.description.length > 150 && '...'}
-                </p>
-              )}
-
-              <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center text-xs text-gray-500">
-                  <Clock size={14} className="mr-1" />
+                  <Clock size={12} className="mr-1" />
                   <span>
                     {new Date(job.published_at || job.created_at).toLocaleDateString('ja-JP')}
                   </span>
                 </div>
-                <span className="text-blue-600 font-medium text-sm">
-                  詳細を見る →
-                </span>
+              </div>
+
+              {/* メイン情報 */}
+              <div className="mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2">
+                  {job.title}
+                </h3>
+                <div className="flex items-center text-gray-600 mb-2">
+                  <Building size={16} className="mr-2 flex-shrink-0" />
+                  <span className="truncate">{job.company}</span>
+                </div>
+              </div>
+
+              {/* 主要情報グリッド */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                <div className="flex items-center">
+                  <MapPin size={16} className="mr-2 text-gray-400 flex-shrink-0" />
+                  <span className="text-sm text-gray-700 truncate">{job.location}</span>
+                </div>
+                <div className="flex items-center">
+                  <DollarSign size={16} className="mr-2 text-green-500 flex-shrink-0" />
+                  <span className="text-sm font-bold text-green-600">{formatSalary(job)}</span>
+                </div>
+              </div>
+
+              {/* 勤務時間と特徴 */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-sm">
+                <div className="text-gray-600">
+                  <span className="font-medium">勤務時間:</span> 08:00〜17:00など
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                    交通費支給
+                  </span>
+                  <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                    制服貸与
+                  </span>
+                  <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                    週1〜OK
+                  </span>
+                </div>
+              </div>
+
+              {/* 説明文 */}
+              {job.description && (
+                <p className="text-sm text-gray-700 mb-4 line-clamp-2">
+                  {job.description.substring(0, 100)}
+                  {job.description.length > 100 && '...'}
+                </p>
+              )}
+
+              {/* 下部: アクションボタン */}
+              <div className="flex items-center justify-between pt-3 border-t">
+                <div className="flex items-center space-x-3">
+                  <button className="text-xs text-gray-500 hover:text-blue-600 flex items-center">
+                    <span className="mr-1">♡</span>キープ
+                  </button>
+                  <button className="text-xs text-gray-500 hover:text-blue-600">
+                    友達に教える
+                  </button>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="text-blue-600 font-bold text-sm">
+                    詳細を見る
+                  </span>
+                  <span className="text-blue-600">→</span>
+                </div>
               </div>
             </div>
           </Link>

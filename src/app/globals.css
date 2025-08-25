@@ -49,3 +49,56 @@ html {
   outline: 2px solid #3B82F6;
   outline-offset: 2px;
 }
+
+/* バイトル風のカスタムスタイル */
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+/* カスタムスクロールバー（デスクトップ用） */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+}
+
+/* モバイル最適化 */
+@media (max-width: 767px) {
+  /* タッチしやすいボタンサイズ */
+  button {
+    min-height: 44px;
+  }
+
+  /* ヘッダーのスマホ対応 */
+  .mobile-header {
+    padding: 0.75rem 1rem;
+  }
+
+  /* カードのスマホ最適化 */
+  .job-card-mobile {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* タブレット対応 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet-layout {
+    grid-template-columns: 1fr 2fr;
+  }
+}
