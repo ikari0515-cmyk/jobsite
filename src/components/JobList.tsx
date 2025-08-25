@@ -200,7 +200,7 @@ export function JobList() {
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2">
                   {job.title}
                 </h3>
-                <div className="flex items-center text-gray-600 mb-2">
+                <div className="flex items-center text-gray-800 mb-2">
                   <Building size={16} className="mr-2 flex-shrink-0" />
                   <span className="truncate">{job.company}</span>
                 </div>
@@ -210,7 +210,7 @@ export function JobList() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                 <div className="flex items-center">
                   <MapPin size={16} className="mr-2 text-gray-400 flex-shrink-0" />
-                  <span className="text-sm text-gray-700 truncate">{job.location}</span>
+                  <span className="text-sm text-gray-800 truncate">{job.location}</span>
                 </div>
                 <div className="flex items-center">
                   <DollarSign size={16} className="mr-2 text-green-500 flex-shrink-0" />
@@ -220,17 +220,17 @@ export function JobList() {
 
               {/* 勤務時間と特徴 */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-sm">
-                <div className="text-gray-600">
+                <div className="text-gray-800">
                   <span className="font-medium">勤務時間:</span> 08:00〜17:00など
                 </div>
                 <div className="flex flex-wrap gap-1">
-                  <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                  <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">
                     交通費支給
                   </span>
-                  <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                  <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">
                     制服貸与
                   </span>
-                  <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                  <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">
                     週1〜OK
                   </span>
                 </div>
@@ -238,7 +238,7 @@ export function JobList() {
 
               {/* 説明文 */}
               {job.description && (
-                <p className="text-sm text-gray-700 mb-4 line-clamp-2">
+                <p className="text-sm text-gray-800 mb-4 line-clamp-2">
                   {job.description.substring(0, 100)}
                   {job.description.length > 100 && '...'}
                 </p>
