@@ -38,7 +38,7 @@ export function SearchFilters() {
         <form onSubmit={handleSearch} className="space-y-4">
           {/* キーワード検索 */}
           <div>
-            <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="search" className="block text-sm font-medium text-gray-800 mb-2">
               フリーワード
             </label>
             <div className="relative">
@@ -85,7 +85,7 @@ export function SearchFilters() {
           <div className="p-4 space-y-4">
             {/* 勤務地 */}
             <div>
-              <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="location" className="block text-sm font-medium text-gray-800 mb-2">
                 勤務地
               </label>
               <div className="relative">
@@ -103,7 +103,7 @@ export function SearchFilters() {
 
             {/* 雇用形態 */}
             <div>
-              <label htmlFor="employment_type" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="employment_type" className="block text-sm font-medium text-gray-800 mb-2">
                 雇用形態
               </label>
               <select
@@ -122,7 +122,7 @@ export function SearchFilters() {
 
             {/* 給与 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-800 mb-2">
                 給与
               </label>
               <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -150,16 +150,16 @@ export function SearchFilters() {
       <div className="bg-white rounded-lg shadow-sm border p-4">
         <h3 className="font-medium text-gray-900 mb-3">人気の特徴から探す</h3>
         <div className="grid grid-cols-1 gap-2 text-sm">
-          <button className="text-left p-2 hover:bg-gray-50 rounded border">
+          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
             駅徒歩5分以内 <span className="text-gray-500">(2,234)</span>
           </button>
-          <button className="text-left p-2 hover:bg-gray-50 rounded border">
+          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
             交通費支給 <span className="text-gray-500">(3,101)</span>
           </button>
-          <button className="text-left p-2 hover:bg-gray-50 rounded border">
+          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
             髪型・髪色自由 <span className="text-gray-500">(1,427)</span>
           </button>
-          <button className="text-left p-2 hover:bg-gray-50 rounded border">
+          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
             週1日〜OK <span className="text-gray-500">(1,806)</span>
           </button>
         </div>
