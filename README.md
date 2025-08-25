@@ -23,7 +23,7 @@ Next.js + Supabase + Vercelで構築された求人広告サイトです。サ�
 ### 1. リポジトリのクローン
 
 \`\`\`bash
-git clone <your-repo-url>
+git clone https://github.com/fortesnow/jobsite.git
 cd jobsite
 npm install
 \`\`\`
