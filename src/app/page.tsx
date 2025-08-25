@@ -4,11 +4,11 @@ import { Metadata } from 'next'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: '求人広告サイト | 最新の求人情報',
-  description: '最新の求人情報を掲載しています。正社員、アルバイト、パートなど様々な雇用形態の仕事を探すことができます。',
+  title: '保育士求人ナビ | 保育士・幼稚園教諭の求人情報',
+  description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。正社員、パート、派遣まで幅広い雇用形態をご紹介。',
   openGraph: {
-    title: '求人広告サイト | 最新の求人情報',
-    description: '最新の求人情報を掲載しています。正社員、アルバイト、パートなど様々な雇用形態の仕事を探すことができます。',
+    title: '保育士求人ナビ | 保育士・幼稚園教諭の求人情報',
+    description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。',
     type: 'website',
   },
 }
@@ -22,10 +22,10 @@ export default function Home() {
           {/* メインヘッダー */}
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center space-x-4">
-              <h1 className="text-xl sm:text-2xl font-bold text-blue-600">求人サイト</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-blue-600">保育士求人ナビ</h1>
               <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
-                <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded">全国掲載件数</span>
-                <span className="font-bold text-gray-900">248,267件</span>
+                <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">保育士求人掲載件数</span>
+                <span className="font-bold text-gray-900">1,234件</span>
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function Home() {
               </div>
               <div className="hidden sm:flex items-center space-x-4">
                 <span className="text-gray-400">|</span>
-                <span className="text-gray-800">職種: 未選択</span>
+                <span className="text-gray-800">施設形態: 保育園・こども園</span>
                 <span className="text-gray-400">|</span>
                 <span className="text-gray-800">給与: こだわらない</span>
               </div>

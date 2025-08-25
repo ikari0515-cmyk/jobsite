@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { MapPin, Building, Clock, DollarSign } from 'lucide-react'
 import type { Job } from '@/types/database'
+import { sampleJobs } from '@/data/sampleJobs'
 
 interface JobListResponse {
   jobs: Job[]
@@ -39,20 +40,51 @@ export function JobList() {
       setLoading(true)
       setError(null)
 
-      const params = new URLSearchParams()
-      if (searchParams.get('page')) params.set('page', searchParams.get('page')!)
-      if (searchParams.get('location')) params.set('location', searchParams.get('location')!)
-      if (searchParams.get('employment_type')) params.set('employment_type', searchParams.get('employment_type')!)
-      if (searchParams.get('search')) params.set('search', searchParams.get('search')!)
-
-      const response = await fetch(`/api/jobs?${params.toString()}`)
-      if (!response.ok) {
-        throw new Error('求人情報の取得に失敗しました')
+      // サンプルデータを使用（フィルタリング機能付き）
+      await new Promise(resolve => setTimeout(resolve, 500)) // ローディング表示のため
+      
+      let filteredJobs = [...sampleJobs]
+      
+      // 検索フィルタリング
+      const location = searchParams.get('location')
+      const employmentType = searchParams.get('employment_type') 
+      const search = searchParams.get('search')
+      
+      if (location) {
+        filteredJobs = filteredJobs.filter(job => 
+          job.location.includes(location)
+        )
       }
-
-      const data: JobListResponse = await response.json()
-      setJobs(data.jobs)
-      setPagination(data.pagination)
+      
+      if (employmentType) {
+        filteredJobs = filteredJobs.filter(job => 
+          job.employment_type === employmentType
+        )
+      }
+      
+      if (search) {
+        filteredJobs = filteredJobs.filter(job =>
+          job.title.includes(search) || 
+          job.company.includes(search) ||
+          job.description.includes(search)
+        )
+      }
+      
+      // ページネーション
+      const page = parseInt(searchParams.get('page') || '1')
+      const limit = 20
+      const total = filteredJobs.length
+      const totalPages = Math.ceil(total / limit)
+      const startIndex = (page - 1) * limit
+      const endIndex = startIndex + limit
+      
+      setJobs(filteredJobs.slice(startIndex, endIndex))
+      setPagination({
+        page,
+        limit,
+        total,
+        totalPages
+      })
     } catch (err) {
       setError(err instanceof Error ? err.message : '予期しないエラーが発生しました')
     } finally {
@@ -82,9 +114,9 @@ export function JobList() {
   const getEmploymentTypeLabel = (type: string) => {
     const labels = {
       full_time: '正社員',
-      part_time: 'アルバイト・パート',
+      part_time: 'パート',
       contract: '契約社員',
-      temporary: '派遣・臨時'
+      temporary: '派遣'
     }
     return labels[type as keyof typeof labels] || type
   }
@@ -224,15 +256,31 @@ export function JobList() {
                   <span className="font-medium">勤務時間:</span> 08:00〜17:00など
                 </div>
                 <div className="flex flex-wrap gap-1">
-                  <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">
-                    交通費支給
-                  </span>
-                  <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">
-                    制服貸与
-                  </span>
-                  <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">
-                    週1〜OK
-                  </span>
+                  {job.benefits?.includes('住宅手当') && (
+                    <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">
+                      住宅手当あり
+                    </span>
+                  )}
+                  {job.benefits?.includes('交通費') && (
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
+                      交通費支給
+                    </span>
+                  )}
+                  {job.benefits?.includes('賞与') && (
+                    <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">
+                      賞与あり
+                    </span>
+                  )}
+                  {job.requirements?.includes('未経験') && (
+                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
+                      未経験OK
+                    </span>
+                  )}
+                  {job.requirements?.includes('ブランク') && (
+                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">
+                      ブランクOK
+                    </span>
+                  )}
                 </div>
               </div>
 

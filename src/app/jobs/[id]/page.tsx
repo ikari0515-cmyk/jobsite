@@ -14,25 +14,16 @@ import {
 } from 'lucide-react'
 import { JobStructuredData } from '@/components/JobStructuredData'
 import type { Job } from '@/types/database'
+import { sampleJobs } from '@/data/sampleJobs'
 
 interface Props {
   params: Promise<{ id: string }>
 }
 
 async function getJob(id: string): Promise<Job | null> {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/jobs/${id}`, {
-      cache: 'no-store'
-    })
-    
-    if (!response.ok) {
-      return null
-    }
-    
-    return await response.json()
-  } catch {
-    return null
-  }
+  // サンプルデータから該当する求人を取得
+  const job = sampleJobs.find(job => job.id === id)
+  return job || null
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

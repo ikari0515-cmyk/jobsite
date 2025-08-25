@@ -48,7 +48,7 @@ export function SearchFilters() {
                 id="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="職種、会社名、キーワードなど"
+                placeholder="保育園名、こども園、幼稚園など"
                 className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -114,9 +114,9 @@ export function SearchFilters() {
               >
                 <option value="">すべて</option>
                 <option value="full_time">正社員</option>
-                <option value="part_time">アルバイト・パート</option>
+                <option value="part_time">パート</option>
                 <option value="contract">契約社員</option>
-                <option value="temporary">派遣・臨時</option>
+                <option value="temporary">派遣</option>
               </select>
             </div>
 
@@ -127,10 +127,13 @@ export function SearchFilters() {
               </label>
               <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="">こだわらない</option>
-                <option value="1000">時給1,000円以上</option>
-                <option value="1200">時給1,200円以上</option>
+                <option value="200000">月給20万円以上</option>
+                <option value="220000">月給22万円以上</option>
+                <option value="250000">月給25万円以上</option>
+                <option value="300000">月給30万円以上</option>
+                <option value="1300">時給1,300円以上</option>
                 <option value="1500">時給1,500円以上</option>
-                <option value="2000">時給2,000円以上</option>
+                <option value="1800">時給1,800円以上</option>
               </select>
             </div>
 
@@ -151,16 +154,19 @@ export function SearchFilters() {
         <h3 className="font-medium text-gray-900 mb-3">人気の特徴から探す</h3>
         <div className="grid grid-cols-1 gap-2 text-sm">
           <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            駅徒歩5分以内 <span className="text-gray-500">(2,234)</span>
+            住宅手当あり <span className="text-gray-500">(567)</span>
           </button>
           <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            交通費支給 <span className="text-gray-500">(3,101)</span>
+            未経験者歓迎 <span className="text-gray-500">(823)</span>
           </button>
           <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            髪型・髪色自由 <span className="text-gray-500">(1,427)</span>
+            ブランクOK <span className="text-gray-500">(456)</span>
           </button>
           <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            週1日〜OK <span className="text-gray-500">(1,806)</span>
+            賞与年2回以上 <span className="text-gray-500">(734)</span>
+          </button>
+          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
+            小規模保育園 <span className="text-gray-500">(289)</span>
           </button>
         </div>
       </div>
