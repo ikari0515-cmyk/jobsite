@@ -1,5 +1,6 @@
 import { JobList } from '@/components/JobList'
 import { SearchFilters } from '@/components/SearchFilters'
+import { StackedCircularFooter } from '@/components/ui/stacked-circular-footer'
 import { Metadata } from 'next'
 import { Suspense } from 'react'
 
@@ -25,7 +26,7 @@ export default function Home() {
               <h1 className="text-xl sm:text-2xl font-bold text-blue-600">保育士求人ナビ</h1>
               <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
                 <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">保育士求人掲載件数</span>
-                <span className="font-bold text-gray-900">1,234件</span>
+                <span className="font-bold text-gray-900">5件</span>
               </div>
             </div>
           </div>
@@ -69,13 +70,7 @@ export default function Home() {
       </main>
 
       {/* フッター */}
-      <footer className="bg-white border-t mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <p className="text-center text-gray-600">
-            © 2024 求人広告サイト. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <StackedCircularFooter />
     </div>
   )
 }

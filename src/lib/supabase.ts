@@ -1,14 +1,6 @@
-import { createClient } from '@supabase/supabase-js'
-import type { Database } from '@/types/database'
+// Supabaseは現在無効化されています
+// デプロイ時は環境変数設定後に有効化してください
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey)
-
-// サーバーサイド用（管理機能）
-export const supabaseAdmin = createClient<Database>(
-  supabaseUrl,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+export const supabase = null
+export const supabaseAdmin = null
 

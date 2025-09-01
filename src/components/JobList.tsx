@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { MapPin, Building, Clock, DollarSign } from 'lucide-react'
+import { MapPin, Building, Clock } from 'lucide-react'
 import type { Job } from '@/types/database'
 import { sampleJobs } from '@/data/sampleJobs'
 
@@ -49,6 +49,7 @@ export function JobList() {
       const location = searchParams.get('location')
       const employmentType = searchParams.get('employment_type') 
       const search = searchParams.get('search')
+      const features = searchParams.get('features')?.split(',').filter(Boolean) || []
       
       if (location) {
         filteredJobs = filteredJobs.filter(job => 
@@ -68,6 +69,28 @@ export function JobList() {
           job.company.includes(search) ||
           job.description.includes(search)
         )
+      }
+      
+      // 人気の特徴フィルタリング
+      if (features.length > 0) {
+        filteredJobs = filteredJobs.filter(job => {
+          return features.every(feature => {
+            switch (feature) {
+              case '住宅手当':
+                return job.benefits?.includes('住宅手当')
+              case '未経験':
+                return job.requirements?.includes('未経験')
+              case 'ブランク':
+                return job.requirements?.includes('ブランク')
+              case '賞与':
+                return job.benefits?.includes('賞与')
+              case '小規模':
+                return job.title.includes('小規模') || job.description.includes('小規模')
+              default:
+                return false
+            }
+          })
+        })
       }
       
       // ページネーション
@@ -97,6 +120,14 @@ export function JobList() {
       return '給与応相談'
     }
 
+    // 月給・年収は円単位で保存されているため、万円に変換
+    const formatAmount = (amount: number, type: string) => {
+      if (type === 'monthly' || type === 'yearly') {
+        return (amount / 10000).toLocaleString()
+      }
+      return amount.toLocaleString()
+    }
+
     const salaryUnit = {
       hourly: '円/時',
       monthly: '万円/月',
@@ -104,9 +135,9 @@ export function JobList() {
     }[job.salary_type] || ''
 
     if (job.salary_min && job.salary_max) {
-      return `${job.salary_min.toLocaleString()}-${job.salary_max.toLocaleString()}${salaryUnit}`
+      return `${formatAmount(job.salary_min, job.salary_type)}-${formatAmount(job.salary_max, job.salary_type)}${salaryUnit}`
     } else if (job.salary_min) {
-      return `${job.salary_min.toLocaleString()}${salaryUnit}〜`
+      return `${formatAmount(job.salary_min, job.salary_type)}${salaryUnit}〜`
     }
     return '給与応相談'
   }
@@ -245,7 +276,7 @@ export function JobList() {
                   <span className="text-sm text-gray-800 truncate">{job.location}</span>
                 </div>
                 <div className="flex items-center">
-                  <DollarSign size={16} className="mr-2 text-green-500 flex-shrink-0" />
+                  <span className="text-green-500 mr-2 font-bold">￥</span>
                   <span className="text-sm font-bold text-green-600">{formatSalary(job)}</span>
                 </div>
               </div>
@@ -298,15 +329,14 @@ export function JobList() {
                   <button className="text-xs text-gray-500 hover:text-blue-600 flex items-center">
                     <span className="mr-1">♡</span>キープ
                   </button>
-                  <button className="text-xs text-gray-500 hover:text-blue-600">
-                    友達に教える
-                  </button>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-blue-600 font-bold text-sm">
-                    詳細を見る
-                  </span>
-                  <span className="text-blue-600">→</span>
+                  <button className="bg-green-500 text-white px-3 py-1 rounded text-xs font-medium hover:bg-green-600 transition-colors">
+                    LINE相談
+                  </button>
+                  <button className="bg-blue-500 text-white px-3 py-1 rounded text-xs font-medium hover:bg-blue-600 transition-colors">
+                    ビデオ相談
+                  </button>
                 </div>
               </div>
             </div>

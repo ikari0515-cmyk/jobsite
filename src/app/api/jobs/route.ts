@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase, supabaseAdmin } from '@/lib/supabase'
-import type { JobInsert } from '@/types/database'
+import { sampleJobs } from '@/data/sampleJobs'
 
 // 求人一覧取得（公開済みのみ）
 export async function GET(request: NextRequest) {

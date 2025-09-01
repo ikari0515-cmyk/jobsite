@@ -12,6 +12,9 @@ export function SearchFilters() {
   const [location, setLocation] = useState(searchParams.get('location') || '')
   const [employmentType, setEmploymentType] = useState(searchParams.get('employment_type') || '')
   const [showAdvanced, setShowAdvanced] = useState(false)
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(
+    searchParams.get('features')?.split(',').filter(Boolean) || []
+  )
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -20,6 +23,7 @@ export function SearchFilters() {
     if (search) params.set('search', search)
     if (location) params.set('location', location)
     if (employmentType) params.set('employment_type', employmentType)
+    if (selectedFeatures.length > 0) params.set('features', selectedFeatures.join(','))
     
     router.push(`/?${params.toString()}`)
   }
@@ -28,7 +32,30 @@ export function SearchFilters() {
     setSearch('')
     setLocation('')
     setEmploymentType('')
+    setSelectedFeatures([])
     router.push('/')
+  }
+
+  const handleFeatureToggle = (feature: string) => {
+    const updatedFeatures = selectedFeatures.includes(feature)
+      ? selectedFeatures.filter(f => f !== feature)
+      : [...selectedFeatures, feature]
+    
+    setSelectedFeatures(updatedFeatures)
+    
+    // URLパラメータを即座に更新
+    const params = new URLSearchParams(searchParams.toString())
+    if (search) params.set('search', search)
+    if (location) params.set('location', location)
+    if (employmentType) params.set('employment_type', employmentType)
+    
+    if (updatedFeatures.length > 0) {
+      params.set('features', updatedFeatures.join(','))
+    } else {
+      params.delete('features')
+    }
+    
+    router.push(`/?${params.toString()}`)
   }
 
   return (
@@ -153,20 +180,55 @@ export function SearchFilters() {
       <div className="bg-white rounded-lg shadow-sm border p-4">
         <h3 className="font-medium text-gray-900 mb-3">人気の特徴から探す</h3>
         <div className="grid grid-cols-1 gap-2 text-sm">
-          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            住宅手当あり <span className="text-gray-500">(567)</span>
+          <button 
+            onClick={() => handleFeatureToggle('住宅手当')}
+            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
+              selectedFeatures.includes('住宅手当') 
+                ? 'bg-blue-50 border-blue-300 text-blue-800' 
+                : 'text-gray-800'
+            }`}
+          >
+            住宅手当あり <span className="text-gray-500">(1)</span>
           </button>
-          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            未経験者歓迎 <span className="text-gray-500">(823)</span>
+          <button 
+            onClick={() => handleFeatureToggle('未経験')}
+            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
+              selectedFeatures.includes('未経験') 
+                ? 'bg-blue-50 border-blue-300 text-blue-800' 
+                : 'text-gray-800'
+            }`}
+          >
+            未経験者歓迎 <span className="text-gray-500">(1)</span>
           </button>
-          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            ブランクOK <span className="text-gray-500">(456)</span>
+          <button 
+            onClick={() => handleFeatureToggle('ブランク')}
+            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
+              selectedFeatures.includes('ブランク') 
+                ? 'bg-blue-50 border-blue-300 text-blue-800' 
+                : 'text-gray-800'
+            }`}
+          >
+            ブランクOK <span className="text-gray-500">(1)</span>
           </button>
-          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            賞与年2回以上 <span className="text-gray-500">(734)</span>
+          <button 
+            onClick={() => handleFeatureToggle('賞与')}
+            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
+              selectedFeatures.includes('賞与') 
+                ? 'bg-blue-50 border-blue-300 text-blue-800' 
+                : 'text-gray-800'
+            }`}
+          >
+            賞与年2回以上 <span className="text-gray-500">(3)</span>
           </button>
-          <button className="text-left p-2 hover:bg-gray-50 rounded border text-gray-800">
-            小規模保育園 <span className="text-gray-500">(289)</span>
+          <button 
+            onClick={() => handleFeatureToggle('小規模')}
+            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
+              selectedFeatures.includes('小規模') 
+                ? 'bg-blue-50 border-blue-300 text-blue-800' 
+                : 'text-gray-800'
+            }`}
+          >
+            小規模保育園 <span className="text-gray-500">(1)</span>
           </button>
         </div>
       </div>
