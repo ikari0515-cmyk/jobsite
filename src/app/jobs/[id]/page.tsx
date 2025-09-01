@@ -6,9 +6,12 @@ import {
   Building, 
   Clock,
   ArrowLeft,
-  Calendar
+  Calendar,
+  MessageSquare,
+  Video
 } from 'lucide-react'
 import { JobStructuredData } from '@/components/JobStructuredData'
+import { ParticleButton } from '@/components/ui/particle-button'
 import type { Job } from '@/types/database'
 import { sampleJobs } from '@/data/sampleJobs'
 
@@ -91,19 +94,22 @@ export default async function JobDetailPage({ params }: Props) {
   const renderContactButtons = () => {
     return (
       <div className="space-y-3">
-        <button className="inline-flex items-center justify-center w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors font-medium">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
+        <ParticleButton 
+          className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 font-medium"
+          successDuration={1000}
+          showIcon={false}
+        >
+          <MessageSquare size={20} className="mr-2" />
           LINE相談
-        </button>
-        <button className="inline-flex items-center justify-center w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-            <path d="M23 7l-7 5 7 5V7z"/>
-            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-          </svg>
+        </ParticleButton>
+        <ParticleButton 
+          className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 font-medium"
+          successDuration={1000}
+          showIcon={false}
+        >
+          <Video size={20} className="mr-2" />
           ビデオ相談
-        </button>
+        </ParticleButton>
       </div>
     )
   }

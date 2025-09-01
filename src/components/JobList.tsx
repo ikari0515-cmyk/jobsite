@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { MapPin, Building, Clock } from 'lucide-react'
 import type { Job } from '@/types/database'
 import { sampleJobs } from '@/data/sampleJobs'
+import { ParticleButton } from '@/components/ui/particle-button'
 
 interface JobListResponse {
   jobs: Job[]
@@ -331,12 +332,20 @@ export function JobList() {
                   </button>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <button className="bg-green-500 text-white px-3 py-1 rounded text-xs font-medium hover:bg-green-600 transition-colors">
+                  <ParticleButton 
+                    size="sm"
+                    className="bg-green-500 text-white hover:bg-green-600 text-xs"
+                    successDuration={800}
+                  >
                     LINE相談
-                  </button>
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded text-xs font-medium hover:bg-blue-600 transition-colors">
+                  </ParticleButton>
+                  <ParticleButton 
+                    size="sm"
+                    className="bg-blue-500 text-white hover:bg-blue-600 text-xs"
+                    successDuration={800}
+                  >
                     ビデオ相談
-                  </button>
+                  </ParticleButton>
                 </div>
               </div>
             </div>
