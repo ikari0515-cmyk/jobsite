@@ -10,14 +10,14 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: {
-    default: "求人広告サイト | 最新の求人情報",
-    template: "%s | 求人広告サイト"
+    default: "Asteris+求人ナビ | 保育士・幼稚園教諭の求人情報",
+    template: "%s | Asteris+求人ナビ"
   },
-  description: "最新の求人情報を掲載しています。正社員、アルバイト、パートなど様々な雇用形態の仕事を探すことができます。",
-  keywords: ["求人", "転職", "仕事", "アルバイト", "パート", "正社員", "採用"],
-  authors: [{ name: "求人広告サイト運営事務局" }],
-  creator: "求人広告サイト",
-  publisher: "求人広告サイト",
+  description: "保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。正社員、パートなど様々な雇用形態をご紹介。",
+  keywords: ["保育士", "幼稚園教諭", "求人", "転職", "保育園", "認定こども園", "幼稚園", "正社員", "パート"],
+  authors: [{ name: "Asteris+求人ナビ運営事務局" }],
+  creator: "Asteris+求人ナビ",
+  publisher: "Asteris+求人ナビ",
   formatDetection: {
     email: false,
     address: false,
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ja_JP',
     url: '/',
-    title: '求人広告サイト | 最新の求人情報',
-    description: '最新の求人情報を掲載しています。正社員、アルバイト、パートなど様々な雇用形態の仕事を探すことができます。',
-    siteName: '求人広告サイト',
+    title: 'Asteris+求人ナビ | 保育士・幼稚園教諭の求人情報',
+    description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。',
+    siteName: 'Asteris+求人ナビ',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '求人広告サイト | 最新の求人情報',
-    description: '最新の求人情報を掲載しています。正社員、アルバイト、パートなど様々な雇用形態の仕事を探すことができます。',
+    title: 'Asteris+求人ナビ | 保育士・幼稚園教諭の求人情報',
+    description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。',
   },
   robots: {
     index: true,

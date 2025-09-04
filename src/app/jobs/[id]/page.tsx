@@ -106,6 +106,7 @@ export default async function JobDetailPage({ params }: Props) {
           className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 font-medium"
           successDuration={1000}
           showIcon={false}
+          onClick={() => window.open('https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c', '_blank')}
         >
           <Video size={20} className="mr-2" />
           ビデオ相談

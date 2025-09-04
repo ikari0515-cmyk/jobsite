@@ -343,6 +343,7 @@ export function JobList() {
                     size="sm"
                     className="bg-blue-500 text-white hover:bg-blue-600 text-xs"
                     successDuration={800}
+                    onClick={() => window.open('https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c', '_blank')}
                   >
                     ビデオ相談
                   </ParticleButton>

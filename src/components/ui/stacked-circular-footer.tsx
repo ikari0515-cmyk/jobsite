@@ -29,9 +29,11 @@ function StackedCircularFooter() {
               <Twitter className="h-4 w-4" />
               <span className="sr-only">Twitter</span>
             </Button>
-            <Button variant="outline" size="icon" className="rounded-full w-10 h-10">
-              <Instagram className="h-4 w-4" />
-              <span className="sr-only">Instagram</span>
+            <Button variant="outline" size="icon" className="rounded-full w-10 h-10" asChild>
+              <a href="https://www.instagram.com/hoiku5151?igsh=Z2gzcGFuamlxNTEz&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                <Instagram className="h-4 w-4" />
+                <span className="sr-only">Instagram</span>
+              </a>
             </Button>
             <Button variant="outline" size="icon" className="rounded-full w-10 h-10">
               <Linkedin className="h-4 w-4" />
@@ -39,28 +41,22 @@ function StackedCircularFooter() {
             </Button>
           </div>
           
-          {/* Email Subscription */}
+          {/* LINE Registration */}
           <div className="w-full max-w-md">
-            <form className="flex gap-2">
-              <div className="flex-1">
-                <Label htmlFor="email" className="sr-only">メールアドレス</Label>
-                <Input 
-                  id="email" 
-                  placeholder="メールアドレスを入力" 
-                  type="email" 
-                  className="rounded-full border-gray-300"
-                />
-              </div>
-              <Button type="submit" className="rounded-full px-6 bg-blue-600 hover:bg-blue-700">
-                登録
+            <div className="text-center">
+              <p className="text-sm text-gray-600 mb-4">公式LINEで最新の求人情報をお届け！</p>
+              <Button asChild className="rounded-full px-8 bg-green-500 hover:bg-green-600">
+                <a href="https://lin.ee/BbjOel5" target="_blank" rel="noopener noreferrer">
+                  公式LINE登録
+                </a>
               </Button>
-            </form>
+            </div>
           </div>
           
           {/* Copyright */}
           <div className="text-center">
             <p className="text-sm text-gray-500">
-              © 2025 保育士求人ナビ. All rights reserved.
+              © 2025 Asteris+求人ナビ. All rights reserved.
             </p>
           </div>
         </div>
