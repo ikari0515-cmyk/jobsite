@@ -31,6 +31,15 @@ export interface Database {
           updated_at: string
           published_at: string | null
           expires_at: string | null
+          // 詳細情報フィールド
+          job_category: string | null
+          job_content: string | null
+          service_type: string | null
+          salary_details: string | null
+          welfare_benefits: string | null
+          working_hours: string | null
+          holidays: string | null
+          vacation_system: string | null
         }
         Insert: {
           id?: string
@@ -53,6 +62,15 @@ export interface Database {
           updated_at?: string
           published_at?: string | null
           expires_at?: string | null
+          // 詳細情報フィールド
+          job_category?: string | null
+          job_content?: string | null
+          service_type?: string | null
+          salary_details?: string | null
+          welfare_benefits?: string | null
+          working_hours?: string | null
+          holidays?: string | null
+          vacation_system?: string | null
         }
         Update: {
           id?: string
@@ -75,6 +93,15 @@ export interface Database {
           updated_at?: string
           published_at?: string | null
           expires_at?: string | null
+          // 詳細情報フィールド
+          job_category?: string | null
+          job_content?: string | null
+          service_type?: string | null
+          salary_details?: string | null
+          welfare_benefits?: string | null
+          working_hours?: string | null
+          holidays?: string | null
+          vacation_system?: string | null
         }
       }
     }

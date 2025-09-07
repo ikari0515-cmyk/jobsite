@@ -6,12 +6,10 @@ import {
   Building, 
   Clock,
   ArrowLeft,
-  Calendar,
-  MessageSquare,
-  Video
+  Calendar
 } from 'lucide-react'
 import { JobStructuredData } from '@/components/JobStructuredData'
-import { ParticleButton } from '@/components/ui/particle-button'
+import { JobContactButtons } from '@/components/JobContactButtons'
 import type { Job } from '@/types/database'
 import { sampleJobs } from '@/data/sampleJobs'
 
@@ -91,29 +89,6 @@ export default async function JobDetailPage({ params }: Props) {
     return labels[type as keyof typeof labels] || type
   }
 
-  const renderContactButtons = () => {
-    return (
-      <div className="space-y-3">
-        <ParticleButton 
-          className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 font-medium"
-          successDuration={1000}
-          showIcon={false}
-        >
-          <MessageSquare size={20} className="mr-2" />
-          LINE相談
-        </ParticleButton>
-        <ParticleButton 
-          className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 font-medium"
-          successDuration={1000}
-          showIcon={false}
-          onClick={() => window.open('https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c', '_blank')}
-        >
-          <Video size={20} className="mr-2" />
-          ビデオ相談
-        </ParticleButton>
-      </div>
-    )
-  }
 
   return (
     <>
@@ -190,6 +165,65 @@ export default async function JobDetailPage({ params }: Props) {
                 </div>
               </div>
 
+              {/* 募集内容詳細 */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6">募集内容</h3>
+                <div className="space-y-4">
+                  {(job as any).job_category && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">募集職種</dt>
+                      <dd className="text-gray-700">{(job as any).job_category}</dd>
+                    </div>
+                  )}
+                  {(job as any).job_content && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">仕事内容</dt>
+                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).job_content}</dd>
+                    </div>
+                  )}
+                  {(job as any).service_type && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">サービス形態</dt>
+                      <dd className="text-gray-700">{(job as any).service_type}</dd>
+                    </div>
+                  )}
+                  <div className="flex">
+                    <dt className="w-24 flex-shrink-0 font-medium text-gray-900">給与</dt>
+                    <dd className="text-gray-700">{formatSalary()}</dd>
+                  </div>
+                  {(job as any).salary_details && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">給与備考</dt>
+                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).salary_details}</dd>
+                    </div>
+                  )}
+                  {(job as any).welfare_benefits && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">待遇</dt>
+                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).welfare_benefits}</dd>
+                    </div>
+                  )}
+                  {(job as any).working_hours && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">勤務時間</dt>
+                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).working_hours}</dd>
+                    </div>
+                  )}
+                  {(job as any).holidays && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">休日</dt>
+                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).holidays}</dd>
+                    </div>
+                  )}
+                  {(job as any).vacation_system && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">休暇制度</dt>
+                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).vacation_system}</dd>
+                    </div>
+                  )}
+                </div>
+              </div>
+
               {/* 応募資格・条件 */}
               {job.requirements && (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
@@ -217,7 +251,7 @@ export default async function JobDetailPage({ params }: Props) {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">この求人に応募する</h3>
                 
                 <div className="space-y-4">
-                  {renderContactButtons()}
+                  <JobContactButtons />
                   
                   <div className="text-sm text-gray-600 p-4 bg-gray-50 rounded-lg">
                     <p className="mb-2">応募前にご確認ください：</p>

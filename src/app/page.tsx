@@ -5,10 +5,10 @@ import { Metadata } from 'next'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Asteris+求人ナビ | 保育士・幼稚園教諭の求人情報',
+  title: 'Asterisk+求人ナビ | 保育士・幼稚園教諭の求人情報',
   description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。正社員、パート、派遣まで幅広い雇用形態をご紹介。',
   openGraph: {
-    title: 'Asteris+求人ナビ | 保育士・幼稚園教諭の求人情報',
+    title: 'Asterisk+求人ナビ | 保育士・幼稚園教諭の求人情報',
     description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。',
     type: 'website',
   },
@@ -23,10 +23,10 @@ export default function Home() {
           {/* メインヘッダー */}
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center space-x-4">
-              <h1 className="text-xl sm:text-2xl font-bold text-blue-600">Asteris+求人ナビ</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-blue-600">Asterisk+求人ナビ</h1>
               <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
                 <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">保育士求人掲載件数</span>
-                <span className="font-bold text-gray-900">5件</span>
+                <span className="font-bold text-gray-900">6件</span>
               </div>
             </div>
           </div>

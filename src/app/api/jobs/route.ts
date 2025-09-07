@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sampleJobs } from '@/data/sampleJobs'
 
-// 求人一覧取得（公開済みのみ）
+// 求人一覧取得（サンプルデータ使用）
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams
@@ -11,41 +11,44 @@ export async function GET(request: NextRequest) {
     const employment_type = searchParams.get('employment_type')
     const search = searchParams.get('search')
 
-    let query = supabase
-      .from('jobs')
-      .select('*', { count: 'exact' })
-      .eq('is_published', true)
-      .order('published_at', { ascending: false })
+    // サンプルデータから公開済みの求人のみフィルタ
+    let filteredJobs = sampleJobs.filter(job => job.is_published)
+    
+    // 投稿日で降順ソート
+    filteredJobs.sort((a, b) => new Date(b.published_at || b.created_at).getTime() - new Date(a.published_at || a.created_at).getTime())
 
     // フィルター適用
     if (location) {
-      query = query.ilike('location', `%${location}%`)
+      filteredJobs = filteredJobs.filter(job => 
+        job.location.includes(location)
+      )
     }
     if (employment_type) {
-      query = query.eq('employment_type', employment_type)
+      filteredJobs = filteredJobs.filter(job => 
+        job.employment_type === employment_type
+      )
     }
     if (search) {
-      query = query.or(`title.ilike.%${search}%,company.ilike.%${search}%,description.ilike.%${search}%`)
+      filteredJobs = filteredJobs.filter(job =>
+        job.title.includes(search) || 
+        job.company.includes(search) ||
+        job.description.includes(search)
+      )
     }
 
     // ページネーション
+    const total = filteredJobs.length
     const from = (page - 1) * limit
-    const to = from + limit - 1
-    query = query.range(from, to)
-
-    const { data, error, count } = await query
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 })
-    }
+    const to = from + limit
+    const paginatedJobs = filteredJobs.slice(from, to)
 
     return NextResponse.json({
-      jobs: data,
+      jobs: paginatedJobs,
       pagination: {
         page,
         limit,
-        total: count || 0,
-        totalPages: Math.ceil((count || 0) / limit)
+        total,
+        totalPages: Math.ceil(total / limit)
       }
     })
   } catch {
@@ -56,45 +59,10 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// 求人作成（管理者のみ）
+// 求人作成（デモ版では無効化）
 export async function POST(request: NextRequest) {
-  try {
-    // 簡単な認証チェック
-    const authHeader = request.headers.get('authorization')
-    if (!authHeader || authHeader !== `Bearer ${process.env.ADMIN_PASSWORD}`) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
-    const body: JobInsert = await request.json()
-
-    // バリデーション
-    if (!body.title || !body.company || !body.location || !body.description) {
-      return NextResponse.json(
-        { error: 'Required fields: title, company, location, description' },
-        { status: 400 }
-      )
-    }
-
-    // 公開設定時は published_at を設定
-    if (body.is_published) {
-      body.published_at = new Date().toISOString()
-    }
-
-    const { data, error } = await supabaseAdmin
-      .from('jobs')
-      .insert(body)
-      .select()
-      .single()
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 })
-    }
-
-    return NextResponse.json(data, { status: 201 })
-  } catch {
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
-  }
+  return NextResponse.json(
+    { error: 'Demo version - POST not implemented' },
+    { status: 501 }
+  )
 }

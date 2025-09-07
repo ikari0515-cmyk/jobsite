@@ -21,7 +21,16 @@ export const sampleJobs: Job[] = [
     created_at: '2024-01-15T09:00:00Z',
     updated_at: '2024-01-15T09:00:00Z',
     published_at: '2024-01-15T09:00:00Z',
-    expires_at: null
+    expires_at: null,
+    // 詳細情報
+    job_category: '保育士',
+    job_content: '0歳から5歳までの子どもたちの保育業務全般。乳幼児の基本的な生活習慣の指導、遊びを通じた学習支援、保護者との連携など。',
+    service_type: '認定こども園',
+    salary_details: '住宅手当月2万円、昇給年1回、賞与年2回（2.5ヶ月分）',
+    welfare_benefits: '住宅手当月2万円、交通費全額支給、社会保険完備、賞与年2回、研修制度充実',
+    working_hours: '7:00～19:00の間でシフト制（実働8時間）',
+    holidays: '週休2日制、祝日、年間休日120日',
+    vacation_system: '夏季休暇、年末年始休暇、有給休暇、産前産後休暇、育児休暇'
   },
   {
     id: '2', 
@@ -43,7 +52,16 @@ export const sampleJobs: Job[] = [
     created_at: '2024-01-14T10:30:00Z',
     updated_at: '2024-01-14T10:30:00Z', 
     published_at: '2024-01-14T10:30:00Z',
-    expires_at: null
+    expires_at: null,
+    // 詳細情報
+    job_category: '保育士',
+    job_content: '定員19名の小規模保育園での保育業務。アットホームな環境で子どもたち一人ひとりとじっくり関わることができます。',
+    service_type: '小規模保育園',
+    salary_details: '週3日～勤務OK、扶養内勤務可能、昇給あり',
+    welfare_benefits: '週3日～勤務OK、扶養内勤務可能、交通費支給、制服貸与',
+    working_hours: '7:30～18:30の間でシフト制（実働6～8時間）',
+    holidays: '週休2日制、土日祝休み、年間休日120日',
+    vacation_system: '有給休暇、産前産後休暇、育児休暇'
   },
   {
     id: '3',
@@ -65,7 +83,16 @@ export const sampleJobs: Job[] = [
     created_at: '2024-01-13T14:00:00Z',
     updated_at: '2024-01-13T14:00:00Z',
     published_at: '2024-01-13T14:00:00Z',
-    expires_at: null
+    expires_at: null,
+    // 詳細情報
+    job_category: '栄養士',
+    job_content: '定員60名の認可保育園での栄養士業務。給食の献立作成、調理指導、アレルギー対応、栄養指導など。',
+    service_type: '認可保育園',
+    salary_details: '昇給年1回、賞与年3回（3.5ヶ月分）、退職金制度あり',
+    welfare_benefits: '賞与年3回、退職金制度あり、社会保険完備、産休・育休実績多数',
+    working_hours: '8:00～17:00（実働8時間、休憩60分）',
+    holidays: '週休2日制、祝日、年間休日110日',
+    vacation_system: '有給休暇、産前産後休暇、育児休暇、介護休暇'
   },
   {
     id: '4',
@@ -87,7 +114,16 @@ export const sampleJobs: Job[] = [
     created_at: '2024-01-12T16:45:00Z',
     updated_at: '2024-01-12T16:45:00Z',
     published_at: '2024-01-12T16:45:00Z',
-    expires_at: null
+    expires_at: null,
+    // 詳細情報
+    job_category: '保育士',
+    job_content: '大手企業内の保育所で従業員のお子様をお預かりする業務。定員12名の少人数制で個別対応重視。',
+    service_type: '企業内保育所',
+    salary_details: '高時給1800円、昇給あり、交通費全額支給',
+    welfare_benefits: '高時給、土日祝休み、交通費全額支給、有給取得率90%以上',
+    working_hours: '8:00～18:00の間でシフト制（実働8時間）',
+    holidays: '土日祝休み、年間休日125日',
+    vacation_system: '有給休暇、夏季休暇、年末年始休暇'
   },
   {
     id: '5',
@@ -109,7 +145,47 @@ export const sampleJobs: Job[] = [
     created_at: '2024-01-11T11:20:00Z',
     updated_at: '2024-01-11T11:20:00Z',
     published_at: '2024-01-11T11:20:00Z',
-    expires_at: null
+    expires_at: null,
+    // 詳細情報
+    job_category: '幼稚園教諭',
+    job_content: '創立50年の歴史ある幼稚園で3歳から5歳の子どもたちの教育・保育業務。のびのびとした教育方針。',
+    service_type: '幼稚園',
+    salary_details: '昇給年1回、賞与年2回（4.5ヶ月分）、退職金制度あり',
+    welfare_benefits: '年間休日125日、賞与年2回（4.5ヶ月分）、退職金制度、研修費用補助',
+    working_hours: '8:00～17:00（実働8時間、休憩60分）',
+    holidays: '土日祝休み、年間休日125日',
+    vacation_system: '夏季休暇、冬季休暇、春季休暇、有給休暇、産前産後休暇、育児休暇'
+  },
+  {
+    id: '6',
+    title: '【2025年02月01日オープン】児童発達支援・放課後等デイサービス ナナララ 保育士募集',
+    company: '児童発達支援・放課後等デイサービス ナナララ',
+    location: '兵庫県姫路市',
+    salary_min: 194000,
+    salary_max: 230000,
+    salary_type: 'monthly',
+    employment_type: 'full_time',
+    description: '年齢不問☆研修制度充実◎保育士募集。ナナララは、ナナラ（ひまわり）、ララ（太陽）というハワイ語を掛け合わせてつくった施設名です。太陽に向かうひまわりのように、力強く成長していく子どもたちをイメージしています。障がい特性のある子どもたちは人を頼ることが苦手です。自分の困っていることを言葉で表現できずに行動に出てしまう子もいます。まずは子供たちが安心して気持ちを表現できる事業所を創っていきたいと考えています。',
+    requirements: '保育士資格必須、普通自動車運転免許、ブランク可、未経験可、年齢・学歴不問',
+    benefits: '雇用保険、労災保険、健康保険、厚生年金、通勤手当上限15,000円、昇給あり（年1回）、賞与あり（年2回）、研修制度あり、ハラスメント相談窓口あり',
+    contact_method: 'form',
+    contact_url: null,
+    contact_phone: null,
+    contact_email: null,
+    is_published: true,
+    created_at: '2024-01-10T08:00:00Z',
+    updated_at: '2024-01-10T08:00:00Z',
+    published_at: '2024-01-10T08:00:00Z',
+    expires_at: null,
+    // 詳細情報
+    job_category: '保育士',
+    job_content: 'ソーシャルスキルトレーニングを行う多機能事業所における保育士業務　お子様の直接支援（遊び、トレーニングの提供、トイレなどの補助、送迎）等　従事すべき業務の変更の範囲なし　就業場所の変更の範囲なし',
+    service_type: '放課後等デイサービス',
+    salary_details: '通勤手当 上限15,000円　昇給あり（年1回）　賞与あり（年2回）　試用期間：最長6ヶ月（条件変更なし）　※経験や年齢によるものとする。',
+    welfare_benefits: '社会保険完備、ボーナス・賞与あり、交通費支給、ハラスメント相談窓口あり、雇用保険、労災保険、健康保険、厚生年金',
+    working_hours: '（1）9:30～18:30 休憩60分　※時間外ほぼなし',
+    holidays: '週休2日　例）日＋他シフト休　年間休日数 113日',
+    vacation_system: '夏季休暇、年末年始休暇、入社6か月～有給休暇付与'
   }
 ]
 
