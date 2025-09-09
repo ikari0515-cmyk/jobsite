@@ -336,6 +336,7 @@ export function JobList() {
                     size="sm"
                     className="bg-green-500 text-white hover:bg-green-600 text-xs"
                     successDuration={800}
+                    onClick={() => window.open('https://lin.ee/xVCllgr', '_blank')}
                   >
                     LINE相談
                   </ParticleButton>
@@ -345,7 +346,7 @@ export function JobList() {
                     successDuration={800}
                     onClick={() => window.open('https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c', '_blank')}
                   >
-                    ビデオ相談
+                    ウェブ予約
                   </ParticleButton>
                 </div>
               </div>

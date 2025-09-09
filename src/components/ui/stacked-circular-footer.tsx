@@ -46,7 +46,7 @@ function StackedCircularFooter() {
             <div className="text-center">
               <p className="text-sm text-gray-600 mb-4">公式LINEで最新の求人情報をお届け！</p>
               <Button asChild className="rounded-full px-8 bg-green-500 hover:bg-green-600">
-                <a href="https://lin.ee/BbjOel5" target="_blank" rel="noopener noreferrer">
+                <a href="https://lin.ee/xVCllgr" target="_blank" rel="noopener noreferrer">
                   公式LINE登録
                 </a>
               </Button>

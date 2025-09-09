@@ -5,7 +5,7 @@ import { ParticleButton } from '@/components/ui/particle-button'
 
 export function JobContactButtons() {
   const handleLineConsultation = () => {
-    window.open('https://line.me/R/ti/p/@fuji-job', '_blank')
+    window.open('https://lin.ee/xVCllgr', '_blank')
   }
 
   const handleWebReservation = () => {
