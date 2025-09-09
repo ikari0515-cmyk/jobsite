@@ -221,6 +221,19 @@ export default async function JobDetailPage({ params }: Props) {
                       <dd className="text-gray-700 whitespace-pre-line">{(job as any).vacation_system}</dd>
                     </div>
                   )}
+                  {(job as any).short_term_available && (
+                    <div className="flex">
+                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期パート</dt>
+                      <dd className="text-gray-700">
+                        <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium mr-2">
+                          短期OK
+                        </span>
+                        {(job as any).short_term_details && (
+                          <span className="text-gray-600">{(job as any).short_term_details}</span>
+                        )}
+                      </dd>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -240,6 +253,45 @@ export default async function JobDetailPage({ params }: Props) {
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">待遇・福利厚生</h3>
                   <div className="prose max-w-none">
                     <p className="text-gray-700 whitespace-pre-line">{job.benefits}</p>
+                  </div>
+                </div>
+              )}
+
+              {/* 選考手順 */}
+              {(job as any).selection_process && (
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">選考手順</h3>
+                  <div className="space-y-4 md:space-y-0 md:flex md:items-center md:space-x-4 overflow-x-auto">
+                    {(job as any).selection_process.split(' → ').map((step: string, index: number, array: string[]) => (
+                      <div key={index} className="flex items-center min-w-max">
+                        <div className="flex items-center">
+                          <div className="flex items-center justify-center w-10 h-10 bg-blue-100 text-blue-800 rounded-full text-sm font-bold shadow-sm">
+                            {index + 1}
+                          </div>
+                          <div className="ml-3">
+                            <span className="text-gray-700 font-medium text-sm">{step}</span>
+                          </div>
+                        </div>
+                        {index < array.length - 1 && (
+                          <svg className="ml-4 w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5-5 5M6 7l5 5-5 5" />
+                          </svg>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div>
+                        <p className="text-sm text-blue-700 font-medium mb-1">選考について</p>
+                        <p className="text-sm text-blue-600">
+                          応募から内定まで通常1-2週間程度お時間をいただきます。各選考段階の詳細や必要書類については、応募後にご案内いたします。
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}

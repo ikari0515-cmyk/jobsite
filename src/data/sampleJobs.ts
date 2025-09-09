@@ -30,7 +30,11 @@ export const sampleJobs: Job[] = [
     welfare_benefits: '住宅手当月2万円、交通費全額支給、社会保険完備、賞与年2回、研修制度充実',
     working_hours: '7:00～19:00の間でシフト制（実働8時間）',
     holidays: '週休2日制、祝日、年間休日120日',
-    vacation_system: '夏季休暇、年末年始休暇、有給休暇、産前産後休暇、育児休暇'
+    vacation_system: '夏季休暇、年末年始休暇、有給休暇、産前産後休暇、育児休暇',
+    // 短期パート・選考手順
+    short_term_available: false,
+    short_term_details: null,
+    selection_process: '書類選考 → 面接（1回） → 内定'
   },
   {
     id: '2', 
@@ -61,7 +65,11 @@ export const sampleJobs: Job[] = [
     welfare_benefits: '週3日～勤務OK、扶養内勤務可能、交通費支給、制服貸与',
     working_hours: '7:30～18:30の間でシフト制（実働6～8時間）',
     holidays: '週休2日制、土日祝休み、年間休日120日',
-    vacation_system: '有給休暇、産前産後休暇、育児休暇'
+    vacation_system: '有給休暇、産前産後休暇、育児休暇',
+    // 短期パート・選考手順
+    short_term_available: true,
+    short_term_details: '1週間～1ヶ月の短期勤務も歓迎、イベント時のみの勤務も可能',
+    selection_process: '面接のみ（履歴書持参、30分程度）'
   },
   {
     id: '3',
@@ -92,7 +100,11 @@ export const sampleJobs: Job[] = [
     welfare_benefits: '賞与年3回、退職金制度あり、社会保険完備、産休・育休実績多数',
     working_hours: '8:00～17:00（実働8時間、休憩60分）',
     holidays: '週休2日制、祝日、年間休日110日',
-    vacation_system: '有給休暇、産前産後休暇、育児休暇、介護休暇'
+    vacation_system: '有給休暇、産前産後休暇、育児休暇、介護休暇',
+    // 短期パート・選考手順
+    short_term_available: false,
+    short_term_details: null,
+    selection_process: '書類選考 → 面接（2回）→ 実技試験（調理実習）→ 内定'
   },
   {
     id: '4',
@@ -123,7 +135,11 @@ export const sampleJobs: Job[] = [
     welfare_benefits: '高時給、土日祝休み、交通費全額支給、有給取得率90%以上',
     working_hours: '8:00～18:00の間でシフト制（実働8時間）',
     holidays: '土日祝休み、年間休日125日',
-    vacation_system: '有給休暇、夏季休暇、年末年始休暇'
+    vacation_system: '有給休暇、夏季休暇、年末年始休暇',
+    // 短期パート・選考手順
+    short_term_available: true,
+    short_term_details: '1日～の単発勤務可能、研修期間中も高時給保証',
+    selection_process: 'WEB面接可 → 最短即日内定'
   },
   {
     id: '5',
@@ -154,7 +170,11 @@ export const sampleJobs: Job[] = [
     welfare_benefits: '年間休日125日、賞与年2回（4.5ヶ月分）、退職金制度、研修費用補助',
     working_hours: '8:00～17:00（実働8時間、休憩60分）',
     holidays: '土日祝休み、年間休日125日',
-    vacation_system: '夏季休暇、冬季休暇、春季休暇、有給休暇、産前産後休暇、育児休暇'
+    vacation_system: '夏季休暇、冬季休暇、春季休暇、有給休暇、産前産後休暇、育児休暇',
+    // 短期パート・選考手順
+    short_term_available: false,
+    short_term_details: null,
+    selection_process: '書類選考 → 面接（1回）→ 園見学 → 内定'
   },
   {
     id: '6',
@@ -185,7 +205,11 @@ export const sampleJobs: Job[] = [
     welfare_benefits: '社会保険完備、ボーナス・賞与あり、交通費支給、ハラスメント相談窓口あり、雇用保険、労災保険、健康保険、厚生年金',
     working_hours: '（1）9:30～18:30 休憩60分　※時間外ほぼなし',
     holidays: '週休2日　例）日＋他シフト休　年間休日数 113日',
-    vacation_system: '夏季休暇、年末年始休暇、入社6か月～有給休暇付与'
+    vacation_system: '夏季休暇、年末年始休暇、入社6か月～有給休暇付与',
+    // 短期パート・選考手順
+    short_term_available: false,
+    short_term_details: null,
+    selection_process: '書類選考 → 面接（1回）→ 施設見学 → 内定通知（1週間以内）'
   }
 ]
 

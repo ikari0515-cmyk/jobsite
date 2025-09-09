@@ -40,6 +40,10 @@ export interface Database {
           working_hours: string | null
           holidays: string | null
           vacation_system: string | null
+          // 短期パート・選考手順
+          short_term_available: boolean | null
+          short_term_details: string | null
+          selection_process: string | null
         }
         Insert: {
           id?: string
@@ -71,6 +75,10 @@ export interface Database {
           working_hours?: string | null
           holidays?: string | null
           vacation_system?: string | null
+          // 短期パート・選考手順
+          short_term_available?: boolean | null
+          short_term_details?: string | null
+          selection_process?: string | null
         }
         Update: {
           id?: string
@@ -102,6 +110,10 @@ export interface Database {
           working_hours?: string | null
           holidays?: string | null
           vacation_system?: string | null
+          // 短期パート・選考手順
+          short_term_available?: boolean | null
+          short_term_details?: string | null
+          selection_process?: string | null
         }
       }
     }
