@@ -23,9 +23,9 @@ export default function ServicePage() {
             <div className="flex justify-between items-center">
               <Link
                 href="/"
-                className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
+                className="text-xl sm:text-2xl font-bold text-blue-600"
               >
-                求人広告サイト
+                Asterisk+求人ナビ
               </Link>
                <nav className="flex space-x-6 md:space-x-8">
                  <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">
@@ -52,12 +52,12 @@ export default function ServicePage() {
             </div>
           </div>
 
-          {/* サービス説明画像1 */}
+          {/* サービス説明画像2 */}
           <div className="mb-4">
             <div className="w-full max-w-4xl mx-auto">
               <Image
-                src="/service-image-1.jpeg"
-                alt="実践×伴走で採用の常識を変える - メリット紹介"
+                src="/service-image-2.jpeg"
+                alt="採用の流れと料金について"
                 width={1200}
                 height={800}
                 className="w-full h-auto rounded-lg shadow-lg"
@@ -66,12 +66,12 @@ export default function ServicePage() {
             </div>
           </div>
 
-          {/* サービス説明画像2 */}
+          {/* サービス説明画像1 */}
           <div className="mb-20">
             <div className="w-full max-w-4xl mx-auto">
               <Image
-                src="/service-image-2.jpeg"
-                alt="採用の流れと料金について"
+                src="/service-image-1.jpeg"
+                alt="実践×伴走で採用の常識を変える - メリット紹介"
                 width={1200}
                 height={800}
                 className="w-full h-auto rounded-lg shadow-lg"
@@ -126,11 +126,6 @@ export default function ServicePage() {
               <div>
                 <h3 className="text-2xl font-bold mb-4">Asterisk+</h3>
                 <p className="text-green-200 mb-4">人材コンサル事業部</p>
-                <div className="w-24 h-24 bg-white rounded-lg p-2">
-                  <div className="w-full h-full bg-gray-800 rounded flex items-center justify-center">
-                    <span className="text-white text-xs">QRコード</span>
-                  </div>
-                </div>
               </div>
               
               <div>
@@ -154,7 +149,7 @@ export default function ServicePage() {
             </div>
             
             <div className="border-t border-green-700 mt-8 pt-8 text-center text-green-200">
-              <p>&copy; 2024 Asterisk+ 人材コンサル事業部. All rights reserved.</p>
+              <p>&copy; 2025 Asterisk+ All rights reserved.</p>
             </div>
           </div>
         </footer>
