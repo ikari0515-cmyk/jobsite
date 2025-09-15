@@ -22,12 +22,25 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* メインヘッダー */}
           <div className="flex items-center justify-between py-3">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-xl sm:text-2xl font-bold text-blue-600">Asterisk+求人ナビ</h1>
-              <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
-                <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">保育士求人掲載件数</span>
-                <span className="font-bold text-gray-900">6件</span>
+            <div className="flex items-center justify-between w-full">
+              <div className="flex items-center space-x-4">
+                <h1 className="text-xl sm:text-2xl font-bold text-blue-600">Asterisk+求人ナビ</h1>
+                <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
+                  <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">保育士求人掲載件数</span>
+                  <span className="font-bold text-gray-900">6件</span>
+                </div>
               </div>
+              <nav className="hidden md:flex items-center space-x-6">
+                <a href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+                  求人一覧
+                </a>
+                <a href="/service" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+                  サービス
+                </a>
+                <a href="/admin" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+                  管理画面
+                </a>
+              </nav>
             </div>
           </div>
           

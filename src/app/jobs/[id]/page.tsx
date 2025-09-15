@@ -157,9 +157,9 @@ export default async function JobDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              {/* 仕事内容 */}
+              {/* 企業紹介 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">仕事内容</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">企業紹介</h3>
                 <div className="prose max-w-none">
                   <p className="text-gray-700 whitespace-pre-line">{job.description}</p>
                 </div>
