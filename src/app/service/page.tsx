@@ -56,134 +56,33 @@ export default function ServicePage() {
           </div>
 
           {/* サービス説明画像1 */}
-          <div className="mb-20">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="relative h-[600px] md:h-[800px]">
-                <Image
-                  src="/service-image-1.png"
-                  alt="実践×伴走で採用の常識を変える - メリット紹介"
-                  fill
-                  className="object-contain p-8"
-                  priority
-                />
-              </div>
+          <div className="mb-4">
+            <div className="w-full max-w-4xl mx-auto">
+              <Image
+                src="/service-image-1.jpeg"
+                alt="実践×伴走で採用の常識を変える - メリット紹介"
+                width={1200}
+                height={800}
+                className="w-full h-auto rounded-lg shadow-lg"
+                priority
+              />
             </div>
           </div>
 
           {/* サービス説明画像2 */}
           <div className="mb-20">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="relative h-[600px] md:h-[800px]">
-                <Image
-                  src="/service-image-2.png"
-                  alt="採用の流れと料金について"
-                  fill
-                  className="object-contain p-8"
-                />
-              </div>
+            <div className="w-full max-w-4xl mx-auto">
+              <Image
+                src="/service-image-2.jpeg"
+                alt="採用の流れと料金について"
+                width={1200}
+                height={800}
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
             </div>
           </div>
 
-          {/* 特徴セクション */}
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">サービスの特徴</h2>
-              <p className="text-xl text-gray-600">実践期間で見極め、伴走サポートで定着を実現</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="bg-white rounded-lg p-6 shadow-lg text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">💰</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">採用コストの削減</h3>
-                <p className="text-gray-600 text-sm">実践期間で見極め「すぐに辞める」を防ぎ、無駄をなくす</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-lg text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">⭐</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">実務経験者が対象</h3>
-                <p className="text-gray-600 text-sm">即戦力人材により不足をすぐに補える</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-lg text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">👥</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">定着率向上</h3>
-                <p className="text-gray-600 text-sm">採用後のフォローで安定的な人材定着を実現</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-lg text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🤝</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">組織力アップ</h3>
-                <p className="text-gray-600 text-sm">保育士の声を組織改善に繋げ、より良い園作りをサポート</p>
-              </div>
-            </div>
-          </div>
 
-          {/* 採用の流れ */}
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">採用の流れ</h2>
-            </div>
-            
-            <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
-              <div className="bg-white rounded-lg p-6 shadow-lg text-center max-w-xs">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-blue-600 font-bold text-lg">1</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">実践申し込み</h3>
-                <p className="text-gray-600 text-sm">まずはお気軽にお申し込みください</p>
-              </div>
-              
-              <div className="hidden md:block text-gray-400">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5-5 5" />
-                </svg>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-lg text-center max-w-xs">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-blue-600 font-bold text-lg">2</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">1ヶ月実践</h3>
-                <p className="text-gray-600 text-sm">実際の現場で業務を体験していただきます</p>
-              </div>
-              
-              <div className="hidden md:block text-gray-400">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5-5 5" />
-                </svg>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-lg text-center max-w-xs">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-blue-600 font-bold text-lg">3</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">採用</h3>
-                <p className="text-gray-600 text-sm">双方が合意すれば正式採用となります</p>
-              </div>
-              
-              <div className="hidden md:block text-gray-400">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5-5 5" />
-                </svg>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-lg text-center max-w-xs">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-blue-600 font-bold text-lg">4</span>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">1年間キャリアサポート</h3>
-                <p className="text-gray-600 text-sm">採用後も継続的にサポートいたします</p>
-              </div>
-            </div>
-          </div>
 
           {/* 料金情報 */}
           <div className="mb-20">
