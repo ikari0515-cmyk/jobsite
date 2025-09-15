@@ -27,17 +27,14 @@ export default function ServicePage() {
               >
                 求人広告サイト
               </Link>
-              <nav className="hidden md:flex space-x-8">
-                <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">
-                  求人一覧
-                </Link>
-                <Link href="/service" className="text-blue-600 font-medium">
-                  サービス
-                </Link>
-                <Link href="/admin" className="text-gray-700 hover:text-blue-600 transition-colors">
-                  管理画面
-                </Link>
-              </nav>
+               <nav className="flex space-x-6 md:space-x-8">
+                 <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">
+                   求人一覧
+                 </Link>
+                 <Link href="/service" className="text-blue-600 font-medium">
+                   サービス
+                 </Link>
+               </nav>
             </div>
           </div>
         </header>

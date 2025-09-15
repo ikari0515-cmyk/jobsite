@@ -30,15 +30,12 @@ export default function Home() {
                   <span className="font-bold text-gray-900">6件</span>
                 </div>
               </div>
-              <nav className="hidden md:flex items-center space-x-6">
-                <a href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+              <nav className="flex items-center space-x-4 md:space-x-6">
+                <a href="/" className="text-blue-600 font-medium">
                   求人一覧
                 </a>
                 <a href="/service" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
                   サービス
-                </a>
-                <a href="/admin" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-                  管理画面
                 </a>
               </nav>
             </div>
