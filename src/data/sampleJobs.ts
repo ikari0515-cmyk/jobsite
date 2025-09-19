@@ -32,11 +32,11 @@ export const sampleJobs: Job[] = [
     holidays: '週休2日制、祝日、年間休日120日',
     vacation_system: '夏季休暇、年末年始休暇、有給休暇、産前産後休暇、育児休暇',
     // 短期パート・選考手順
-    short_term_available: false,
-    short_term_details: null,
-    short_term_salary: null,
-    short_term_work_style: null,
-    short_term_transportation_fee: null,
+    short_term_available: true,
+    short_term_details: '産休・育休代替、長期休暇時の短期勤務募集中',
+    short_term_salary: '時給1600円（正社員登用制度あり）',
+    short_term_work_style: '週3日～、1日6時間～OK、フルタイム希望歓迎',
+    short_term_transportation_fee: true,
     selection_process: '書類選考 → 面接（1回） → 内定'
   },
   {
@@ -108,11 +108,11 @@ export const sampleJobs: Job[] = [
     holidays: '週休2日制、祝日、年間休日110日',
     vacation_system: '有給休暇、産前産後休暇、育児休暇、介護休暇',
     // 短期パート・選考手順
-    short_term_available: false,
-    short_term_details: null,
-    short_term_salary: null,
-    short_term_work_style: null,
-    short_term_transportation_fee: null,
+    short_term_available: true,
+    short_term_details: '調理補助、食育イベント時の単発勤務も歓迎',
+    short_term_salary: '時給1400円（栄養士資格手当含む）',
+    short_term_work_style: '週2日～、午前のみ・午後のみも相談可',
+    short_term_transportation_fee: true,
     selection_process: '書類選考 → 面接（2回）→ 実技試験（調理実習）→ 内定'
   },
   {
@@ -148,6 +148,9 @@ export const sampleJobs: Job[] = [
     // 短期パート・選考手順
     short_term_available: true,
     short_term_details: '1日～の単発勤務可能、研修期間中も高時給保証',
+    short_term_salary: '時給1900円（短期手当+100円）',
+    short_term_work_style: '1日4時間～、週1日～OK、即日勤務開始可',
+    short_term_transportation_fee: true,
     selection_process: 'WEB面接可 → 最短即日内定'
   },
   {
@@ -181,11 +184,11 @@ export const sampleJobs: Job[] = [
     holidays: '土日祝休み、年間休日125日',
     vacation_system: '夏季休暇、冬季休暇、春季休暇、有給休暇、産前産後休暇、育児休暇',
     // 短期パート・選考手順
-    short_term_available: false,
-    short_term_details: null,
-    short_term_salary: null,
-    short_term_work_style: null,
-    short_term_transportation_fee: null,
+    short_term_available: true,
+    short_term_details: '長期休暇中の預かり保育、運動会・発表会時の補助',
+    short_term_salary: '時給1500円（行事手当別途支給）',
+    short_term_work_style: '夏休み集中、週末行事のみなど相談可',
+    short_term_transportation_fee: true,
     selection_process: '書類選考 → 面接（1回）→ 園見学 → 内定'
   },
   {
@@ -219,11 +222,11 @@ export const sampleJobs: Job[] = [
     holidays: '週休2日　例）日＋他シフト休　年間休日数 113日',
     vacation_system: '夏季休暇、年末年始休暇、入社6か月～有給休暇付与',
     // 短期パート・選考手順
-    short_term_available: false,
-    short_term_details: null,
-    short_term_salary: null,
-    short_term_work_style: null,
-    short_term_transportation_fee: null,
+    short_term_available: true,
+    short_term_details: '春休み・夏休み・冬休み期間の集中勤務、週末イベント補助',
+    short_term_salary: '時給1300円（新規開設特別手当+100円）',
+    short_term_work_style: '学校休業日のみ、午後のみなど柔軟対応',
+    short_term_transportation_fee: true,
     selection_process: '書類選考 → 面接（1回）→ 施設見学 → 内定通知（1週間以内）'
   }
 ]
