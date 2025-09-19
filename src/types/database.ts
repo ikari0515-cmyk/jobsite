@@ -43,6 +43,9 @@ export interface Database {
           // 短期パート・選考手順
           short_term_available: boolean | null
           short_term_details: string | null
+          short_term_salary: string | null
+          short_term_work_style: string | null
+          short_term_transportation_fee: boolean | null
           selection_process: string | null
         }
         Insert: {
@@ -113,6 +116,9 @@ export interface Database {
           // 短期パート・選考手順
           short_term_available?: boolean | null
           short_term_details?: string | null
+          short_term_salary?: string | null
+          short_term_work_style?: string | null
+          short_term_transportation_fee?: boolean | null
           selection_process?: string | null
         }
       }

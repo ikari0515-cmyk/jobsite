@@ -222,16 +222,50 @@ export default async function JobDetailPage({ params }: Props) {
                     </div>
                   )}
                   {(job as any).short_term_available && (
-                    <div className="flex">
-                      <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期パート</dt>
-                      <dd className="text-gray-700">
-                        <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium mr-2">
-                          短期OK
-                        </span>
-                        {(job as any).short_term_details && (
-                          <span className="text-gray-600">{(job as any).short_term_details}</span>
-                        )}
-                      </dd>
+                    <div className="space-y-3">
+                      <div className="flex">
+                        <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期パート</dt>
+                        <dd className="text-gray-700">
+                          <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">
+                            短期OK
+                          </span>
+                          {(job as any).short_term_details && (
+                            <div className="mt-2 text-gray-600">{(job as any).short_term_details}</div>
+                          )}
+                        </dd>
+                      </div>
+                      
+                      {/* 短期パート時の給与 */}
+                      {(job as any).short_term_salary && (
+                        <div className="flex">
+                          <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期給与</dt>
+                          <dd className="text-gray-700">{(job as any).short_term_salary}</dd>
+                        </div>
+                      )}
+                      
+                      {/* 短期パート時の勤務形態 */}
+                      {(job as any).short_term_work_style && (
+                        <div className="flex">
+                          <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期勤務形態</dt>
+                          <dd className="text-gray-700">{(job as any).short_term_work_style}</dd>
+                        </div>
+                      )}
+                      
+                      {/* 短期パート時の交通費支給 */}
+                      {(job as any).short_term_transportation_fee !== null && (
+                        <div className="flex">
+                          <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期交通費</dt>
+                          <dd className="text-gray-700">
+                            <span className={`inline-block px-2 py-1 rounded text-sm font-medium ${
+                              (job as any).short_term_transportation_fee 
+                                ? 'bg-blue-100 text-blue-800' 
+                                : 'bg-gray-100 text-gray-800'
+                            }`}>
+                              {(job as any).short_term_transportation_fee ? '支給あり' : '支給なし'}
+                            </span>
+                          </dd>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

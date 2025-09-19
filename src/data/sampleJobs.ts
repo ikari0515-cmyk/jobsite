@@ -34,6 +34,9 @@ export const sampleJobs: Job[] = [
     // 短期パート・選考手順
     short_term_available: false,
     short_term_details: null,
+    short_term_salary: null,
+    short_term_work_style: null,
+    short_term_transportation_fee: null,
     selection_process: '書類選考 → 面接（1回） → 内定'
   },
   {
@@ -69,6 +72,9 @@ export const sampleJobs: Job[] = [
     // 短期パート・選考手順
     short_term_available: true,
     short_term_details: '1週間～1ヶ月の短期勤務も歓迎、イベント時のみの勤務も可能',
+    short_term_salary: '時給1500円（通常時給1400円より100円アップ）',
+    short_term_work_style: '週2日～、1日4時間～OK、シフト相談可',
+    short_term_transportation_fee: true,
     selection_process: '面接のみ（履歴書持参、30分程度）'
   },
   {
@@ -104,6 +110,9 @@ export const sampleJobs: Job[] = [
     // 短期パート・選考手順
     short_term_available: false,
     short_term_details: null,
+    short_term_salary: null,
+    short_term_work_style: null,
+    short_term_transportation_fee: null,
     selection_process: '書類選考 → 面接（2回）→ 実技試験（調理実習）→ 内定'
   },
   {
@@ -174,6 +183,9 @@ export const sampleJobs: Job[] = [
     // 短期パート・選考手順
     short_term_available: false,
     short_term_details: null,
+    short_term_salary: null,
+    short_term_work_style: null,
+    short_term_transportation_fee: null,
     selection_process: '書類選考 → 面接（1回）→ 園見学 → 内定'
   },
   {
@@ -209,6 +221,9 @@ export const sampleJobs: Job[] = [
     // 短期パート・選考手順
     short_term_available: false,
     short_term_details: null,
+    short_term_salary: null,
+    short_term_work_style: null,
+    short_term_transportation_fee: null,
     selection_process: '書類選考 → 面接（1回）→ 施設見学 → 内定通知（1週間以内）'
   }
 ]
