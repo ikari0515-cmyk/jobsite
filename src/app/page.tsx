@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ExternalLink, Mail, Phone } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Asterisk+ | 実践×伴走で採用の常識を変える',

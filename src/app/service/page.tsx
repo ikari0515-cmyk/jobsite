@@ -3,13 +3,14 @@ import { SearchFilters } from '@/components/SearchFilters'
 import { StackedCircularFooter } from '@/components/ui/stacked-circular-footer'
 import { Metadata } from 'next'
 import { Suspense } from 'react'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: '求人一覧 | Asterisk+',
-  description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。正社員、パート、派遣まで幅広い雇用形態をご紹介。',
+  description: '保育士・幼稚園教諭向けの求人一覧ページです。',
   openGraph: {
     title: '求人一覧 | Asterisk+',
-    description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。',
+    description: '保育士・幼稚園教諭向けの求人一覧ページです。',
     type: 'website',
   },
 }
@@ -31,16 +32,16 @@ export default function ServicePage() {
                 </div>
               </div>
               <nav className="flex items-center space-x-4 md:space-x-6">
-                <a href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+                <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
                   サービス
-                </a>
-                <a href="/service" className="text-blue-600 font-medium">
+                </Link>
+                <Link href="/service" className="text-blue-600 font-medium">
                   求人一覧
-                </a>
+                </Link>
               </nav>
             </div>
           </div>
-          
+
           {/* サブヘッダー - エリア選択 */}
           <div className="border-t py-2">
             <div className="flex items-center space-x-4 text-sm">
@@ -60,7 +61,7 @@ export default function ServicePage() {
         </div>
       </header>
 
-      {/* メインコンテンツ */}
+      {/* メインコンチE��チE*/}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* 検索フィルター */}

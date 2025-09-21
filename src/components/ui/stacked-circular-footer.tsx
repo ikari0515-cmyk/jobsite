@@ -1,7 +1,6 @@
 import { Icons } from "@/components/ui/icons"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import Link from 'next/link'
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
 
 function StackedCircularFooter() {
@@ -16,7 +15,7 @@ function StackedCircularFooter() {
           
           {/* Navigation */}
           <nav className="flex flex-wrap justify-center gap-6 text-gray-600">
-            <a href="/" className="hover:text-blue-600 transition-colors">トップページ</a>
+            <Link href="/" className="hover:text-blue-600 transition-colors">トップページ</Link>
           </nav>
           
           {/* Social Links */}
@@ -47,7 +46,7 @@ function StackedCircularFooter() {
               <p className="text-sm text-gray-600 mb-4">公式LINEで最新の求人情報をお届け！</p>
               <Button asChild className="rounded-full px-8 bg-green-500 hover:bg-green-600">
                 <a href="https://lin.ee/xVCllgr" target="_blank" rel="noopener noreferrer">
-                  公式LINE登録
+                  LINEで相談してみる
                 </a>
               </Button>
             </div>

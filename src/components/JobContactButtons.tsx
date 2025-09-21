@@ -1,37 +1,47 @@
 'use client'
 
-import { MessageSquare, Video } from 'lucide-react'
-import { ParticleButton } from '@/components/ui/particle-button'
+import { Phone } from 'lucide-react'
 
-export function JobContactButtons() {
-  const handleLineConsultation = () => {
-    window.open('https://lin.ee/xVCllgr', '_blank')
-  }
+interface JobContactButtonsProps {
+  phoneNumber?: string | null
+}
 
-  const handleWebReservation = () => {
-    window.open('https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c', '_blank')
-  }
+const sanitizePhoneNumber = (phone: string) => phone.replace(/[^\d+]/g, '')
+
+export function JobContactButtons({ phoneNumber }: JobContactButtonsProps) {
+  const sanitized = phoneNumber ? sanitizePhoneNumber(phoneNumber) : ''
+  const telHref = sanitized ? `tel:${sanitized}` : null
 
   return (
     <div className="space-y-3">
-      <ParticleButton 
-        className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 font-medium"
-        successDuration={1000}
-        showIcon={false}
-        onClick={handleLineConsultation}
-      >
-        <MessageSquare size={20} className="mr-2" />
-        LINE相談
-      </ParticleButton>
-      <ParticleButton 
-        className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 font-medium"
-        successDuration={1000}
-        showIcon={false}
-        onClick={handleWebReservation}
-      >
-        <Video size={20} className="mr-2" />
-        ウェブ予約
-      </ParticleButton>
+      <div className="rounded-lg border border-blue-100 bg-blue-50 p-4">
+        <p className="text-xs font-semibold text-blue-800">応募はこちら</p>
+        {phoneNumber ? (
+          <>
+            {telHref ? (
+              <a
+                href={telHref}
+                className="mt-2 flex items-center text-blue-900 hover:text-blue-800 transition-colors"
+              >
+                <Phone size={20} className="mr-2" />
+                <span className="text-lg font-semibold">{phoneNumber}</span>
+              </a>
+            ) : (
+              <div className="mt-2 flex items-center text-blue-900">
+                <Phone size={20} className="mr-2" />
+                <span className="text-lg font-semibold">{phoneNumber}</span>
+              </div>
+            )}
+            <p className="mt-3 text-xs text-blue-700">
+              お電話の際は「お試し勤務の求人を見て電話しました」とお伝えください。
+            </p>
+          </>
+        ) : (
+          <p className="mt-2 text-sm text-blue-900">
+            電話番号の情報が登録されていません。求人詳細をご確認のうえ、別の方法でお問い合わせください。
+          </p>
+        )}
+      </div>
     </div>
   )
 }

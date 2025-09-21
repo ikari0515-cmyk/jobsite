@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sampleJobs } from '@/data/sampleJobs'
 
-// 求人一覧取得（サンプルデータ使用）
+// 求人一覧取得（サンプルチE�Eタ使用�E�E
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams
@@ -11,10 +11,10 @@ export async function GET(request: NextRequest) {
     const employment_type = searchParams.get('employment_type')
     const search = searchParams.get('search')
 
-    // サンプルデータから公開済みの求人のみフィルタ
+    // サンプルチE�Eタから公開済みの求人のみフィルタ
     let filteredJobs = sampleJobs.filter(job => job.is_published)
     
-    // 投稿日で降順ソート
+    // 投稿日で降頁E��ーチE
     filteredJobs.sort((a, b) => new Date(b.published_at || b.created_at).getTime() - new Date(a.published_at || a.created_at).getTime())
 
     // フィルター適用
@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // ページネーション
+    // ペ�Eジネ�Eション
     const total = filteredJobs.length
     const from = (page - 1) * limit
     const to = from + limit
@@ -59,8 +59,8 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// 求人作成（デモ版では無効化）
-export async function POST(request: NextRequest) {
+// 求人作�E�E�デモ版では無効化！E
+export async function POST() {
   return NextResponse.json(
     { error: 'Demo version - POST not implemented' },
     { status: 501 }

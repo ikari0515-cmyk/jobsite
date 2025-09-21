@@ -6,17 +6,6 @@ import { useSearchParams } from 'next/navigation'
 import { MapPin, Building, Clock } from 'lucide-react'
 import type { Job } from '@/types/database'
 import { sampleJobs } from '@/data/sampleJobs'
-import { ParticleButton } from '@/components/ui/particle-button'
-
-interface JobListResponse {
-  jobs: Job[]
-  pagination: {
-    page: number
-    limit: number
-    total: number
-    totalPages: number
-  }
-}
 
 export function JobList() {
   const [jobs, setJobs] = useState<Job[]>([])
@@ -74,24 +63,24 @@ export function JobList() {
       
       // 人気の特徴フィルタリング
       if (features.length > 0) {
-        filteredJobs = filteredJobs.filter(job => {
-          return features.every(feature => {
+        filteredJobs = filteredJobs.filter(job =>
+          features.every(feature => {
             switch (feature) {
-              case '住宅手当':
-                return job.benefits?.includes('住宅手当')
-              case '未経験':
-                return job.requirements?.includes('未経験')
-              case 'ブランク':
-                return job.requirements?.includes('ブランク')
-              case '賞与':
-                return job.benefits?.includes('賞与')
-              case '小規模':
+              case 'housing':
+                return job.benefits?.includes('住宅手当') ?? false
+              case 'unexperienced':
+                return job.requirements?.includes('未経験') ?? false
+              case 'career_break':
+                return job.requirements?.includes('ブランク') ?? false
+              case 'bonus':
+                return job.benefits?.includes('賞与') ?? false
+              case 'small_scale':
                 return job.title.includes('小規模') || job.description.includes('小規模')
               default:
                 return false
             }
           })
-        })
+        )
       }
       
       // ページネーション
@@ -325,29 +314,26 @@ export function JobList() {
               )}
 
               {/* 下部: アクションボタン */}
-              <div className="flex items-center justify-between pt-3 border-t">
-                <div className="flex items-center space-x-3">
+              <div className="pt-3 border-t">
+                <div className="flex items-center space-x-3 mb-3">
                   <button className="text-xs text-gray-500 hover:text-blue-600 flex items-center">
                     <span className="mr-1">♡</span>キープ
                   </button>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <ParticleButton 
-                    size="sm"
-                    className="bg-green-500 text-white hover:bg-green-600 text-xs"
-                    successDuration={800}
-                    onClick={() => window.open('https://lin.ee/xVCllgr', '_blank')}
-                  >
-                    LINE相談
-                  </ParticleButton>
-                  <ParticleButton 
-                    size="sm"
-                    className="bg-blue-500 text-white hover:bg-blue-600 text-xs"
-                    successDuration={800}
-                    onClick={() => window.open('https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c', '_blank')}
-                  >
-                    ウェブ予約
-                  </ParticleButton>
+                <div className="rounded-lg border border-blue-100 bg-blue-50 p-3">
+                  <p className="text-xs font-semibold text-blue-800">応募はこちら</p>
+                  {job.contact_phone ? (
+                    <>
+                      <p className="mt-1 text-sm font-semibold text-blue-900">{job.contact_phone}</p>
+                      <p className="mt-2 text-xs text-blue-700">
+                        お電話の際は「お試し勤務の求人を見て電話しました」とお伝えください。
+                      </p>
+                    </>
+                  ) : (
+                    <p className="mt-1 text-xs text-blue-700">
+                      電話での問い合わせ先は現在準備中です。求人詳細をご確認ください。
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

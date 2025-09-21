@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+﻿import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { 
@@ -51,6 +51,23 @@ export default async function JobDetailPage({ params }: Props) {
   if (!job) {
     notFound()
   }
+
+  const shortTermSalary = job.short_term_salary
+  const shortTermWorkStyle = job.short_term_work_style
+  const shortTermTransportation = job.short_term_transportation_fee
+  const hasShortTermData =
+    Boolean(shortTermSalary?.trim()) ||
+    Boolean(shortTermWorkStyle?.trim()) ||
+    shortTermTransportation !== null
+  const showShortTermSummary = Boolean((job.short_term_available ?? false) || hasShortTermData)
+  const shortTermSalaryText = shortTermSalary?.trim() ? shortTermSalary : '情報が登録されていません'
+  const shortTermWorkStyleText = shortTermWorkStyle?.trim() ? shortTermWorkStyle : '情報が登録されていません'
+  const shortTermTransportationText =
+    shortTermTransportation === null
+      ? '情報が登録されていません'
+      : shortTermTransportation
+        ? '支給あり'
+        : '支給なし'
 
   const formatSalary = () => {
     if (job.salary_type === 'negotiable') {
@@ -169,117 +186,60 @@ export default async function JobDetailPage({ params }: Props) {
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-6">募集内容</h3>
                 <div className="space-y-4">
-                  {(job as any).job_category && (
+                  {job.job_category && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">募集職種</dt>
-                      <dd className="text-gray-700">{(job as any).job_category}</dd>
+                      <dd className="text-gray-700">{job.job_category}</dd>
                     </div>
                   )}
-                  {(job as any).job_content && (
+                  {job.job_content && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">仕事内容</dt>
-                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).job_content}</dd>
+                      <dd className="text-gray-700 whitespace-pre-line">{job.job_content}</dd>
                     </div>
                   )}
-                  {(job as any).service_type && (
+                  {job.service_type && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">サービス形態</dt>
-                      <dd className="text-gray-700">{(job as any).service_type}</dd>
+                      <dd className="text-gray-700">{job.service_type}</dd>
                     </div>
                   )}
                   <div className="flex">
                     <dt className="w-24 flex-shrink-0 font-medium text-gray-900">給与</dt>
                     <dd className="text-gray-700">{formatSalary()}</dd>
                   </div>
-                  {(job as any).salary_details && (
+                  {job.salary_details && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">給与備考</dt>
-                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).salary_details}</dd>
+                      <dd className="text-gray-700 whitespace-pre-line">{job.salary_details}</dd>
                     </div>
                   )}
-                  {(job as any).welfare_benefits && (
+                  {job.welfare_benefits && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">待遇</dt>
-                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).welfare_benefits}</dd>
+                      <dd className="text-gray-700 whitespace-pre-line">{job.welfare_benefits}</dd>
                     </div>
                   )}
-                  {(job as any).working_hours && (
+                  {job.working_hours && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">勤務時間</dt>
-                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).working_hours}</dd>
+                      <dd className="text-gray-700 whitespace-pre-line">{job.working_hours}</dd>
                     </div>
                   )}
-                  {(job as any).holidays && (
+                  {job.holidays && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">休日</dt>
-                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).holidays}</dd>
+                      <dd className="text-gray-700 whitespace-pre-line">{job.holidays}</dd>
                     </div>
                   )}
-                  {(job as any).vacation_system && (
+                  {job.vacation_system && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">休暇制度</dt>
-                      <dd className="text-gray-700 whitespace-pre-line">{(job as any).vacation_system}</dd>
-                    </div>
-                  )}
-                  {(job as any).short_term_available && (
-                    <div className="space-y-3">
-                      <div className="flex">
-                        <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期パート</dt>
-                        <dd className="text-gray-700">
-                          <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">
-                            短期OK
-                          </span>
-                          {(job as any).short_term_details && (
-                            <div className="mt-2 text-gray-600">{(job as any).short_term_details}</div>
-                          )}
-                        </dd>
-                      </div>
-                      
-                      {/* 短期パート時の給与 */}
-                      {(job as any).short_term_salary && (
-                        <div className="flex">
-                          <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期給与</dt>
-                          <dd className="text-gray-700">{(job as any).short_term_salary}</dd>
-                        </div>
-                      )}
-                      
-                      {/* 短期パート時の勤務形態 */}
-                      {(job as any).short_term_work_style && (
-                        <div className="flex">
-                          <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期勤務形態</dt>
-                          <dd className="text-gray-700">{(job as any).short_term_work_style}</dd>
-                        </div>
-                      )}
-                      
-                      {/* 短期パート時の交通費支給 */}
-                      {(job as any).short_term_transportation_fee !== null && (
-                        <div className="flex">
-                          <dt className="w-24 flex-shrink-0 font-medium text-gray-900">短期交通費</dt>
-                          <dd className="text-gray-700">
-                            <span className={`inline-block px-2 py-1 rounded text-sm font-medium ${
-                              (job as any).short_term_transportation_fee 
-                                ? 'bg-blue-100 text-blue-800' 
-                                : 'bg-gray-100 text-gray-800'
-                            }`}>
-                              {(job as any).short_term_transportation_fee ? '支給あり' : '支給なし'}
-                            </span>
-                          </dd>
-                        </div>
-                      )}
+                      <dd className="text-gray-700 whitespace-pre-line">{job.vacation_system}</dd>
                     </div>
                   )}
                 </div>
               </div>
-
-              {/* 応募資格・条件 */}
-              {job.requirements && (
-                <div className="bg-white rounded-lg shadow-sm border p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">応募資格・条件</h3>
-                  <div className="prose max-w-none">
-                    <p className="text-gray-700 whitespace-pre-line">{job.requirements}</p>
-                  </div>
-                </div>
-              )}
 
               {/* 待遇・福利厚生 */}
               {job.benefits && (
@@ -290,13 +250,33 @@ export default async function JobDetailPage({ params }: Props) {
                   </div>
                 </div>
               )}
+              {showShortTermSummary && (
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">短期パート時の給与・待遇について</h3>
+                  <dl className="space-y-3">
+                    <div className="flex">
+                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">給与</dt>
+                      <dd className="text-gray-700">{shortTermSalaryText}</dd>
+                    </div>
+                    <div className="flex">
+                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">勤務形態</dt>
+                      <dd className="text-gray-700">{shortTermWorkStyleText}</dd>
+                    </div>
+                    <div className="flex">
+                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">交通費支給の有無</dt>
+                      <dd className="text-gray-700">{shortTermTransportationText}</dd>
+                    </div>
+                  </dl>
+                </div>
+              )}
+
 
               {/* 選考手順 */}
-              {(job as any).selection_process && (
+              {job.selection_process && (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">選考手順</h3>
                   <div className="space-y-4 md:space-y-0 md:flex md:items-center md:space-x-4 overflow-x-auto">
-                    {(job as any).selection_process.split(' → ').map((step: string, index: number, array: string[]) => (
+                    {job.selection_process.split(' → ').map((step: string, index: number, array: string[]) => (
                       <div key={index} className="flex items-center min-w-max">
                         <div className="flex items-center">
                           <div className="flex items-center justify-center w-10 h-10 bg-blue-100 text-blue-800 rounded-full text-sm font-bold shadow-sm">
@@ -337,7 +317,7 @@ export default async function JobDetailPage({ params }: Props) {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">この求人に応募する</h3>
                 
                 <div className="space-y-4">
-                  <JobContactButtons />
+                  <JobContactButtons phoneNumber={job.contact_phone} />
                   
                   <div className="text-sm text-gray-600 p-4 bg-gray-50 rounded-lg">
                     <p className="mb-2">応募前にご確認ください：</p>

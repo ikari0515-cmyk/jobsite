@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { sampleJobs } from '@/data/sampleJobs'
 
 // 求人詳細取得（サンプルデータ使用）
-export async function GET(
-  request: NextRequest,
+export async function GET( _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  void _request
   try {
     const { id } = await params
     const job = sampleJobs.find(job => job.id === id)
@@ -24,17 +24,11 @@ export async function GET(
 }
 
 // 求人更新（デモ用無効化）
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PUT() {
   return NextResponse.json({ error: 'Admin features disabled in demo mode' }, { status: 503 })
 }
 
 // 求人削除（デモ用無効化）
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function DELETE() {
   return NextResponse.json({ error: 'Admin features disabled in demo mode' }, { status: 503 })
 }

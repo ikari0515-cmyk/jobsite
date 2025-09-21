@@ -1,31 +1,103 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Search, MapPin, Briefcase, Filter, ChevronDown } from 'lucide-react'
+import { Search, MapPin, Filter, ChevronDown } from 'lucide-react'
+
+const prefectures = [
+  '北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県',
+  '茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県',
+  '新潟県','富山県','石川県','福井県','山梨県','長野県',
+  '岐阜県','静岡県','愛知県','三重県',
+  '滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県',
+  '鳥取県','島根県','岡山県','広島県','山口県',
+  '徳島県','香川県','愛媛県','高知県',
+  '福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'
+]
+
+const employmentTypes: Array<{ value: string; label: string }> = [
+  { value: '', label: 'すべて' },
+  { value: 'full_time', label: '正社員' },
+  { value: 'part_time', label: 'アルバイト・パート' },
+  { value: 'contract', label: '契約社員' },
+  { value: 'temporary', label: '派遣・臨時' }
+]
+
+const featureOptions: Array<{ value: string; label: string }> = [
+  { value: 'housing', label: '住宅手当あり' },
+  { value: 'unexperienced', label: '未経験歓迎' },
+  { value: 'career_break', label: 'ブランクOK' },
+  { value: 'bonus', label: '賞与あり' },
+  { value: 'small_scale', label: '小規模園' }
+]
 
 export function SearchFilters() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  
-  const [search, setSearch] = useState(searchParams.get('search') || '')
-  const [location, setLocation] = useState(searchParams.get('location') || '')
-  const [employmentType, setEmploymentType] = useState(searchParams.get('employment_type') || '')
+
+  const [search, setSearch] = useState(searchParams.get('search') ?? '')
+  const [location, setLocation] = useState(searchParams.get('location') ?? '')
+  const [employmentType, setEmploymentType] = useState(searchParams.get('employment_type') ?? '')
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>(
-    searchParams.get('features')?.split(',').filter(Boolean) || []
+    searchParams.get('features')?.split(',').filter(Boolean) ?? []
   )
+
+  const buildQueryString = (
+    overrides: Record<string, string | string[] | undefined>
+  ) => {
+    const params = new URLSearchParams(searchParams.toString())
+
+    if (overrides.search !== undefined) {
+      if (overrides.search) {
+        params.set('search', overrides.search)
+      } else {
+        params.delete('search')
+      }
+    }
+
+    if (overrides.location !== undefined) {
+      if (overrides.location) {
+        params.set('location', overrides.location)
+      } else {
+        params.delete('location')
+      }
+    }
+
+    if (overrides.employment_type !== undefined) {
+      const value = overrides.employment_type as string
+      if (value) {
+        params.set('employment_type', value)
+      } else {
+        params.delete('employment_type')
+      }
+    }
+
+    if (overrides.features !== undefined) {
+      const featuresValue = Array.isArray(overrides.features)
+        ? overrides.features.join(',')
+        : overrides.features ?? ''
+
+      if (featuresValue.length > 0) {
+        params.set('features', featuresValue)
+      } else {
+        params.delete('features')
+      }
+    }
+
+    params.delete('page')
+    return params.toString()
+  }
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    
-    const params = new URLSearchParams()
-    if (search) params.set('search', search)
-    if (location) params.set('location', location)
-    if (employmentType) params.set('employment_type', employmentType)
-    if (selectedFeatures.length > 0) params.set('features', selectedFeatures.join(','))
-    
-    router.push(`/?${params.toString()}`)
+    const query = buildQueryString({
+      search,
+      location,
+      employment_type: employmentType,
+      features: selectedFeatures
+    })
+    router.push(query ? '/?' + query : '/')
   }
 
   const handleReset = () => {
@@ -37,39 +109,31 @@ export function SearchFilters() {
   }
 
   const handleFeatureToggle = (feature: string) => {
-    const updatedFeatures = selectedFeatures.includes(feature)
-      ? selectedFeatures.filter(f => f !== feature)
+    const nextFeatures = selectedFeatures.includes(feature)
+      ? selectedFeatures.filter(item => item !== feature)
       : [...selectedFeatures, feature]
-    
-    setSelectedFeatures(updatedFeatures)
-    
-    // URLパラメータを即座に更新
-    const params = new URLSearchParams(searchParams.toString())
-    if (search) params.set('search', search)
-    if (location) params.set('location', location)
-    if (employmentType) params.set('employment_type', employmentType)
-    
-    if (updatedFeatures.length > 0) {
-      params.set('features', updatedFeatures.join(','))
-    } else {
-      params.delete('features')
-    }
-    
-    router.push(`/?${params.toString()}`)
+
+    setSelectedFeatures(nextFeatures)
+
+    const query = buildQueryString({
+      search,
+      location,
+      employment_type: employmentType,
+      features: nextFeatures
+    })
+    router.push(query ? '/?' + query : '/')
   }
 
   return (
     <div className="space-y-4">
-      {/* メイン検索フォーム */}
       <div className="bg-white rounded-lg shadow-sm border p-4">
         <form onSubmit={handleSearch} className="space-y-4">
-          {/* キーワード検索 */}
           <div>
             <label htmlFor="search" className="block text-sm font-medium text-gray-800 mb-2">
               フリーワード
             </label>
             <div className="relative">
-              <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 id="search"
@@ -81,19 +145,28 @@ export function SearchFilters() {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
-          >
-            絞り込む
-          </button>
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
+            >
+              絞り込む
+            </button>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="px-4 py-3 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50"
+            >
+              リセット
+            </button>
+          </div>
         </form>
       </div>
 
-      {/* フィルター詳細 */}
       <div className="bg-white rounded-lg shadow-sm border">
         <div className="p-4 border-b">
           <button
+            type="button"
             onClick={() => setShowAdvanced(!showAdvanced)}
             className="flex items-center justify-between w-full text-left"
           >
@@ -101,8 +174,8 @@ export function SearchFilters() {
               <Filter size={16} className="mr-2" />
               詳細条件
             </span>
-            <ChevronDown 
-              size={16} 
+            <ChevronDown
+              size={16}
               className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}
             />
           </button>
@@ -110,13 +183,12 @@ export function SearchFilters() {
 
         {showAdvanced && (
           <div className="p-4 space-y-4">
-            {/* 勤務地 */}
             <div>
               <label htmlFor="location" className="block text-sm font-medium text-gray-800 mb-2">
                 勤務地
               </label>
               <div className="relative">
-                <MapPin size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <MapPin size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <select
                   id="location"
                   value={location}
@@ -124,58 +196,15 @@ export function SearchFilters() {
                   className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">都道府県を選択</option>
-                  <option value="北海道">北海道</option>
-                  <option value="青森県">青森県</option>
-                  <option value="岩手県">岩手県</option>
-                  <option value="宮城県">宮城県</option>
-                  <option value="秋田県">秋田県</option>
-                  <option value="山形県">山形県</option>
-                  <option value="福島県">福島県</option>
-                  <option value="茨城県">茨城県</option>
-                  <option value="栃木県">栃木県</option>
-                  <option value="群馬県">群馬県</option>
-                  <option value="埼玉県">埼玉県</option>
-                  <option value="千葉県">千葉県</option>
-                  <option value="東京都">東京都</option>
-                  <option value="神奈川県">神奈川県</option>
-                  <option value="新潟県">新潟県</option>
-                  <option value="富山県">富山県</option>
-                  <option value="石川県">石川県</option>
-                  <option value="福井県">福井県</option>
-                  <option value="山梨県">山梨県</option>
-                  <option value="長野県">長野県</option>
-                  <option value="岐阜県">岐阜県</option>
-                  <option value="静岡県">静岡県</option>
-                  <option value="愛知県">愛知県</option>
-                  <option value="三重県">三重県</option>
-                  <option value="滋賀県">滋賀県</option>
-                  <option value="京都府">京都府</option>
-                  <option value="大阪府">大阪府</option>
-                  <option value="兵庫県">兵庫県</option>
-                  <option value="奈良県">奈良県</option>
-                  <option value="和歌山県">和歌山県</option>
-                  <option value="鳥取県">鳥取県</option>
-                  <option value="島根県">島根県</option>
-                  <option value="岡山県">岡山県</option>
-                  <option value="広島県">広島県</option>
-                  <option value="山口県">山口県</option>
-                  <option value="徳島県">徳島県</option>
-                  <option value="香川県">香川県</option>
-                  <option value="愛媛県">愛媛県</option>
-                  <option value="高知県">高知県</option>
-                  <option value="福岡県">福岡県</option>
-                  <option value="佐賀県">佐賀県</option>
-                  <option value="長崎県">長崎県</option>
-                  <option value="熊本県">熊本県</option>
-                  <option value="大分県">大分県</option>
-                  <option value="宮崎県">宮崎県</option>
-                  <option value="鹿児島県">鹿児島県</option>
-                  <option value="沖縄県">沖縄県</option>
+                  {prefectures.map((prefecture) => (
+                    <option key={prefecture} value={prefecture}>
+                      {prefecture}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
 
-            {/* 雇用形態 */}
             <div>
               <label htmlFor="employment_type" className="block text-sm font-medium text-gray-800 mb-2">
                 雇用形態
@@ -186,98 +215,39 @@ export function SearchFilters() {
                 onChange={(e) => setEmploymentType(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="">すべて</option>
-                <option value="full_time">正社員</option>
-                <option value="part_time">パート</option>
+                {employmentTypes.map(({ value, label }) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
               </select>
             </div>
 
-            {/* 給与 */}
             <div>
-              <label className="block text-sm font-medium text-gray-800 mb-2">
-                給与
-              </label>
-              <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">こだわらない</option>
-                <option value="200000">月給20万円以上</option>
-                <option value="220000">月給22万円以上</option>
-                <option value="250000">月給25万円以上</option>
-                <option value="300000">月給30万円以上</option>
-                <option value="1300">時給1,300円以上</option>
-                <option value="1500">時給1,500円以上</option>
-                <option value="1800">時給1,800円以上</option>
-              </select>
+              <p className="text-sm font-medium text-gray-800 mb-2">こだわり条件</p>
+              <div className="flex flex-wrap gap-2">
+                {featureOptions.map(({ value, label }) => {
+                  const isActive = selectedFeatures.includes(value)
+                  return (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => handleFeatureToggle(value)}
+                      className={`px-3 py-1 rounded-full border text-sm transition-colors ${
+                        isActive
+                          ? 'bg-blue-100 text-blue-700 border-blue-200'
+                          : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  )
+                })}
+              </div>
             </div>
-
-            {/* 条件クリアボタン */}
-            <button
-              type="button"
-              onClick={handleReset}
-              className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors text-sm"
-            >
-              条件をクリア
-            </button>
           </div>
         )}
-      </div>
-
-      {/* 人気の特徴 */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <h3 className="font-medium text-gray-900 mb-3">人気の特徴から探す</h3>
-        <div className="grid grid-cols-1 gap-2 text-sm">
-          <button 
-            onClick={() => handleFeatureToggle('住宅手当')}
-            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
-              selectedFeatures.includes('住宅手当') 
-                ? 'bg-blue-50 border-blue-300 text-blue-800' 
-                : 'text-gray-800'
-            }`}
-          >
-            住宅手当あり <span className="text-gray-500">(1)</span>
-          </button>
-          <button 
-            onClick={() => handleFeatureToggle('未経験')}
-            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
-              selectedFeatures.includes('未経験') 
-                ? 'bg-blue-50 border-blue-300 text-blue-800' 
-                : 'text-gray-800'
-            }`}
-          >
-            未経験者歓迎 <span className="text-gray-500">(1)</span>
-          </button>
-          <button 
-            onClick={() => handleFeatureToggle('ブランク')}
-            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
-              selectedFeatures.includes('ブランク') 
-                ? 'bg-blue-50 border-blue-300 text-blue-800' 
-                : 'text-gray-800'
-            }`}
-          >
-            ブランクOK <span className="text-gray-500">(1)</span>
-          </button>
-          <button 
-            onClick={() => handleFeatureToggle('賞与')}
-            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
-              selectedFeatures.includes('賞与') 
-                ? 'bg-blue-50 border-blue-300 text-blue-800' 
-                : 'text-gray-800'
-            }`}
-          >
-            賞与年2回以上 <span className="text-gray-500">(3)</span>
-          </button>
-          <button 
-            onClick={() => handleFeatureToggle('小規模')}
-            className={`text-left p-2 hover:bg-gray-50 rounded border transition-colors ${
-              selectedFeatures.includes('小規模') 
-                ? 'bg-blue-50 border-blue-300 text-blue-800' 
-                : 'text-gray-800'
-            }`}
-          >
-            小規模保育園 <span className="text-gray-500">(1)</span>
-          </button>
-        </div>
       </div>
     </div>
   )
 }
-
