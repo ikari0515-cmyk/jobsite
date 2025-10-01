@@ -300,11 +300,6 @@ export function JobList() {
 
               {/* 下部: アクションボタン */}
               <div className="pt-3 border-t">
-                <div className="flex items-center space-x-3 mb-3">
-                  <button className="text-xs text-gray-500 hover:text-blue-600 flex items-center">
-                    <span className="mr-1">♡</span>キープ
-                  </button>
-                </div>
                 <div className="rounded-lg border border-blue-100 bg-blue-50 p-3">
                   <p className="text-xs font-semibold text-blue-800">応募はこちら</p>
                   {job.contact_phone ? (

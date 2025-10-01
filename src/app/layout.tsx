@@ -27,6 +27,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
@@ -34,11 +39,13 @@ export const metadata: Metadata = {
     title: 'Asterisk+ | 保育士・幼稚園教諭の求人情報',
     description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。',
     siteName: 'Asterisk+',
+    images: ['/favicon.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Asterisk+ | 保育士・幼稚園教諭の求人情報',
     description: '保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。',
+    images: ['/favicon.png'],
   },
   robots: {
     index: true,

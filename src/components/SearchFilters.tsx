@@ -97,7 +97,7 @@ export function SearchFilters() {
       employment_type: employmentType,
       features: selectedFeatures
     })
-    router.push(query ? '/?' + query : '/')
+    router.push(query ? '/service?' + query : '/service')
   }
 
   const handleReset = () => {
@@ -105,7 +105,7 @@ export function SearchFilters() {
     setLocation('')
     setEmploymentType('')
     setSelectedFeatures([])
-    router.push('/')
+    router.push('/service')
   }
 
   const handleFeatureToggle = (feature: string) => {
@@ -121,7 +121,7 @@ export function SearchFilters() {
       employment_type: employmentType,
       features: nextFeatures
     })
-    router.push(query ? '/?' + query : '/')
+    router.push(query ? '/service?' + query : '/service')
   }
 
   return (
