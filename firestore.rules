@@ -1,0 +1,24 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 求人コレクション
+    match /jobs/{jobId} {
+      // 読み取り: 公開されている求人のみ誰でも閲覧可能
+      allow read: if resource.data.is_published == true;
+      
+      // 書き込み: 完全に拒否
+      // すべての書き込みはサーバーサイド（Next.js API Routes）経由でのみ可能
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+    
+    // その他のコレクション: すべて拒否
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

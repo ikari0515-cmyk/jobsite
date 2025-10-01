@@ -33,6 +33,7 @@ npm install
 1. [Firebase Console](https://console.firebase.google.com)でプロジェクトを作成
 2. Firestoreデータベースを有効化
 3. プロジェクト設定から認証情報を取得
+4. **⚠️ 重要**: Firestoreセキュリティルールを設定（`DEPLOYMENT.md`参照）
 
 ### 3. 環境変数の設定（必須）
 
