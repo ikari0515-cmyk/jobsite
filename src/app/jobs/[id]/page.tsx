@@ -11,16 +11,27 @@ import {
 import { JobStructuredData } from '@/components/JobStructuredData'
 import { JobContactButtons } from '@/components/JobContactButtons'
 import type { Job } from '@/types/database'
-import { sampleJobs } from '@/data/sampleJobs'
 
 interface Props {
   params: Promise<{ id: string }>
 }
 
 async function getJob(id: string): Promise<Job | null> {
-  // サンプルデータから該当する求人を取得
-  const job = sampleJobs.find(job => job.id === id)
-  return job || null
+  // APIから求人データを取得
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/jobs/${id}`, {
+      cache: 'no-store', // 常に最新データを取得
+    })
+    
+    if (!response.ok) {
+      return null
+    }
+    
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching job:', error)
+    return null
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

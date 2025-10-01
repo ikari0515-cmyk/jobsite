@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { sampleJobs } from '@/data/sampleJobs'
+import { getPublishedJobs } from '@/lib/firestore'
 
-// 求人一覧取得（サンプルチE�Eタ使用�E�E
+// 求人一覧取得（Firestoreから取得）
 export async function GET(request: NextRequest) {
   try {
+    console.log('Jobs API called')
     const searchParams = request.nextUrl.searchParams
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '20')
@@ -11,11 +12,10 @@ export async function GET(request: NextRequest) {
     const employment_type = searchParams.get('employment_type')
     const search = searchParams.get('search')
 
-    // サンプルチE�Eタから公開済みの求人のみフィルタ
-    let filteredJobs = sampleJobs.filter(job => job.is_published)
-    
-    // 投稿日で降頁E��ーチE
-    filteredJobs.sort((a, b) => new Date(b.published_at || b.created_at).getTime() - new Date(a.published_at || a.created_at).getTime())
+    console.log('Calling getPublishedJobs...')
+    // Firestoreから公開済みの求人を取得
+    let filteredJobs = await getPublishedJobs()
+    console.log('Retrieved jobs:', filteredJobs.length)
 
     // フィルター適用
     if (location) {
@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // ペ�Eジネ�Eション
+    // ページネーション
     const total = filteredJobs.length
     const from = (page - 1) * limit
     const to = from + limit
@@ -51,9 +51,13 @@ export async function GET(request: NextRequest) {
         totalPages: Math.ceil(total / limit)
       }
     })
-  } catch {
+  } catch (error) {
+    console.error('Error fetching jobs:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     )
   }

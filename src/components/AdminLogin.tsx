@@ -18,7 +18,6 @@ export function AdminLogin({ onLogin }: Props) {
     setError('')
 
     try {
-      // 簡単な認証チェック（実際の本番環境では適切な認証機能を実装してください）
       const response = await fetch('/api/admin/auth', {
         method: 'POST',
         headers: {
@@ -28,8 +27,7 @@ export function AdminLogin({ onLogin }: Props) {
       })
 
       if (response.ok) {
-        // セッションストレージに認証情報を保存
-        sessionStorage.setItem('adminAuth', password)
+        // サーバー側でCookieが設定されるため、クライアント側での保存は不要
         onLogin()
       } else {
         setError('パスワードが正しくありません')

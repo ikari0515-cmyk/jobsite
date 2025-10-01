@@ -1,11 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, Edit, Trash2, Eye, EyeOff } from 'lucide-react'
+import { Plus, Edit, Trash2, Eye, EyeOff, LogOut } from 'lucide-react'
 import { JobForm } from '@/components/JobForm'
+import { getAllJobs, deleteJob, toggleJobPublishStatus } from '@/lib/firestore'
 import type { Job } from '@/types/database'
 
-export function AdminDashboard() {
+interface Props {
+  onLogout: () => void
+}
+
+export function AdminDashboard({ onLogout }: Props) {
   const [jobs, setJobs] = useState<Job[]>([])
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
@@ -18,18 +23,8 @@ export function AdminDashboard() {
   const fetchAllJobs = async () => {
     try {
       setLoading(true)
-      
-      // 管理者用API（全ての求人を取得）
-      const response = await fetch('/api/admin/jobs', {
-        headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('adminAuth')}`
-        }
-      })
-
-      if (response.ok) {
-        const data = await response.json()
-        setJobs(data)
-      }
+      const jobsData = await getAllJobs()
+      setJobs(jobsData)
     } catch (error) {
       console.error('Failed to fetch jobs:', error)
     } finally {
@@ -39,21 +34,8 @@ export function AdminDashboard() {
 
   const handleTogglePublish = async (job: Job) => {
     try {
-      const response = await fetch(`/api/jobs/${job.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('adminAuth')}`
-        },
-        body: JSON.stringify({
-          is_published: !job.is_published,
-          ...((!job.is_published) && { published_at: new Date().toISOString() })
-        })
-      })
-
-      if (response.ok) {
-        fetchAllJobs()
-      }
+      await toggleJobPublishStatus(job.id, !job.is_published)
+      fetchAllJobs()
     } catch (error) {
       console.error('Failed to toggle publish status:', error)
     }
@@ -65,16 +47,8 @@ export function AdminDashboard() {
     }
 
     try {
-      const response = await fetch(`/api/jobs/${job.id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('adminAuth')}`
-        }
-      })
-
-      if (response.ok) {
-        fetchAllJobs()
-      }
+      await deleteJob(job.id)
+      fetchAllJobs()
     } catch (error) {
       console.error('Failed to delete job:', error)
     }
@@ -120,13 +94,23 @@ export function AdminDashboard() {
               <h1 className="text-2xl font-bold text-gray-900">求人管理システム</h1>
               <p className="mt-1 text-sm text-gray-600">求人の投稿・編集・削除を行えます</p>
             </div>
-            <button
-              onClick={() => setShowForm(true)}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
-            >
-              <Plus size={20} />
-              新規求人投稿
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowForm(true)}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+              >
+                <Plus size={20} />
+                新規求人投稿
+              </button>
+              <button
+                onClick={onLogout}
+                className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 flex items-center gap-2"
+                title="ログアウト"
+              >
+                <LogOut size={20} />
+                ログアウト
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -163,9 +147,9 @@ export function AdminDashboard() {
                     </div>
                     <p className="text-gray-600 mb-2">{job.company} | {job.location}</p>
                     <p className="text-sm text-gray-500">
-                      作成日: {new Date(job.created_at).toLocaleDateString('ja-JP')}
+                      作成日: {job.created_at.toLocaleDateString('ja-JP')}
                       {job.published_at && (
-                        <> | 公開日: {new Date(job.published_at).toLocaleDateString('ja-JP')}</>
+                        <> | 公開日: {job.published_at.toLocaleDateString('ja-JP')}</>
                       )}
                     </p>
                   </div>

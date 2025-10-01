@@ -1,21 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { sampleJobs } from '@/data/sampleJobs'
+import { getJobById } from '@/lib/firestore'
 
-// 求人詳細取得（サンプルデータ使用）
+// 求人詳細取得（Firestoreから取得）
 export async function GET( _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   void _request
   try {
     const { id } = await params
-    const job = sampleJobs.find(job => job.id === id)
+    const job = await getJobById(id)
     
     if (!job) {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 })
     }
 
     return NextResponse.json(job)
-  } catch {
+  } catch (error) {
+    console.error('Error fetching job:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

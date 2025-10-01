@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { MapPin, Building, Clock } from 'lucide-react'
 import type { Job } from '@/types/database'
-import { sampleJobs } from '@/data/sampleJobs'
 
 export function JobList() {
   const [jobs, setJobs] = useState<Job[]>([])
@@ -30,40 +29,39 @@ export function JobList() {
       setLoading(true)
       setError(null)
 
-      // サンプルデータを使用（フィルタリング機能付き）
-      await new Promise(resolve => setTimeout(resolve, 500)) // ローディング表示のため
+      // APIから求人データを取得
+      const queryParams = new URLSearchParams()
       
-      let filteredJobs = [...sampleJobs]
-      
-      // 検索フィルタリング
+      // 検索パラメータを追加
+      const page = searchParams.get('page') || '1'
       const location = searchParams.get('location')
       const employmentType = searchParams.get('employment_type') 
       const search = searchParams.get('search')
+      
+      queryParams.set('page', page)
+      queryParams.set('limit', '20')
+      
+      if (location) queryParams.set('location', location)
+      if (employmentType) queryParams.set('employment_type', employmentType)
+      if (search) queryParams.set('search', search)
+      
+      const response = await fetch(`/api/jobs?${queryParams.toString()}`)
+      
+      if (!response.ok) {
+        const errorText = await response.text()
+        console.error('API Error:', response.status, errorText)
+        throw new Error(`求人データの取得に失敗しました (${response.status})`)
+      }
+      
+      const data = await response.json()
+      console.log('Fetched jobs data:', data)
+      
+      // 特徴フィルタリング（クライアントサイド）
       const features = searchParams.get('features')?.split(',').filter(Boolean) || []
+      let filteredJobs = data.jobs
       
-      if (location) {
-        filteredJobs = filteredJobs.filter(job => 
-          job.location.includes(location)
-        )
-      }
-      
-      if (employmentType) {
-        filteredJobs = filteredJobs.filter(job => 
-          job.employment_type === employmentType
-        )
-      }
-      
-      if (search) {
-        filteredJobs = filteredJobs.filter(job =>
-          job.title.includes(search) || 
-          job.company.includes(search) ||
-          job.description.includes(search)
-        )
-      }
-      
-      // 人気の特徴フィルタリング
       if (features.length > 0) {
-        filteredJobs = filteredJobs.filter(job =>
+        filteredJobs = data.jobs.filter((job: Job) =>
           features.every(feature => {
             switch (feature) {
               case 'housing':
@@ -83,21 +81,8 @@ export function JobList() {
         )
       }
       
-      // ページネーション
-      const page = parseInt(searchParams.get('page') || '1')
-      const limit = 20
-      const total = filteredJobs.length
-      const totalPages = Math.ceil(total / limit)
-      const startIndex = (page - 1) * limit
-      const endIndex = startIndex + limit
-      
-      setJobs(filteredJobs.slice(startIndex, endIndex))
-      setPagination({
-        page,
-        limit,
-        total,
-        totalPages
-      })
+      setJobs(filteredJobs)
+      setPagination(data.pagination)
     } catch (err) {
       setError(err instanceof Error ? err.message : '予期しないエラーが発生しました')
     } finally {

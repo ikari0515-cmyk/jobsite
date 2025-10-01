@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ArrowLeft, Save } from 'lucide-react'
+import { createJob, updateJob } from '@/lib/firestore'
 import type { Job, JobInsert, JobUpdate } from '@/types/database'
 
 interface Props {
@@ -27,7 +28,23 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
     contact_phone: job?.contact_phone || '',
     contact_email: job?.contact_email || '',
     is_published: job?.is_published || false,
-    expires_at: job?.expires_at ? new Date(job.expires_at).toISOString().split('T')[0] : ''
+    expires_at: job?.expires_at ? job.expires_at.toISOString().split('T')[0] : '',
+    // 詳細情報フィールド
+    job_category: job?.job_category || '',
+    job_content: job?.job_content || '',
+    service_type: job?.service_type || '',
+    salary_details: job?.salary_details || '',
+    welfare_benefits: job?.welfare_benefits || '',
+    working_hours: job?.working_hours || '',
+    holidays: job?.holidays || '',
+    vacation_system: job?.vacation_system || '',
+    // 短期パート・選考手順
+    short_term_available: job?.short_term_available || false,
+    short_term_details: job?.short_term_details || '',
+    short_term_salary: job?.short_term_salary || '',
+    short_term_work_style: job?.short_term_work_style || '',
+    short_term_transportation_fee: job?.short_term_transportation_fee || false,
+    selection_process: job?.selection_process || ''
   })
 
   const [loading, setLoading] = useState(false)
@@ -62,29 +79,37 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
         contact_phone: formData.contact_phone || null,
         contact_email: formData.contact_email || null,
         is_published: formData.is_published,
-        expires_at: formData.expires_at ? new Date(formData.expires_at).toISOString() : null
+        expires_at: formData.expires_at ? new Date(formData.expires_at) : null,
+        // 詳細情報フィールド
+        job_category: formData.job_category || null,
+        job_content: formData.job_content || null,
+        service_type: formData.service_type || null,
+        salary_details: formData.salary_details || null,
+        welfare_benefits: formData.welfare_benefits || null,
+        working_hours: formData.working_hours || null,
+        holidays: formData.holidays || null,
+        vacation_system: formData.vacation_system || null,
+        // 短期パート・選考手順
+        short_term_available: formData.short_term_available,
+        short_term_details: formData.short_term_details || null,
+        short_term_salary: formData.short_term_salary || null,
+        short_term_work_style: formData.short_term_work_style || null,
+        short_term_transportation_fee: formData.short_term_transportation_fee,
+        selection_process: formData.selection_process || null
       }
 
-      const url = job ? `/api/jobs/${job.id}` : '/api/jobs'
-      const method = job ? 'PUT' : 'POST'
-
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('adminAuth')}`
-        },
-        body: JSON.stringify(submitData)
-      })
-
-      if (response.ok) {
-        onSuccess()
+      if (job) {
+        // 更新
+        await updateJob(job.id, submitData as JobUpdate)
       } else {
-        const errorData = await response.json()
-        setError(errorData.error || 'エラーが発生しました')
+        // 新規作成
+        await createJob(submitData as JobInsert)
       }
-    } catch {
-      setError('ネットワークエラーが発生しました')
+      
+      onSuccess()
+    } catch (error) {
+      console.error('Failed to save job:', error)
+      setError('保存に失敗しました')
     } finally {
       setLoading(false)
     }
@@ -176,6 +201,48 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
                   <option value="temporary">派遣・臨時</option>
                 </select>
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  職種カテゴリ
+                </label>
+                <select
+                  value={formData.job_category}
+                  onChange={(e) => setFormData({ ...formData, job_category: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">選択してください</option>
+                  <option value="保育士">保育士</option>
+                  <option value="幼稚園教諭">幼稚園教諭</option>
+                  <option value="栄養士">栄養士</option>
+                  <option value="看護師">看護師</option>
+                  <option value="児童指導員">児童指導員</option>
+                  <option value="保育補助">保育補助</option>
+                  <option value="その他">その他</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  サービス種別
+                </label>
+                <select
+                  value={formData.service_type}
+                  onChange={(e) => setFormData({ ...formData, service_type: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">選択してください</option>
+                  <option value="認可保育園">認可保育園</option>
+                  <option value="認定こども園">認定こども園</option>
+                  <option value="小規模保育園">小規模保育園</option>
+                  <option value="企業内保育所">企業内保育所</option>
+                  <option value="幼稚園">幼稚園</option>
+                  <option value="放課後等デイサービス">放課後等デイサービス</option>
+                  <option value="児童発達支援">児童発達支援</option>
+                  <option value="学童保育">学童保育</option>
+                  <option value="その他">その他</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -237,14 +304,28 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  仕事内容 *
+                  仕事内容（概要） *
                 </label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  rows={4}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="求人の概要を入力してください"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  具体的な仕事内容
+                </label>
+                <textarea
+                  value={formData.job_content}
+                  onChange={(e) => setFormData({ ...formData, job_content: e.target.value })}
                   rows={6}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
+                  placeholder="具体的な業務内容を詳しく入力してください"
                 />
               </div>
 
@@ -257,6 +338,7 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
                   onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
                   rows={4}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="必要な資格、経験、スキルなどを入力してください"
                 />
               </div>
 
@@ -269,8 +351,175 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
                   onChange={(e) => setFormData({ ...formData, benefits: e.target.value })}
                   rows={4}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="福利厚生、手当、その他待遇について入力してください"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* 勤務条件 */}
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">勤務条件</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  勤務時間
+                </label>
+                <textarea
+                  value={formData.working_hours}
+                  onChange={(e) => setFormData({ ...formData, working_hours: e.target.value })}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="例：8:00～17:00（実働8時間、休憩60分）"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  休日・休暇
+                </label>
+                <textarea
+                  value={formData.holidays}
+                  onChange={(e) => setFormData({ ...formData, holidays: e.target.value })}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="例：週休2日制、祝日、年間休日120日"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  給与詳細
+                </label>
+                <textarea
+                  value={formData.salary_details}
+                  onChange={(e) => setFormData({ ...formData, salary_details: e.target.value })}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="昇給、賞与、各種手当について詳しく入力してください"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  休暇制度
+                </label>
+                <textarea
+                  value={formData.vacation_system}
+                  onChange={(e) => setFormData({ ...formData, vacation_system: e.target.value })}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="有給休暇、産前産後休暇、育児休暇など"
+                />
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                福利厚生詳細
+              </label>
+              <textarea
+                value={formData.welfare_benefits}
+                onChange={(e) => setFormData({ ...formData, welfare_benefits: e.target.value })}
+                rows={4}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="社会保険、退職金制度、研修制度、その他福利厚生について詳しく入力してください"
+              />
+            </div>
+          </div>
+
+          {/* 短期パート・アルバイト情報 */}
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">短期パート・アルバイト情報</h2>
+            
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="short_term_available"
+                  checked={formData.short_term_available}
+                  onChange={(e) => setFormData({ ...formData, short_term_available: e.target.checked })}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label htmlFor="short_term_available" className="ml-2 block text-sm text-gray-700">
+                  短期パート・アルバイトも募集する
+                </label>
+              </div>
+
+              {formData.short_term_available && (
+                <div className="space-y-4 pl-6 border-l-2 border-blue-200">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      短期パート詳細
+                    </label>
+                    <textarea
+                      value={formData.short_term_details}
+                      onChange={(e) => setFormData({ ...formData, short_term_details: e.target.value })}
+                      rows={3}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="短期パートの募集内容、期間、条件などを入力してください"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      短期パート給与
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.short_term_salary}
+                      onChange={(e) => setFormData({ ...formData, short_term_salary: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="例：時給1500円、日給8000円など"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      短期パート勤務スタイル
+                    </label>
+                    <textarea
+                      value={formData.short_term_work_style}
+                      onChange={(e) => setFormData({ ...formData, short_term_work_style: e.target.value })}
+                      rows={3}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="勤務日数、時間、シフトの柔軟性などを入力してください"
+                    />
+                  </div>
+
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="short_term_transportation_fee"
+                      checked={formData.short_term_transportation_fee}
+                      onChange={(e) => setFormData({ ...formData, short_term_transportation_fee: e.target.checked })}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label htmlFor="short_term_transportation_fee" className="ml-2 block text-sm text-gray-700">
+                      短期パートも交通費支給
+                    </label>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 選考手順 */}
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">選考手順</h2>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                選考プロセス
+              </label>
+              <textarea
+                value={formData.selection_process}
+                onChange={(e) => setFormData({ ...formData, selection_process: e.target.value })}
+                rows={4}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="例：書類選考 → 面接（1回）→ 内定通知（1週間以内）"
+              />
             </div>
           </div>
 
