@@ -1,15 +1,17 @@
 // Firestoreに直接データを登録するスクリプト（セキュリティルール開放後）
+// ⚠️ このスクリプトは開発時のみ使用してください
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, addDoc, connectFirestoreEmulator } from 'firebase/firestore'
 import { sampleJobs } from '@/data/sampleJobs'
 
+// 環境変数から設定を読み込み
 const firebaseConfig = {
-  apiKey: "AIzaSyA6LQDyPWekDOVyTS3pI5kEjqfhi90Wqz8",
-  authDomain: "asterisk-c9136.firebaseapp.com",
-  projectId: "asterisk-c9136",
-  storageBucket: "asterisk-c9136.firebasestorage.app",
-  messagingSenderId: "230482047043",
-  appId: "1:230482047043:web:9ccbffac1f366d199064f6"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 }
 
 const app = initializeApp(firebaseConfig)

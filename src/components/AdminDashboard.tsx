@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { Plus, Edit, Trash2, Eye, EyeOff, LogOut } from 'lucide-react'
 import { JobForm } from '@/components/JobForm'
-import { getAllJobs, deleteJob, toggleJobPublishStatus } from '@/lib/firestore'
 import type { Job } from '@/types/database'
 
 interface Props {
@@ -23,10 +22,25 @@ export function AdminDashboard({ onLogout }: Props) {
   const fetchAllJobs = async () => {
     try {
       setLoading(true)
-      const jobsData = await getAllJobs()
-      setJobs(jobsData)
+      const response = await fetch('/api/admin/jobs')
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch jobs')
+      }
+      
+      const data = await response.json()
+      // 日付文字列をDateオブジェクトに変換
+      const jobsWithDates = data.jobs.map((job: any) => ({
+        ...job,
+        created_at: new Date(job.created_at),
+        updated_at: new Date(job.updated_at),
+        published_at: job.published_at ? new Date(job.published_at) : null,
+        expires_at: job.expires_at ? new Date(job.expires_at) : null,
+      }))
+      setJobs(jobsWithDates)
     } catch (error) {
       console.error('Failed to fetch jobs:', error)
+      alert('求人の取得に失敗しました')
     } finally {
       setLoading(false)
     }
@@ -34,10 +48,22 @@ export function AdminDashboard({ onLogout }: Props) {
 
   const handleTogglePublish = async (job: Job) => {
     try {
-      await toggleJobPublishStatus(job.id, !job.is_published)
+      const response = await fetch(`/api/admin/jobs/${job.id}/publish`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ is_published: !job.is_published }),
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to toggle publish status')
+      }
+      
       fetchAllJobs()
     } catch (error) {
       console.error('Failed to toggle publish status:', error)
+      alert('公開状態の変更に失敗しました')
     }
   }
 
@@ -47,10 +73,18 @@ export function AdminDashboard({ onLogout }: Props) {
     }
 
     try {
-      await deleteJob(job.id)
+      const response = await fetch(`/api/admin/jobs/${job.id}`, {
+        method: 'DELETE',
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to delete job')
+      }
+      
       fetchAllJobs()
     } catch (error) {
       console.error('Failed to delete job:', error)
+      alert('求人の削除に失敗しました')
     }
   }
 

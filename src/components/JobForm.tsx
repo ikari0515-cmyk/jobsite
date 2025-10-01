@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { ArrowLeft, Save } from 'lucide-react'
-import { createJob, updateJob } from '@/lib/firestore'
 import type { Job, JobInsert, JobUpdate } from '@/types/database'
 
 interface Props {
@@ -100,10 +99,30 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
 
       if (job) {
         // 更新
-        await updateJob(job.id, submitData as JobUpdate)
+        const response = await fetch(`/api/admin/jobs/${job.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(submitData),
+        })
+        
+        if (!response.ok) {
+          throw new Error('Failed to update job')
+        }
       } else {
         // 新規作成
-        await createJob(submitData as JobInsert)
+        const response = await fetch('/api/admin/jobs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(submitData),
+        })
+        
+        if (!response.ok) {
+          throw new Error('Failed to create job')
+        }
       }
       
       onSuccess()

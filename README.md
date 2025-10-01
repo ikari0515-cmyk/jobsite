@@ -1,10 +1,10 @@
-# 求人広告サイト
+# Asterisk+ 求人サイト
 
-Next.js + Supabase + Vercelで構築された求人広告サイトです。サーバーレス・低コストでの運用を目指しています。
+Next.js + Firebase + Vercelで構築された保育士・幼稚園教諭専門の求人サイトです。
 
 ## 🚀 特徴
 
-- **サーバーレス**: Vercel + Supabaseによる完全サーバーレス構成
+- **サーバーレス**: Vercel + Firebaseによる完全サーバーレス構成
 - **低コスト**: 無料枠での運用が可能
 - **SEO最適化**: JobPosting構造化データ、サイトマップ、OGP対応
 - **レスポンシブデザイン**: モバイルファーストのUI/UX
@@ -14,7 +14,7 @@ Next.js + Supabase + Vercelで構築された求人広告サイトです。サ�
 
 - **Frontend**: Next.js 15, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes
-- **Database**: Supabase (PostgreSQL)
+- **Database**: Firebase Firestore
 - **Deployment**: Vercel
 - **Icons**: Lucide React
 
@@ -28,29 +28,30 @@ cd jobsite
 npm install
 \`\`\`
 
-### 2. Supabaseプロジェクトの作成
+### 2. Firebaseプロジェクトの作成
 
-1. [Supabase](https://supabase.com)でプロジェクトを作成
-2. SQL Editorで \`sql/init.sql\` を実行してテーブルを作成
-3. プロジェクトのURL、anonキー、service roleキーを取得
+1. [Firebase Console](https://console.firebase.google.com)でプロジェクトを作成
+2. Firestoreデータベースを有効化
+3. プロジェクト設定から認証情報を取得
 
-### 3. 環境変数の設定
+### 3. 環境変数の設定（必須）
 
 \`.env.local\` ファイルを作成：
 
 \`\`\`bash
-# Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+# Firebase Configuration（必須）
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key_here
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id_here
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id_here
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id_here
 
-# Admin Authentication
-ADMIN_PASSWORD=your_secure_admin_password
-
-# Site Configuration
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_SITE_NAME=求人広告サイト
+# Admin Authentication（必須）
+ADMIN_PASSWORD=your_secure_password_here
 \`\`\`
+
+⚠️ **重要**: 環境変数の設定は必須です。設定しないとアプリケーションが動作しません。
 
 ### 4. 開発サーバーの起動
 
@@ -63,15 +64,19 @@ npm run dev
 ### Vercelでのデプロイ
 
 1. [Vercel](https://vercel.com)にGitHubリポジトリを連携
-2. 環境変数を設定：
-   - \`NEXT_PUBLIC_SUPABASE_URL\`
-   - \`NEXT_PUBLIC_SUPABASE_ANON_KEY\`
-   - \`SUPABASE_SERVICE_ROLE_KEY\`
+2. **必須の環境変数を設定**：
+   - \`NEXT_PUBLIC_FIREBASE_API_KEY\`
+   - \`NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN\`
+   - \`NEXT_PUBLIC_FIREBASE_PROJECT_ID\`
+   - \`NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET\`
+   - \`NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID\`
+   - \`NEXT_PUBLIC_FIREBASE_APP_ID\`
    - \`ADMIN_PASSWORD\`
-   - \`NEXT_PUBLIC_SITE_URL\` (デプロイ後のURL)
-   - \`NEXT_PUBLIC_SITE_NAME\`
 
-3. デプロイが完了すると自動でサイトが公開されます
+3. すべての環境変数を **Production**, **Preview**, **Development** に設定
+4. デプロイが完了すると自動でサイトが公開されます
+
+⚠️ **注意**: 環境変数を追加・変更した場合は必ず再デプロイしてください。
 
 ## 📁 プロジェクト構成
 
@@ -105,12 +110,13 @@ src/
 
 ## 🔒 セキュリティ
 
-現在の認証は簡易的なパスワード認証です。本番環境では以下の改善を検討してください：
+- HTTPOnly Cookieによるセッション管理を実装済み
+- ページリロード後も認証状態を保持（7日間有効）
+- **admin123**のデフォルトパスワードは本番運用前に変更してください
 
-- JWT認証の実装
-- セッション管理の強化
-- 多要素認証の導入
-- IPアドレス制限
+⚠️ **重要**: 
+- GitHubにプッシュする前に、実際の認証情報が含まれていないことを確認してください
+- \`.env.local\` ファイルは \`.gitignore\` に含まれており、コミットされません
 
 ## 📱 SEO対策
 
