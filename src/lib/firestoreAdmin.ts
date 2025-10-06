@@ -2,18 +2,25 @@
 import { initializeApp, getApps, cert } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 
-// Firebase Admin 初期化（何度も呼ばれないように）
 if (!getApps().length) {
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY
+
+  // 改行・余分な引用符を確実に処理
+  const formattedKey = privateKey
+    ?.replace(/\\n/g, '\n')
+    ?.replace(/"/g, '')
+    ?.trim()
+
   initializeApp({
     credential: cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      privateKey: formattedKey,
     }),
   })
 }
 
-const adminDb = getFirestore()
+export const adminDb = getFirestore()
 
 export async function getAllJobs() {
   const snapshot = await adminDb.collection('jobs').orderBy('created_at', 'desc').get()
