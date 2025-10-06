@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAllJobs, createJob } from '@/lib/firestore'
+import { getAllJobs, createJob } from '@/lib/firestoreAdmin'
 import type { JobInsert } from '@/types/database'
 
 // 認証チェックヘルパー
