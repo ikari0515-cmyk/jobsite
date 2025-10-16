@@ -9,7 +9,7 @@ import { 
   Calendar
 } from 'lucide-react'
 import { JobStructuredData } from '@/components/JobStructuredData'
-// JobContactButtons は使用しないため、importは維持しますが、コンポーネントは削除されます。
+// JobContactButtons は使用しませんが、importは維持します。
 import { JobContactButtons } from '@/components/JobContactButtons'
 import type { Job } from '@/types/database'
 
@@ -20,6 +20,7 @@ interface Props {
 async function getJob(id: string): Promise<Job | null> {
   // APIから求人データを取得
   try {
+    // NEXT_PUBLIC_SITE_URLがVercelで正しく設定されていることを前提とします
     const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/jobs/${id}`, {
       cache: 'no-store', // 常に最新データを取得
     })
@@ -185,7 +186,7 @@ export default async function JobDetailPage({ params }: Props) {
                   )}
                 </div>
               </div>
-             {/* お試し勤務セクションの開始 */}
+             {/* お試し勤務セクションの開始 */}
               {showShortTermSummary && (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">お試し勤務時の給与・待遇について</h3>
@@ -205,7 +206,7 @@ export default async function JobDetailPage({ params }: Props) {
                   </dl>
                 </div>
               )}
-             {/* お試し勤務セクションの終了 */}
+             {/* お試し勤務セクションの終了 */}
 
               {/* 企業紹介 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
