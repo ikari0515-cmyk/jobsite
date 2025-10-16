@@ -34,15 +34,6 @@ export async function DELETE() {
   return NextResponse.json({ error: 'Admin features disabled in demo mode' }, { status: 503 })
 }
 // ...
-export async function GET( _request: NextRequest, { params }: { params: Promise<{ id: string }> } ) {
-  console.log('APIルートが実行されました。');
-  try {
-    const { id } = await params
-    console.log('URLから取得したID:', id);
-
-    const job = await getJobById(id)
-    console.log('getJobByIdの実行結果:', job); // ★ここが最も重要
-
     if (!job) {
       console.log('求人データが見つかりませんでした。404を返します。');
       return NextResponse.json({ error: 'Job not found' }, { status: 404 })
