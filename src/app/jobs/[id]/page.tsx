@@ -9,7 +9,7 @@ import { 
   Calendar
 } from 'lucide-react'
 import { JobStructuredData } from '@/components/JobStructuredData'
-// JobContactButtons は使用しませんが、importは維持します。
+// JobContactButtons は使用しないため、importは維持します。
 import { JobContactButtons } from '@/components/JobContactButtons'
 import type { Job } from '@/types/database'
 
@@ -20,7 +20,6 @@ interface Props {
 async function getJob(id: string): Promise<Job | null> {
   // APIから求人データを取得
   try {
-    // NEXT_PUBLIC_SITE_URLがVercelで正しく設定されていることを前提とします
     const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/jobs/${id}`, {
       cache: 'no-store', // 常に最新データを取得
     })
