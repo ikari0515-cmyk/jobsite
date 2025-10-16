@@ -326,11 +326,6 @@ export default async function JobDetailPage({ params }: Props) {
             </div>
 
             {/* サイドバー */}
-// ... (中略) ...
-              )}
-            </div>
-
-            {/* サイドバー */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">このお試し勤務について相談する</h3>
@@ -356,7 +351,7 @@ export default async function JobDetailPage({ params }: Props) {
                   </div>
                 </div>
               </div>
-            </div> {/* <--- ここでサイドバー全体を閉じる */}
+            </div>
           </div>
         </main>
       </div>
