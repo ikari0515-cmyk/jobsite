@@ -344,7 +344,6 @@ export default async function JobDetailPage({ params }: Props) {
         <ul className="list-disc list-inside space-y-1 text-xs">
           <li>キャリア相談や応募前のご質問など、お気軽にご連絡ください。</li>
           <li>ご希望に応じて面談をセッティングいたします。</li>
-          <li>専門のキャリアアドバイザーが対応いたします。</li>
         </ul>
       </div>
     </div>
