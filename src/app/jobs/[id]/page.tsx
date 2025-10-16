@@ -326,29 +326,37 @@ export default async function JobDetailPage({ params }: Props) {
             </div>
 
             {/* サイドバー */}
-          <div className="lg:col-span-1">
-<div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
-    <div className="space-y-4">
-      <a href="https://lin.ee/ro8TlMv" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full px-4 py-2 text-base font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12c-2.486 0-4.83-.75-6.845-2.128l-2.915.602c-.17.035-.347-.023-.483-.159-.136-.136-.194-.313-.159-.483l.602-2.915c-1.378-2.015-2.128-4.359-2.128-6.845 0-6.627 5.373-12 12-12zm4.339 7.42c.162.16.242.368.242.595 0 .227-.08.435-.242.595l-3.238 3.238c-.16.16-.368.242-.595.242s-.435-.08-.595-.242l-1.619-1.619c-.162-.16-.242-.368-.242-.595s.08-.435.242-.595.368-.242.595-.242.435.08.595.242l1.024 1.024 2.643-2.643c.16-.162.368-.242.595-.242s.435.08.595.242z"/>
-        </svg>
-        LINEで相談する
-      </a>
-      <a href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full px-4 py-2 text-base font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.4 14.4H7.6V10.8h8.8v5.6zm-1.6-4h-4.8v3.2h4.8v-3.2zm-2.4-5.2c-.66 0-1.2.54-1.2 1.2s.54 1.2 1.2 1.2 1.2-.54 1.2-1.2-.54-1.2-1.2-1.2zm-2 2.4c-.66 0-1.2.54-1.2 1.2s.54 1.2 1.2 1.2 1.2-.54 1.2-1.2-.54-1.2-1.2-1.2z"/>
-        </svg>
-        WEBで相談する
-      </a>
-      <div className="text-sm text-gray-600 p-4 bg-gray-50 rounded-lg">
-        <p className="mb-2">LINEまたはWEB相談をご利用ください：</p>
-        <ul className="list-disc list-inside space-y-1 text-xs">
-          <li>キャリア相談や応募前のご質問など、お気軽にご連絡ください。</li>
-          <li>ご希望に応じて面談をセッティングいたします。</li>
-        </ul>
-</div>
+// ... (中略) ...
+              )}
+            </div>
+
+            {/* サイドバー */}
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">このお試し勤務について相談する</h3>
+                <div className="space-y-4">
+                  <a href="https://lin.ee/ro8TlMv" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full px-4 py-2 text-base font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12c-2.486 0-4.83-.75-6.845-2.128l-2.915.602c-.17.035-.347-.023-.483-.159-.136-.136-.194-.313-.159-.483l.602-2.915c-1.378-2.015-2.128-4.359-2.128-6.845 0-6.627 5.373-12 12-12zm4.339 7.42c.162.16.242.368.242.595 0 .227-.08.435-.242.595l-3.238 3.238c-.16.16-.368.242-.595.242s-.435-.08-.595-.242l-1.619-1.619c-.162-.16-.242-.368-.242-.595s.08-.435.242-.595.368-.242.595-.242.435.08.595.242l1.024 1.024 2.643-2.643c.16-.162.368-.242.595-.242s.435.08.595.242z"/>
+                    </svg>
+                    LINEで相談する
+                  </a>
+                  <a href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full px-4 py-2 text-base font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.4 14.4H7.6V10.8h8.8v5.6zm-1.6-4h-4.8v3.2h4.8v-3.2zm-2.4-5.2c-.66 0-1.2.54-1.2 1.2s.54 1.2 1.2 1.2 1.2-.54 1.2-1.2-.54-1.2-1.2-1.2zm-2 2.4c-.66 0-1.2.54-1.2 1.2s.54 1.2 1.2 1.2 1.2-.54 1.2-1.2-.54-1.2-1.2-1.2z"/>
+                    </svg>
+                    WEBで相談する
+                  </a>
+                  <div className="text-sm text-gray-600 p-4 bg-gray-50 rounded-lg">
+                    <p className="mb-2">LINEまたはWEB相談をご利用ください：</p>
+                    <ul className="list-disc list-inside space-y-1 text-xs">
+                      <li>キャリア相談や応募前のご質問など、お気軽にご連絡ください。</li>
+                      <li>ご希望に応じて面談をセッティングいたします。</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div> {/* <--- ここでサイドバー全体を閉じる */}
           </div>
         </main>
       </div>
