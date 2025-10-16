@@ -184,7 +184,33 @@ export default async function JobDetailPage({ params }: Props) {
                   )}
                 </div>
               </div>
+// 貼り付け先：{/* 企業紹介 */} の直前
 
+              {/* 基本情報 */}
+              // ... (基本情報のコード) ...
+              </div>
+            
+              {showShortTermSummary && (
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">お試し勤務時の給与・待遇について</h3> {/* 文言変更 */}
+                  <dl className="space-y-3">
+                    <div className="flex">
+                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">給与</dt>
+                      <dd className="text-gray-700">{shortTermSalaryText}</dd>
+                    </div>
+                    <div className="flex">
+                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">勤務形態</dt>
+                      <dd className="text-gray-700">{shortTermWorkStyleText}</dd>
+                    </div>
+                    <div className="flex">
+                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">交通費支給の有無</dt>
+                      <dd className="text-gray-700">{shortTermTransportationText}</dd>
+                    </div>
+                  </dl>
+                </div>
+              )}
+            
+// ... (企業紹介の残りのコード) ...
               {/* 企業紹介 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">企業紹介</h3>
@@ -261,25 +287,6 @@ export default async function JobDetailPage({ params }: Props) {
                   </div>
                 </div>
               )}
-              {showShortTermSummary && (
-                <div className="bg-white rounded-lg shadow-sm border p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">短期パート時の給与・待遇について</h3>
-                  <dl className="space-y-3">
-                    <div className="flex">
-                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">給与</dt>
-                      <dd className="text-gray-700">{shortTermSalaryText}</dd>
-                    </div>
-                    <div className="flex">
-                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">勤務形態</dt>
-                      <dd className="text-gray-700">{shortTermWorkStyleText}</dd>
-                    </div>
-                    <div className="flex">
-                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">交通費支給の有無</dt>
-                      <dd className="text-gray-700">{shortTermTransportationText}</dd>
-                    </div>
-                  </dl>
-                </div>
-              )}
 
 
               {/* 選考手順 */}
@@ -325,7 +332,7 @@ export default async function JobDetailPage({ params }: Props) {
             {/* サイドバー */}
           <div className="lg:col-span-1">
   <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
-    <h3 className="text-lg font-semibold text-gray-900 mb-4">この求人について相談する</h3>
+    <h3 className="text-lg font-semibold text-gray-900 mb-4">このお試し勤務について相談する</h3>
     <div className="space-y-4">
       <a href="https://lin.ee/ro8TlMv" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full px-4 py-2 text-base font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
