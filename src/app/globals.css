@@ -1,3 +1,5 @@
+/* src/app/globals.css の最上部 */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
