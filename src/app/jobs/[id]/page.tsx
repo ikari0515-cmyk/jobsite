@@ -222,7 +222,7 @@ export default async function JobDetailPage({ params }: Props) {
                   {job.job_category && (
                     <div className="flex">
                       <dt className="w-24 flex-shrink-0 font-medium text-gray-900">募集職種</dt>
-                      <dd className="text-gray-700">{job.job_category}</dd>
+      〠               <dd className="text-gray-700">{job.job_category}</dd>
                     </div>
                   )}
                   {job.job_content && (
