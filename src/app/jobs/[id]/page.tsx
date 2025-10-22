@@ -336,7 +336,7 @@ export default async function JobDetailPage({ params }: Props) {
           rel="noopener noreferrer"
           className="flex-1 text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors shadow-md"
         >
-          LINEで相談する
+          LINEで相談
         </a>
 
         {/* WEB相談ボタン */}
@@ -346,7 +346,7 @@ export default async function JobDetailPage({ params }: Props) {
           rel="noopener noreferrer"
           className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors shadow-md"
         >
-          WEBで相談する
+          WEBで相談
         </a>
       </div>
 
