@@ -323,46 +323,45 @@ export default async function JobDetailPage({ params }: Props) {
             </div>
 {/* サイドバー */}
 <div className="lg:col-span-1">
-{/* 相談セクション（ページ最下部） */}
-<section className="mt-20 text-center">
-  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+{/* この求人について相談する */}
+<div className="bg-white rounded-lg shadow-sm border p-6 mt-8">
+  <h3 className="text-lg font-semibold text-gray-900 mb-6">
     この求人について相談する
-  </h2>
+  </h3>
 
-  <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-    {/* LINEボタン */}
+  {/* ボタン部分 */}
+  <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0 mb-4">
+    {/* LINE相談ボタン */}
     <a
       href="https://lin.ee/ro8TlMv"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-transform transform hover:scale-105"
+      className="flex-1 text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md transition-transform hover:-translate-y-0.5"
     >
-      {/* 正しいLINEアイコン */}
-      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-6 h-6">
-        <path d="M20.667 3.333H3.333A2.333 2.333 0 001 5.667v12.666a2.333 2.333 0 002.333 2.334H18l3.667 3.666V5.667a2.333 2.333 0 00-2.333-2.334z" />
-      </svg>
       LINEで相談する
     </a>
 
-    {/* WEBボタン */}
+    {/* WEB相談ボタン */}
     <a
       href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-transform transform hover:scale-105"
+      className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md transition-transform hover:-translate-y-0.5"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
       WEBで相談する
     </a>
   </div>
 
-  <p className="mt-6 text-sm text-gray-600">
-    LINEでは気軽に相談・質問が可能です。<br />WEB相談はZoomを使ったオンライン面談です。<br />
-    どちらも無料でご利用いただけます。
-  </p>
-</section>
+  {/* 補足テキスト */}
+  <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100">
+    <p className="mb-2">ご相談前にご確認ください：</p>
+    <ul className="list-disc list-inside space-y-1 text-xs">
+      <li>LINEでは気軽に相談・質問が可能です</li>
+      <li>WEB相談はZoomを使ったオンライン面談です</li>
+      <li>どちらも無料でご利用いただけます</li>
+    </ul>
+  </div>
+</div>
   </div>
 </div>
 </main> 
