@@ -263,7 +263,7 @@ export default async function JobDetailPage({ params }: Props) {
               )}
               {showShortTermSummary && (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">短期パート時の給与・待遇について</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">お試し勤務詳細</h3>
                   <dl className="space-y-3">
                     <div className="flex">
                       <dt className="w-32 flex-shrink-0 font-medium text-gray-900">給与</dt>
