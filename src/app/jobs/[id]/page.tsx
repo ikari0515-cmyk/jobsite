@@ -321,29 +321,49 @@ export default async function JobDetailPage({ params }: Props) {
                 </div>
               )}
             </div>
+{/* サイドバー */}
+<div className="lg:col-span-1">
+  <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
+    <h3 className="text-lg font-semibold text-gray-900 mb-4">この求人について相談する</h3>
 
-            {/* サイドバー */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">この求人に応募する</h3>
-                
-                <div className="space-y-4">
-                  <JobContactButtons phoneNumber={job.contact_phone} />
-                  
-                  <div className="text-sm text-gray-600 p-4 bg-gray-50 rounded-lg">
-                    <p className="mb-2">応募前にご確認ください：</p>
-                    <ul className="list-disc list-inside space-y-1 text-xs">
-                      <li>応募書類は事前に準備してください</li>
-                      <li>応募後の返信には2-3営業日いただく場合があります</li>
-                      <li>詳細な労働条件は面接時に確認してください</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
+    <div className="space-y-4">
+      {/* LINE・WEB相談ボタン（横並び） */}
+      <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
+        {/* LINE相談ボタン */}
+        <a
+          href="https://lin.ee/ro8TlMv"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors shadow-md"
+        >
+          LINEで相談する
+        </a>
+
+        {/* WEB相談ボタン */}
+        <a
+          href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors shadow-md"
+        >
+          WEBで相談する
+        </a>
       </div>
-    </>
+
+      <div className="text-sm text-gray-600 p-4 bg-gray-50 rounded-lg">
+        <p className="mb-2 font-medium">ご相談前にご確認ください：</p>
+        <ul className="list-disc list-inside space-y-1 text-xs">
+          <li>LINEでは気軽に相談・質問が可能です</li>
+          <li>WEB相談はZoomを使ったオンライン面談です</li>
+          <li>どちらも無料でご利用いただけます</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</main> 
+</div> 
+</>
   )
 }
