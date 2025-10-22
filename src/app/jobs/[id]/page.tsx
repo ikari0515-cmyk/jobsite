@@ -13,7 +13,7 @@ import { JobContactButtons } from '@/components/JobContactButtons'
 import type { Job } from '@/types/database'
 
 interface Props {
-  params: Promise<{ id: string }>
+  params: { id: string }
 }
 
 async function getJob(id: string): Promise<Job | null> {
@@ -35,7 +35,7 @@ async function getJob(id: string): Promise<Job | null> {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params
+  const { id } = params
   const job = await getJob(id)
   
   if (!job) {
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function JobDetailPage({ params }: Props) {
-  const { id } = await params
+  const { id } = params
   const job = await getJob(id)
   
   if (!job) {
