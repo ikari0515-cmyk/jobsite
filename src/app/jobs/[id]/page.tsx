@@ -15,7 +15,7 @@ import type { Job } from '@/types/database'
 interface Props {
   params: { id: string }
 }
-
+import Image from "next/image"
 async function getJob(id: string): Promise<Job | null> {
   // APIから求人データを取得
   try {
@@ -323,8 +323,9 @@ export default async function JobDetailPage({ params }: Props) {
             </div>
 {/* サイドバー */}
 <div className="lg:col-span-1">
+
 {/* この求人について相談する */}
-<div className="bg-white rounded-lg shadow-sm border p-6 mt-8">
+<div className="bg-white rounded-lg shadow-sm border p-6">
   <h3 className="text-lg font-semibold text-gray-900 mb-6">
     この求人について相談する
   </h3>
@@ -336,8 +337,15 @@ export default async function JobDetailPage({ params }: Props) {
       href="https://lin.ee/ro8TlMv"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex-1 text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md transition-transform hover:-translate-y-0.5"
+      className="flex-1 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md transition-transform hover:-translate-y-0.5"
     >
+      <Image
+        src="/line-logo.svg"
+        alt="LINE"
+        width={20}
+        height={20}
+        className="mr-2"
+      />
       LINEで相談する
     </a>
 
@@ -346,13 +354,20 @@ export default async function JobDetailPage({ params }: Props) {
       href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md transition-transform hover:-translate-y-0.5"
+      className="flex-1 flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md transition-transform hover:-translate-y-0.5"
     >
+      <Image
+        src="/web-logo.svg"
+        alt="WEB"
+        width={20}
+        height={20}
+        className="mr-2"
+      />
       WEBで相談する
     </a>
   </div>
 
-  {/* 補足テキスト */}
+  {/* 補足説明 */}
   <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100">
     <p className="mb-2">ご相談前にご確認ください：</p>
     <ul className="list-disc list-inside space-y-1 text-xs">
@@ -362,6 +377,7 @@ export default async function JobDetailPage({ params }: Props) {
     </ul>
   </div>
 </div>
+
   </div>
 </div>
 </main> 
