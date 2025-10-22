@@ -323,53 +323,46 @@ export default async function JobDetailPage({ params }: Props) {
             </div>
 {/* サイドバー */}
 <div className="lg:col-span-1">
-{/* 相談ボタンセクション */}
-<div className="bg-white rounded-xl shadow-md p-6 border">
-  <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">
+{/* 相談セクション（ページ最下部） */}
+<section className="mt-20 text-center">
+  <h2 className="text-2xl font-bold text-gray-900 mb-6">
     この求人について相談する
-  </h3>
+  </h2>
 
-  {/* ボタン部分 */}
-  <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-6 space-y-4 sm:space-y-0">
-
-    {/* LINE相談ボタン */}
+  <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+    {/* LINEボタン */}
     <a
       href="https://lin.ee/ro8TlMv"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-transform duration-200"
+      className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-transform transform hover:scale-105"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20.666 3.333H3.333A2.337 2.337 0 001 5.667v12.666a2.337 2.337 0 002.333 2.334H18l3.667 3.666V5.667a2.337 2.337 0 00-2.334-2.334zM13 15h-1.5v-4h-1v4H9v-6h4v6zm4-1.5h-2v-4.5h1.5v3h.5v1.5zm-6.25-2.75h-1V9H8v4h1.5v-1.5h1v1.5H12v-1.5h-1.25v-1.5z"/>
+      {/* 正しいLINEアイコン */}
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" className="w-6 h-6">
+        <path d="M20.667 3.333H3.333A2.333 2.333 0 001 5.667v12.666a2.333 2.333 0 002.333 2.334H18l3.667 3.666V5.667a2.333 2.333 0 00-2.333-2.334z" />
       </svg>
       LINEで相談する
     </a>
 
-    {/* WEB相談ボタン */}
+    {/* WEBボタン */}
     <a
       href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-transform duration-200"
+      className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-transform transform hover:scale-105"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" viewBox="0 0 24 24" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
       WEBで相談する
     </a>
-
   </div>
 
-  {/* 注意書き */}
-  <div className="text-sm text-gray-600 p-4 mt-6 bg-gray-50 rounded-lg text-center">
-    <p className="font-medium mb-1">ご相談前にご確認ください：</p>
-    <ul className="list-disc list-inside text-left mx-auto inline-block text-xs space-y-1">
-      <li>LINEでは気軽に相談・質問が可能です</li>
-      <li>WEB相談はZoomを使ったオンライン面談です</li>
-      <li>どちらも無料でご利用いただけます</li>
-    </ul>
-  </div>
-</div>
+  <p className="mt-6 text-sm text-gray-600">
+    LINEでは気軽に相談・質問が可能です。WEB相談はZoomを使ったオンライン面談です。<br />
+    どちらも無料でご利用いただけます。
+  </p>
+</section>
   </div>
 </div>
 </main> 
