@@ -2,13 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getJobById } from '@/lib/firestore'
 
 // 求人詳細取得（Firestoreから取得）
-export async function GET( _request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: { id: string } }             // ✅ Promise削除
 ) {
   void _request
   try {
-    const { id } = await params
+    const { id } = params                            // ✅ await削除
     const job = await getJobById(id)
+
     
     if (!job) {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 })
