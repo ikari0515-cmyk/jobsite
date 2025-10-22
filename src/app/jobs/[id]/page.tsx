@@ -359,7 +359,7 @@ export default async function JobDetailPage({ params }: Props) {
   </div>
 
   <p className="mt-6 text-sm text-gray-600">
-    LINEでは気軽に相談・質問が可能です。WEB相談はZoomを使ったオンライン面談です。<br />
+    LINEでは気軽に相談・質問が可能です。<br />WEB相談はZoomを使ったオンライン面談です。<br />
     どちらも無料でご利用いただけます。
   </p>
 </section>

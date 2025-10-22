@@ -300,22 +300,15 @@ export function JobList() {
 
               {/* 下部: アクションボタン */}
               <div className="pt-3 border-t">
-                <div className="rounded-lg border border-blue-100 bg-blue-50 p-3">
-                  <p className="text-xs font-semibold text-blue-800">応募はこちら</p>
-                  {job.contact_phone ? (
-                    <>
-                      <p className="mt-1 text-sm font-semibold text-blue-900">{job.contact_phone}</p>
-                      <p className="mt-2 text-xs text-blue-700">
-                        お電話の際は「お試し勤務の求人を見て電話しました」とお伝えください。
-                      </p>
-                    </>
-                  ) : (
-                    <p className="mt-1 text-xs text-blue-700">
-                      電話での問い合わせ先は現在準備中です。求人詳細をご確認ください。
-                    </p>
-                  )}
-                </div>
-              </div>
+  <div className="rounded-lg border border-blue-100 bg-blue-50 p-3 text-center">
+    <a
+      href={`/jobs/${job.id}`}
+      className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors"
+    >
+      お試し勤務詳細をみる
+    </a>
+  </div>
+</div>
             </div>
           </Link>
         ))}
