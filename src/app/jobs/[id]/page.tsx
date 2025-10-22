@@ -127,7 +127,7 @@ export default async function JobDetailPage({ params }: Props) {
         <header className="bg-white shadow-sm border-b">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <Link
-              href="/"
+              href="/service"
               className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4"
             >
               <ArrowLeft size={20} className="mr-2" />
