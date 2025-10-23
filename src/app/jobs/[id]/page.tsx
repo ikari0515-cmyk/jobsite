@@ -131,7 +131,7 @@ export default async function JobDetailPage({ params }: Props) {
               className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4"
             >
               <ArrowLeft size={20} className="mr-2" />
-              求人一覧に戻る
+              お試し勤務一覧に戻る
             </Link>
             <h1 className="text-2xl font-bold text-gray-900">求人詳細</h1>
           </div>
@@ -327,7 +327,7 @@ export default async function JobDetailPage({ params }: Props) {
 {/* この求人について相談する */}
 <div className="bg-white rounded-lg shadow-sm border p-6">
   <h3 className="text-lg font-semibold text-gray-900 mb-6">
-    この求人について相談する
+    このお試し勤務について相談する
   </h3>
 
   {/* ボタン部分 */}
