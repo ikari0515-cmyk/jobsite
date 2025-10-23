@@ -25,7 +25,11 @@ export default function ServicePage() {
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center space-x-4">
-                <h1 className="text-xl sm:text-2xl font-bold text-blue-600">Asterisk+</h1>
+                <h1 className="text-xl sm:text-2xl font-bold text-blue-600">
+            <Link href="/" className="hover:text-blue-800 transition-colors">
+              Asterisk<span className="text-green-600">+</span>
+            </Link>
+          </h1>
                 <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
                   <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">保育士求人掲載件数</span>
                   <span className="font-bold text-gray-900">6件</span>
