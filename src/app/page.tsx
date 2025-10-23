@@ -34,7 +34,7 @@ export default function Home() {
           href="/service"
           className="text-gray-700 hover:text-blue-600 transition-colors"
         >
-          求人一覧
+          お試し勤務一覧
         </Link>
       </nav>
     </div>
