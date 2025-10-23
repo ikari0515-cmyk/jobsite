@@ -5,6 +5,20 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { MapPin, Building, Clock } from 'lucide-react'
 import type { Job } from '@/types/database'
+// 求人数を取得する関数（サービスページで利用）
+export async function getJobCount() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/jobs`, {
+      cache: 'no-store',
+    })
+    if (!res.ok) throw new Error('Failed to fetch jobs')
+    const data = await res.json()
+    return data.pagination?.total || data.jobs?.length || 0
+  } catch (error) {
+    console.error('Error fetching job count:', error)
+    return 0
+  }
+}
 
 export function JobList() {
   const [jobs, setJobs] = useState<Job[]>([])
