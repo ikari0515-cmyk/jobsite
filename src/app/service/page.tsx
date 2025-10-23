@@ -1,4 +1,3 @@
-import { getJobCount } from '@/components/JobList'
 import { JobList } from '@/components/JobList'
 import { SearchFilters } from '@/components/SearchFilters'
 import { StackedCircularFooter } from '@/components/ui/stacked-circular-footer'
@@ -17,7 +16,12 @@ export const metadata: Metadata = {
 }
 
 export default async function ServicePage() {
-  const jobCount = await getJobCount() // ← 求人数を取得
+  // ✅ APIから直接件数を取得
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/jobs`, {
+    cache: 'no-store',
+  })
+  const data = await res.json()
+  const jobCount = data.pagination?.total || data.jobs?.length || 0
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -29,12 +33,14 @@ export default async function ServicePage() {
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center space-x-4">
                 <h1 className="text-xl sm:text-2xl font-bold text-blue-600">
-            <Link href="/" className="hover:text-blue-800 transition-colors">
-              Asterisk<span className="text-green-600">+</span>
-            </Link>
-          </h1>
+                  <Link href="/" className="hover:text-blue-800 transition-colors">
+                    Asterisk<span className="text-green-600">+</span>
+                  </Link>
+                </h1>
                 <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
-                  <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">保育士求人掲載件数</span>
+                  <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">
+                    保育士求人掲載件数
+                  </span>
                   <span className="font-bold text-gray-900">{jobCount}件</span>
                 </div>
               </div>
@@ -68,7 +74,7 @@ export default async function ServicePage() {
         </div>
       </header>
 
-      {/* メインコンチE��チE*/}
+      {/* メインコンテンツ */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* 検索フィルター */}
@@ -77,10 +83,12 @@ export default async function ServicePage() {
               <SearchFilters />
             </Suspense>
           </aside>
-          
+
           {/* 求人一覧 */}
           <section className="lg:col-span-3">
-            <Suspense fallback={<div className="space-y-4">{[...Array(5)].map((_, i) => (<div key={i} className="bg-white rounded-lg shadow-sm border p-6 animate-pulse h-32"></div>))}</div>}>
+            <Suspense fallback={<div className="space-y-4">{[...Array(5)].map((_, i) => (
+              <div key={i} className="bg-white rounded-lg shadow-sm border p-6 animate-pulse h-32"></div>
+            ))}</div>}>
               <JobList />
             </Suspense>
           </section>
