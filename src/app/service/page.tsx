@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'お試し勤務一覧 | Asterisk+',
-  description: '保育士・幼稚園教諭向けの求人一覧ページです。',
+  description: '保育士・幼稚園教諭向けのお試し勤務一覧ページです。',
   openGraph: {
     title: 'お試し勤務一覧 | Asterisk+',
     description: '保育士・幼稚園教諭向けのお試し勤務一覧ページです。',

@@ -266,7 +266,10 @@ export function JobList() {
                 </div>
                 <div className="flex items-center">
                   <span className="text-green-500 mr-2 font-bold">￥</span>
-                  <span className="text-sm font-bold text-green-600">{formatSalary(job)}</span>
+                  {job.short_term_salary
+  ? `時給${job.short_term_salary.toLocaleString()}円（お試し勤務）`
+  : formatSalary(job)}
+
                 </div>
               </div>
 
