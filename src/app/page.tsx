@@ -17,27 +17,30 @@ export default function Home() {
   return (
     <>
       <div className="min-h-screen bg-gray-50">
-        {/* ヘッダー */}
         <header className="bg-white shadow-sm border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex justify-between items-center">
-              <Link
-                href="/"
-                className="text-xl sm:text-2xl font-bold text-blue-600"
-              >
-                Asterisk+
-              </Link>
-               <nav className="flex space-x-6 md:space-x-8">
-                 <Link href="/" className="text-blue-600 font-medium">
-                   サービス
-                 </Link>
-                 <Link href="/service" className="text-gray-700 hover:text-blue-600 transition-colors">
-                   求人一覧
-                 </Link>
-               </nav>
-            </div>
-          </div>
-        </header>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div className="flex justify-between items-center">
+      <Link
+        href="/"
+        className="text-xl sm:text-2xl font-bold text-blue-700 hover:text-blue-800"
+      >
+        Asterisk<span className="text-green-600">+</span>
+      </Link>
+      <nav className="flex space-x-6 md:space-x-8">
+        <Link href="/" className="text-blue-600 font-medium">
+          サービス
+        </Link>
+        <Link
+          href="/service"
+          className="text-gray-700 hover:text-blue-600 transition-colors"
+        >
+          求人一覧
+        </Link>
+      </nav>
+    </div>
+  </div>
+</header>
+
 
         {/* メインコンテンツ */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
