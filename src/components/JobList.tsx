@@ -215,122 +215,68 @@ export function JobList() {
         </div>
       </div>
 
-      {/* 求人リスト */}
-      <div className="space-y-3">
-        {jobs.map((job) => (
-          <Link
-            key={job.id}
-            href={`/jobs/${job.id}`}
-            className="block bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-200 hover:border-blue-200"
-          >
-            <div className="p-4 sm:p-6">
-              {/* 上部: 雇用形態タグと投稿日 */}
-              <div className="flex justify-between items-start mb-3">
-                <div className="flex items-center space-x-2">
-                  <span className="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded font-medium">
-                    {getEmploymentTypeLabel(job.employment_type)}
-                  </span>
-                  {job.salary_type !== 'negotiable' && (
-                    <span className="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
-                      高時給
-                    </span>
-                  )}
-                  <span className="inline-block bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">
-                    NEW
-                  </span>
-                </div>
-                <div className="flex items-center text-xs text-gray-500">
-                  <Clock size={12} className="mr-1" />
-                  <span>
-                    {new Date(job.published_at || job.created_at).toLocaleDateString('ja-JP')}
-                  </span>
-                </div>
-              </div>
-
-              {/* メイン情報 */}
-              <div className="mb-4">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2">
-                  {job.title}
-                </h3>
-                <div className="flex items-center text-gray-800 mb-2">
-                  <Building size={16} className="mr-2 flex-shrink-0" />
-                  <span className="truncate">{job.company}</span>
-                </div>
-              </div>
-
-              {/* 主要情報グリッド */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                <div className="flex items-center">
-                  <MapPin size={16} className="mr-2 text-gray-400 flex-shrink-0" />
-                  <span className="text-sm text-gray-800 truncate">{job.location}</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-green-500 mr-2 font-bold">￥</span>
-                  {job.short_term_salary
-  ? `時給${job.short_term_salary.toLocaleString()}円（お試し勤務）`
-  : formatSalary(job)}
-
-                </div>
-              </div>
-
-              {/* 勤務時間と特徴 */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-sm">
-                <div className="text-gray-800">
-                  <span className="font-medium">勤務時間:</span> 08:00〜17:00など
-                </div>
-                <div className="flex flex-wrap gap-1">
-                  {job.benefits?.includes('住宅手当') && (
-                    <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">
-                      住宅手当あり
-                    </span>
-                  )}
-                  {job.benefits?.includes('交通費') && (
-                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
-                      交通費支給
-                    </span>
-                  )}
-                  {job.benefits?.includes('賞与') && (
-                    <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">
-                      賞与あり
-                    </span>
-                  )}
-                  {job.requirements?.includes('未経験') && (
-                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
-                      未経験OK
-                    </span>
-                  )}
-                  {job.requirements?.includes('ブランク') && (
-                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">
-                      ブランクOK
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* 説明文 */}
-              {job.description && (
-                <p className="text-sm text-gray-800 mb-4 line-clamp-2">
-                  {job.description.substring(0, 100)}
-                  {job.description.length > 100 && '...'}
-                </p>
-              )}
-
-              {/* 下部: アクションボタン */}
-              <div className="pt-3 border-t">
-  <div className="rounded-lg border border-blue-100 bg-blue-50 p-3 text-center">
-    <a
+    {/* 求人リスト */}
+<div className="space-y-3">
+  {jobs.map((job) => (
+    <Link
+      key={job.id}
       href={`/jobs/${job.id}`}
-      className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors"
+      className="block bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-200 hover:border-blue-200"
     >
-      お試し勤務詳細をみる
-    </a>
-  </div>
-</div>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <div className="p-4 sm:p-6">
+        {/* タイトルと会社名 */}
+        <div className="mb-4">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2">
+            {job.title}
+          </h3>
+          <div className="flex items-center text-gray-800 mb-2">
+            <Building size={16} className="mr-2 flex-shrink-0" />
+            <span className="truncate">{job.company}</span>
+          </div>
+        </div>
 
+        {/* お試し勤務情報 */}
+        <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 space-y-2">
+          <div className="flex items-center text-gray-800">
+            <span className="font-semibold text-blue-700 mr-2">給与:</span>
+            <span>
+              {job.short_term_salary
+                ? `時給${job.short_term_salary.toLocaleString()}円`
+                : '情報なし'}
+            </span>
+          </div>
+          <div className="flex items-center text-gray-800">
+            <span className="font-semibold text-blue-700 mr-2">勤務形態:</span>
+            <span>{job.short_term_work_style || '情報なし'}</span>
+          </div>
+          <div className="flex items-center text-gray-800">
+            <span className="font-semibold text-blue-700 mr-2">交通費:</span>
+            <span>
+              {job.short_term_transportation_fee === null
+                ? '情報なし'
+                : job.short_term_transportation_fee
+                ? '支給あり'
+                : '支給なし'}
+            </span>
+          </div>
+        </div>
+
+        {/* ボタン */}
+        <div className="pt-3 border-t mt-4">
+          <div className="rounded-lg border border-blue-100 bg-blue-50 p-3 text-center">
+            <a
+              href={`/jobs/${job.id}`}
+              className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors"
+            >
+              お試し勤務詳細をみる
+            </a>
+          </div>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
+    
       {/* ページネーション */}
       {pagination.totalPages > 1 && (
         <div className="flex justify-center space-x-2">
