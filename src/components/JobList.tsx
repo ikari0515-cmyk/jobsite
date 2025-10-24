@@ -215,62 +215,60 @@ export function JobList() {
         </div>
       </div>
 
-    {/* 求人リスト */}
-<div className="space-y-3">
+ {/* お試し勤務カード一覧 */}
+<div className="space-y-4">
   {jobs.map((job) => (
     <Link
       key={job.id}
       href={`/jobs/${job.id}`}
-      className="block bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-200 hover:border-blue-200"
+      className="block bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 hover:border-blue-300"
     >
-      <div className="p-4 sm:p-6">
+      <div className="p-5 sm:p-6">
         {/* 雇用形態タグ */}
-<div className="flex items-center justify-start mb-3">
-  <span
-    className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${
-      job.employment_type === 'full_time'
-        ? 'bg-blue-100 text-blue-800'
-        : job.employment_type === 'part_time'
-        ? 'bg-green-100 text-green-800'
-        : 'bg-gray-100 text-gray-700'
-    }`}
-  >
-    {job.employment_type === 'full_time'
-      ? '正社員'
-      : job.employment_type === 'part_time'
-      ? 'パート'
-      : 'その他'}
-  </span>
-</div>
-
-        {/* タイトルと会社名 */}
-        <div className="mb-4">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2">
-            {job.title}
-          </h3>
-          <div className="flex items-center text-gray-800 mb-2">
-            <Building size={16} className="mr-2 flex-shrink-0" />
-            <span className="truncate">{job.company}</span>
-          </div>
+        <div className="mb-2">
+          <span
+            className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${
+              job.employment_type === 'full_time'
+                ? 'bg-blue-100 text-blue-800'
+                : job.employment_type === 'part_time'
+                ? 'bg-green-100 text-green-800'
+                : 'bg-gray-100 text-gray-700'
+            }`}
+          >
+            {job.employment_type === 'full_time'
+              ? '正社員'
+              : job.employment_type === 'part_time'
+              ? 'パート'
+              : 'その他'}
+          </span>
         </div>
 
-        {/* お試し勤務情報 */}
-        <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 space-y-2">
-          <div className="flex items-center text-gray-800">
-            <span className="font-semibold text-blue-700 mr-2">給与:</span>
-            <span>
+        {/* タイトル・会社名 */}
+        <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-2">{job.title}</h3>
+        <div className="flex items-center text-sm text-gray-700 mb-3">
+          <Building size={15} className="mr-2 text-gray-400" />
+          {job.company}
+        </div>
+
+        {/* お試し勤務情報ブロック */}
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2">
+          <div className="flex justify-between text-sm">
+            <span className="font-semibold text-gray-700 w-24">給与</span>
+            <span className="text-gray-900 text-right">
               {job.short_term_salary
                 ? `時給${job.short_term_salary.toLocaleString()}円`
                 : '情報なし'}
             </span>
           </div>
-          <div className="flex items-center text-gray-800">
-            <span className="font-semibold text-blue-700 mr-2">勤務形態:</span>
-            <span>{job.short_term_work_style || '情報なし'}</span>
+          <div className="flex justify-between text-sm">
+            <span className="font-semibold text-gray-700 w-24">勤務形態</span>
+            <span className="text-gray-900 text-right">
+              {job.short_term_work_style || '情報なし'}
+            </span>
           </div>
-          <div className="flex items-center text-gray-800">
-            <span className="font-semibold text-blue-700 mr-2">交通費:</span>
-            <span>
+          <div className="flex justify-between text-sm">
+            <span className="font-semibold text-gray-700 w-24">交通費</span>
+            <span className="text-gray-900 text-right">
               {job.short_term_transportation_fee === null
                 ? '情報なし'
                 : job.short_term_transportation_fee
@@ -281,20 +279,19 @@ export function JobList() {
         </div>
 
         {/* ボタン */}
-        <div className="pt-3 border-t mt-4">
-          <div className="rounded-lg border border-blue-100 bg-blue-50 p-3 text-center">
-            <a
-              href={`/jobs/${job.id}`}
-              className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors"
-            >
-              お試し勤務・採用条件の詳細をみる
-            </a>
-          </div>
+        <div className="mt-5 text-center">
+          <a
+            href={`/jobs/${job.id}`}
+            className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-semibold py-3 rounded-lg shadow-md transition-colors"
+          >
+            お試し勤務・採用条件の詳細をみる
+          </a>
         </div>
       </div>
     </Link>
   ))}
 </div>
+
     
       {/* ページネーション */}
       {pagination.totalPages > 1 && (
