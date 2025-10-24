@@ -224,6 +224,25 @@ export function JobList() {
       className="block bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-200 hover:border-blue-200"
     >
       <div className="p-4 sm:p-6">
+        {/* 雇用形態タグ */}
+<div className="flex items-center justify-start mb-3">
+  <span
+    className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${
+      job.employment_type === 'full_time'
+        ? 'bg-blue-100 text-blue-800'
+        : job.employment_type === 'part_time'
+        ? 'bg-green-100 text-green-800'
+        : 'bg-gray-100 text-gray-700'
+    }`}
+  >
+    {job.employment_type === 'full_time'
+      ? '正社員'
+      : job.employment_type === 'part_time'
+      ? 'パート'
+      : 'その他'}
+  </span>
+</div>
+
         {/* タイトルと会社名 */}
         <div className="mb-4">
           <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2">
