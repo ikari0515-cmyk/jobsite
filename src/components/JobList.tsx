@@ -49,79 +49,82 @@ export function JobList() {
   if (error) return <p>{error}</p>
 
   return (
-    <div className="space-y-5">
-      {jobs.map((job) => (
-        <Link
-          key={job.id}
-          href={`/jobs/${job.id}`}
-          className="block bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 hover:border-blue-300"
-        >
-          <div className="p-5 sm:p-6">
-            
-            {/* 雇用形態ラベル */}
-            <div className="mb-2">
-              <span
-                className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${
-                  job.employment_type === 'full_time'
-                    ? 'bg-blue-100 text-blue-800'
-                    : job.employment_type === 'part_time'
-                    ? 'bg-green-100 text-green-800'
-                    : 'bg-gray-100 text-gray-700'
-                }`}
-              >
-                {job.employment_type === 'full_time'
-                  ? '正社員'
-                  : job.employment_type === 'part_time'
-                  ? 'パート'
-                  : 'その他'}
-              </span>
-            </div>
+    <div className="space-y-6">
+  {jobs.map((job) => (
+    <Link
+      key={job.id}
+      href={`/jobs/${job.id}`}
+      className="block bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-200"
+    >
+      <div className="p-5 sm:p-6">
+        {/* 雇用形態 */}
+        <div className="mb-3">
+          <span
+            className={`inline-block px-3 py-1 text-xs sm:text-sm font-medium rounded-full ${
+              job.employment_type === 'full_time'
+                ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                : job.employment_type === 'part_time'
+                ? 'bg-green-50 text-green-700 border border-green-200'
+                : 'bg-gray-50 text-gray-600 border border-gray-200'
+            }`}
+          >
+            {job.employment_type === 'full_time'
+              ? '正社員'
+              : job.employment_type === 'part_time'
+              ? 'パート'
+              : 'その他'}
+          </span>
+        </div>
 
-            {/* タイトルと会社名 */}
-            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 line-clamp-2">{job.title}</h3>
-            <div className="flex items-center text-gray-800 mb-4">
-              <Building size={16} className="mr-2 flex-shrink-0" />
-              <span className="truncate text-sm sm:text-base">{job.company}</span>
-            </div>
+        {/* タイトル */}
+        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 leading-tight">
+          {job.title}
+        </h3>
 
-            {/* お試し勤務情報ブロック */}
-            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 sm:p-5">
-              <div className="grid grid-cols-[auto,1fr] items-center gap-x-3 gap-y-2 text-sm sm:text-base">
-                <span className="font-semibold text-gray-700 whitespace-nowrap">給与</span>
-                <span className="text-gray-900 break-words">
-                  {job.short_term_salary
-                    ? `時給${job.short_term_salary.toLocaleString()}円`
-                    : '情報なし'}
-                </span>
+        {/* 会社名 */}
+        <div className="flex items-center text-gray-700 text-sm mb-4">
+          <span className="font-medium">{job.company}</span>
+        </div>
 
-                <span className="font-semibold text-gray-700 whitespace-nowrap">勤務形態</span>
-                <span className="text-gray-900 break-words">
-                  {job.short_term_work_style || '情報なし'}
-                </span>
+        {/* 情報ボックス */}
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 sm:p-5 space-y-2 sm:space-y-3">
+          <div className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-2 text-sm sm:text-base">
+            <span className="font-semibold text-gray-700 whitespace-nowrap">給与</span>
+            <span className="text-gray-900 break-words">
+              {job.short_term_salary
+                ? `時給${job.short_term_salary.toLocaleString()}円`
+                : '情報なし'}
+            </span>
 
-                <span className="font-semibold text-gray-700 whitespace-nowrap">交通費</span>
-                <span className="text-gray-900 break-words">
-                  {job.short_term_transportation_fee === null
-                    ? '情報なし'
-                    : job.short_term_transportation_fee
-                    ? '支給あり'
-                    : '支給なし'}
-                </span>
-              </div>
-            </div>
+            <span className="font-semibold text-gray-700 whitespace-nowrap">勤務形態</span>
+            <span className="text-gray-900 break-words">
+              {job.short_term_work_style || '情報なし'}
+            </span>
 
-            {/* ボタン */}
-            <div className="pt-4 border-t mt-5">
-              <a
-                href={`/jobs/${job.id}`}
-                className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors"
-              >
-                お試し勤務・採用条件の詳細をみる
-              </a>
-            </div>
+            <span className="font-semibold text-gray-700 whitespace-nowrap">交通費</span>
+            <span className="text-gray-900 break-words">
+              {job.short_term_transportation_fee === null
+                ? '情報なし'
+                : job.short_term_transportation_fee
+                ? '支給あり'
+                : '支給なし'}
+            </span>
           </div>
-        </Link>
-      ))}
-    </div>
+        </div>
+
+        {/* ボタン */}
+        <div className="mt-5 pt-4 border-t border-gray-100">
+          <a
+            href={`/jobs/${job.id}`}
+            className="block w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold py-3 rounded-lg shadow-md text-center transition-all duration-200"
+          >
+            お試し勤務・採用条件の詳細をみる
+          </a>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
+
   )
 }
