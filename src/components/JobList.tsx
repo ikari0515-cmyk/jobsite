@@ -137,14 +137,19 @@ export function JobList() {
         </div>
 
         {/* ボタン */}
-        <div className="mt-5 pt-4 border-t border-gray-100">
-          <a
-            href={`/jobs/${job.id}`}
-            className="block w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold py-3 rounded-lg shadow-md text-center transition-all duration-200"
-          >
-            お試し勤務・採用条件の詳細をみる
-          </a>
-        </div>
+<div className="mt-5 pt-4 border-t border-gray-100">
+  <div className="text-center">
+    <a
+      href={`/jobs/${job.id}`}
+      className="inline-flex justify-center items-center w-full sm:w-auto px-6 py-3 
+                 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full 
+                 shadow-md hover:shadow-lg transition-all duration-200"
+    >
+      お試し勤務・採用条件の詳細をみる
+    </a>
+  </div>
+</div>
+
     
     </Link>
   ))}
