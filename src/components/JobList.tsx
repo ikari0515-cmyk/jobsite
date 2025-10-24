@@ -268,7 +268,7 @@ export function JobList() {
               href={`/jobs/${job.id}`}
               className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors"
             >
-              お試し勤務詳細をみる
+              お試し勤務・採用条件の詳細をみる
             </a>
           </div>
         </div>
