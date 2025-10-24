@@ -86,30 +86,54 @@ export function JobList() {
           <span className="font-medium">{job.company}</span>
         </div>
 
-        {/* 情報ボックス */}
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 sm:p-5 space-y-2 sm:space-y-3">
-          <div className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-2 text-sm sm:text-base">
-            <span className="font-semibold text-gray-700 whitespace-nowrap">給与</span>
-            <span className="text-gray-900 break-words">
-              {job.short_term_salary
-                ? `時給${job.short_term_salary.toLocaleString()}円`
-                : '情報なし'}
-            </span>
+        {/* お試し勤務情報（親しみやすいデザイン） */}
+<div className="mt-5 grid gap-3 sm:gap-4">
+  {/* 給与 */}
+  <div className="flex items-center gap-3 bg-orange-50 border border-orange-100 rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-all duration-200">
+    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-600">
+      💰
+    </div>
+    <div>
+      <p className="text-sm font-semibold text-gray-800">給与</p>
+      <p className="text-sm text-gray-700">
+        {job.short_term_salary
+          ? `時給${job.short_term_salary.toLocaleString()}円`
+          : '情報なし'}
+      </p>
+    </div>
+  </div>
 
-            <span className="font-semibold text-gray-700 whitespace-nowrap">勤務形態</span>
-            <span className="text-gray-900 break-words">
-              {job.short_term_work_style || '情報なし'}
-            </span>
+  {/* 勤務形態 */}
+  <div className="flex items-center gap-3 bg-green-50 border border-green-100 rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-all duration-200">
+    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-600">
+      🕒
+    </div>
+    <div>
+      <p className="text-sm font-semibold text-gray-800">勤務形態</p>
+      <p className="text-sm text-gray-700">
+        {job.short_term_work_style || '情報なし'}
+      </p>
+    </div>
+  </div>
 
-            <span className="font-semibold text-gray-700 whitespace-nowrap">交通費</span>
-            <span className="text-gray-900 break-words">
-              {job.short_term_transportation_fee === null
-                ? '情報なし'
-                : job.short_term_transportation_fee
-                ? '支給あり'
-                : '支給なし'}
-            </span>
-          </div>
+  {/* 交通費 */}
+  <div className="flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-all duration-200">
+    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600">
+      🚗
+    </div>
+    <div>
+      <p className="text-sm font-semibold text-gray-800">交通費</p>
+      <p className="text-sm text-gray-700">
+        {job.short_term_transportation_fee === null
+          ? '情報なし'
+          : job.short_term_transportation_fee
+          ? '支給あり'
+          : '支給なし'}
+      </p>
+    </div>
+  </div>
+</div>
+
         </div>
 
         {/* ボタン */}
@@ -121,7 +145,7 @@ export function JobList() {
             お試し勤務・採用条件の詳細をみる
           </a>
         </div>
-      </div>
+    
     </Link>
   ))}
 </div>
