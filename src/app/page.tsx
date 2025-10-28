@@ -89,6 +89,7 @@ export default function TryWorkLP() {
             </div>
           </div>
         </header>
+
       {/* ヒーロー */}
       <div className="relative isolate overflow-hidden bg-gradient-to-b from-emerald-50 to-white">
         <Section className="pt-20 sm:pt-28 pb-14">
@@ -270,17 +271,25 @@ export default function TryWorkLP() {
         </Section>
       </div>
 
-      {/* フッター（簡易） */}
-      <footer className="bg-white">
-        <Section className="py-8 text-sm text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© {new Date().getFullYear()} お試し勤務（中途インターン × キャリアサポート）</p>
-          <nav className="flex items-center gap-4">
-            <a href="#" className="hover:text-slate-700 underline-offset-2 hover:underline">プライバシーポリシー</a>
-            <a href="#" className="hover:text-slate-700 underline-offset-2 hover:underline">利用規約</a>
-            <a href="#" className="hover:text-slate-700 underline-offset-2 hover:underline">お問い合わせ</a>
-          </nav>
-        </Section>
-      </footer>
+      {/* ✅ フッター */}
+        <footer className="bg-white border-t mt-10">
+          <Section className="py-8 text-sm text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© {new Date().getFullYear()} お試し勤務（中途インターン × キャリアサポート）</p>
+            <nav className="flex items-center gap-4">
+              <a href="#" className="hover:text-slate-700 underline-offset-2 hover:underline">
+                プライバシーポリシー
+              </a>
+              <a href="#" className="hover:text-slate-700 underline-offset-2 hover:underline">
+                利用規約
+              </a>
+              <a href="#" className="hover:text-slate-700 underline-offset-2 hover:underline">
+                お問い合わせ
+              </a>
+            </nav>
+          </Section>
+        </footer>
+      </div>
     </main>
   );
 }
+
