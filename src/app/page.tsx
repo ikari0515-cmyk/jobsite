@@ -1,8 +1,8 @@
 'use client';
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 
-export default function TryWorkBizreachStyle() {
+export default function TryWorkFlow() {
   return (
     <main className="font-sans bg-[#fffdfa] text-slate-800">
       {/* ✅ Hero Section */}
@@ -34,95 +34,85 @@ export default function TryWorkBizreachStyle() {
         </p>
       </section>
 
-      {/* ✅ 選択セクション */}
-      <section className="px-6 py-16 bg-white text-center">
-        <h2 className="text-xl font-bold text-slate-900 mb-10">
-          お試し勤務は、どちらの選択にも寄り添います。
+      <section className="bg-[#fffdfa] py-16 px-4">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-2xl sm:text-3xl font-bold text-emerald-800 mb-10">
+          お試し勤務の流れ
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {/* 今すぐ試してみる */}
-          <div className="border-2 border-emerald-500 rounded-2xl p-6">
-            <h3 className="text-emerald-700 font-bold text-lg mb-4">
-              今、試してみたいあなたへ
-            </h3>
-            <ul className="space-y-3 text-left text-slate-700">
-              <li>✅ お試し勤務に登録する</li>
-              <li>✅ 実際に職場で働いてみる</li>
-              <li>✅ 人や環境の“リアル”を体感</li>
-              <li>✅ 自分に合う職場に出会う</li>
-            </ul>
-            <div className="mt-6">
-              <a
-                href="#entry"
-                className="inline-flex items-center justify-center w-full bg-emerald-600 text-white rounded-full py-3 font-semibold hover:bg-emerald-700 transition"
-              >
-                登録してお試し勤務を始める
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
-            </div>
+        {/* 縦のフロー図 */}
+        <div className="relative border-l-4 border-emerald-400 pl-6 space-y-12 text-left mx-auto max-w-md">
+
+          {/* ステップ1 */}
+          <div className="relative">
+            <div className="absolute -left-3 top-1 w-6 h-6 rounded-full bg-emerald-500"></div>
+            <h3 className="text-lg font-bold text-emerald-800">① お試し勤務の相談</h3>
+            <p className="text-slate-700 mt-2 text-sm leading-6">
+              キャリアサポートに登録し、コンサルタントと一緒に希望条件を整理します。
+            </p>
           </div>
 
-          {/* まだ考えたい */}
-          <div className="border-2 border-sky-400 rounded-2xl p-6">
-            <h3 className="text-sky-600 font-bold text-lg mb-4">
-              まだ考えたいあなたへ
-            </h3>
-            <ul className="space-y-3 text-left text-slate-700">
-              <li>💬 キャリアサポートに登録する</li>
-              <li>💬 面談で自分の働き方を整理する</li>
-              <li>💬 キャリアアップに必要な準備を知る</li>
-              <li>💬 タイミングが来たらお試し勤務へ</li>
-            </ul>
-            <div className="mt-6">
-              <a
-                href="#support"
-                className="inline-flex items-center justify-center w-full bg-sky-500 text-white rounded-full py-3 font-semibold hover:bg-sky-600 transition"
-              >
-                キャリア相談をしてみる
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
+          {/* ステップ2 */}
+          <div className="relative">
+            <div className="absolute -left-3 top-1 w-6 h-6 rounded-full bg-emerald-500"></div>
+            <h3 className="text-lg font-bold text-emerald-800">② お試し勤務の応募</h3>
+            <p className="text-slate-700 mt-2 text-sm leading-6">
+              気になる職場にエントリー。31日以内・週20h未満の「お試し勤務」を体験します。
+            </p>
+          </div>
+
+          {/* ステップ3 */}
+          <div className="relative">
+            <div className="absolute -left-3 top-1 w-6 h-6 rounded-full bg-emerald-500"></div>
+            <h3 className="text-lg font-bold text-emerald-800">③ 1ヶ月後の分岐</h3>
+            <p className="text-slate-700 mt-2 text-sm leading-6 mb-6">
+              実際に働いた上で、今後の道を一緒に考えましょう。
+            </p>
+
+            {/* 枝分かれ図 */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t border-emerald-200 pt-6">
+              {/* 左：就職 */}
+              <div className="flex-1 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center shadow-sm hover:shadow-md transition">
+                <h4 className="font-bold text-emerald-700">✅ 就職する</h4>
+                <p className="text-sm text-slate-600 mt-2 leading-6">
+                  職場に正式入職！<br />
+                  <span className="font-semibold text-emerald-600">
+                    12ヶ月のキャリアサポート
+                  </span>
+                  がついて安心スタート。
+                </p>
+              </div>
+
+              {/* 矢印 */}
+              <ArrowRight className="hidden sm:block w-6 h-6 text-emerald-400 mx-2" />
+
+              {/* 右：他のお試し勤務へ */}
+              <div className="flex-1 bg-white border border-emerald-200 rounded-2xl p-4 text-center shadow-sm hover:shadow-md transition">
+                <h4 className="font-bold text-emerald-700">🌿 他のお試し勤務を体験</h4>
+                <p className="text-sm text-slate-600 mt-2 leading-6">
+                  さらに自分に合う職場を探したい方へ。<br />
+                  再度別の園でお試し勤務が可能です。
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ✅ メッセージセクション */}
-      <section className="px-6 py-16 bg-emerald-50 text-center">
-        <h2 className="text-lg sm:text-xl font-bold text-emerald-900 mb-4">
-          お試し勤務をする・しないにかかわらず、
-          <br />
-          「自分に合う職場を知る」ことが大切です。
-        </h2>
-        <p className="text-slate-700 mt-4 max-w-xl mx-auto leading-7">
-          実際に多くの方が、お試し勤務を通して
-          <br />
-          「自分がどう働きたいか」を再確認しています。
-        </p>
-      </section>
-
-      {/* ✅ 登録セクション */}
-      <section
-        id="entry"
-        className="px-6 py-16 bg-white text-center border-t border-emerald-100"
-      >
-        <h2 className="text-xl font-bold text-slate-900 mb-6">
-          あなたも「お試し勤務」で、
-          <br />
-          自分に合う職場を感じてみませんか？
-        </h2>
-
-        <div className="space-y-3 max-w-md mx-auto">
-          <button className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 rounded-lg transition">
-            LINEで登録
-          </button>
+        {/* CTA */}
+        <div className="mt-14 text-center">
+          <a
+            href="#entry"
+            className="inline-flex items-center gap-2 bg-emerald-600 text-white font-semibold px-8 py-3 rounded-full shadow-md hover:bg-emerald-700 transition"
+          >
+            無料でお試し勤務を探す
+            <ArrowDown className="w-4 h-4" />
+          </a>
+          <p className="mt-3 text-xs text-slate-500">
+            ※相談のみでもOK／全国対応
+          </p>
         </div>
-      </section>
-
-      {/* ✅ フッター */}
-      <footer className="bg-slate-900 text-slate-200 text-center py-6 text-sm">
-        <p>© 2025 お試し勤務（中途インターン × キャリアサポート）</p>
-      </footer>
+      </div>
+    </section>
     </main>
   );
 }
