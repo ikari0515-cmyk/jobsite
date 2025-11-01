@@ -1,0 +1,57 @@
+'use client';
+import React, { useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        {/* ロゴ */}
+        <Link href="/" className="flex items-center space-x-1">
+          <span className="text-xl sm:text-2xl font-bold text-blue-700">
+            Asterisk<span className="text-green-600">＋</span>
+          </span>
+        </Link>
+
+        {/* メニューアイコン */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="text-gray-700 hover:text-green-700 focus:outline-none"
+        >
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* ドロップダウンメニュー */}
+      <nav
+        className={`absolute right-4 mt-2 bg-white shadow-lg rounded-2xl border border-gray-100 overflow-hidden transition-all duration-300 ${
+          menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <ul className="flex flex-col w-48">
+          <li>
+            <Link
+              href="/service"
+              className="block px-5 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              お試し勤務一覧
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/business"
+              className="block px-5 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              企業様はこちら
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
