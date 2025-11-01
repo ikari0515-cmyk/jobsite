@@ -170,44 +170,7 @@ export default function CanvaLP() {
             className="w-full h-auto"
             priority
           />
-
-          {/* === オレンジボタン① === */}
-          <a
-            href="https://www.asteriskjob.com/service"
-            className="absolute left-1/2 -translate-x-1/2"
-            style={{
-              top: "430px",
-              width: "260px",
-              height: "60px",
-              borderRadius: "9999px",
-            }}
-          />
-
-          {/* === オレンジボタン② === */}
-          <a
-            href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute left-1/2 -translate-x-1/2"
-            style={{
-              top: "2050px",
-              width: "280px",
-              height: "60px",
-              borderRadius: "9999px",
-            }}
-          />
-
-          {/* === オレンジボタン③ === */}
-          <a
-            href="https://www.asteriskjob.com/service"
-            className="absolute left-1/2 -translate-x-1/2"
-            style={{
-              top: "5650px",
-              width: "280px",
-              height: "60px",
-              borderRadius: "9999px",
-            }}
-          />
+      
         </div>
       </main>
       <Footer />
