@@ -15,47 +15,6 @@ export default function CanvaLP() {
           className="w-full h-auto"
           priority
         />
-
-        {/* ==== ボタン①：お試し勤務を探す ==== */}
-        <a
-          href="https://www.asteriskjob.com/service"
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{
-            top: "430px",
-            width: "260px",
-            height: "60px",
-            borderRadius: "9999px",
-          }}
-          aria-label="お試し勤務を探す"
-        />
-
-        {/* ==== ボタン②：お試し勤務の相談はこちら ==== */}
-        <a
-          href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{
-            top: "2050px",
-            width: "280px",
-            height: "60px",
-            borderRadius: "9999px",
-          }}
-          aria-label="お試し勤務の相談はこちら"
-        />
-
-        {/* ==== ボタン③：お試し勤務ができる園を探す ==== */}
-        <a
-          href="https://www.asteriskjob.com/service"
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{
-            top: "5650px",
-            width: "280px",
-            height: "60px",
-            borderRadius: "9999px",
-          }}
-          aria-label="お試し勤務ができる園を探す"
-        />
         {/* ===== フッターセクション ===== */}
 <footer className="bg-[#F5EFE6] text-slate-800 py-12 px-6">
   <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
