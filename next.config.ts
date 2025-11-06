@@ -56,4 +56,6 @@ source: '/jobs/:path*',
         destination: 'https://job.asteriskjob.com/jobs/:path*',
         permanent: true,
       },
-    ];
+    ]
+      },
+};
