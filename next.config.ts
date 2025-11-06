@@ -13,39 +13,28 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/webp', 'image/avif'],
   },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'DENY' },
-          { key: 'X-XSS-Protection', value: '1; mode=block' },
-        ],
-      },
-    ];
-  },
+
   async redirects() {
     return [
-      
-    {
-  source: '/service/:path*',
-  destination: '/service',
-  permanent: false,
-},
+      // ✅ admin は Vercel内で動作
+      {
+        source: '/admin/:path*',
+        destination: '/admin/:path*',
+        permanent: false,
+      },
 
+      // ✅ service も Vercel内で動作
+      {
+        source: '/service/:path*',
+        destination: '/service/:path*',
+        permanent: false,
+      },
 
-
-      // ✅ /service 以外のすべては job.asteriskjob.com へ
+      // ✅ 上記以外のアクセスは Canva側へ飛ばす
       {
         source: '/:path*',
         destination: 'https://job.asteriskjob.com/:path*',
         permanent: false,
-      },
-      {
-        source: '/admin/login',
-        destination: '/admin',
-        permanent: true,
       },
     ];
   },
