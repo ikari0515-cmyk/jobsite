@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+            source: '/(.*)',
         headers: [
           {
             key: 'X-Content-Type-Options',
@@ -41,23 +41,6 @@ const nextConfig: NextConfig = {
         destination: '/admin',
         permanent: true,
       },
-      {
-        source: '/service',
-        destination: 'https://job.asteriskjob.com/service',
-        permanent: true,
-      },
-      {
-        source: '/service/',
-        destination: 'https://job.asteriskjob.com/service',
-        permanent: true,
-      },
-      {
-        source: '/jobs/:path*',
-        destination: 'https://job.asteriskjob.com/jobs/:path*',
-        permanent: true,
-      },
-    ];
-  },
+]
+ },
 };
-
-export default nextConfig;
