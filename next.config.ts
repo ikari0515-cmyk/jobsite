@@ -15,29 +15,40 @@ const nextConfig: NextConfig = {
   },
 
   async redirects() {
-    return [
-      // ✅ admin は Vercel内で動作
-      {
-        source: '/admin/:path*',
-        destination: '/admin/:path*',
-        permanent: false,
-      },
+  return [
+    {
+      source: '/admin/login',
+      destination: '/admin',
+      permanent: true,
+    },
 
-      // ✅ service も Vercel内で動作
-      {
-        source: '/service/:path*',
-        destination: '/service/:path*',
-        permanent: false,
-      },
+    // /service とその配下はリダイレクトさせない
+    {
+      source: '/service/:path*',
+      has: [
+        { type: 'host', value: 'asteriskjob.com' },
+      ],
+      destination: '/service/:path*',
+      permanent: false,
+    },
+    {
+      source: '/service/:path*',
+      has: [
+        { type: 'host', value: 'www.asteriskjob.com' },
+      ],
+      destination: '/service/:path*',
+      permanent: false,
+    },
 
-      // ✅ 上記以外のアクセスは Canva側へ飛ばす
-      {
-        source: '/:path*',
-        destination: 'https://job.asteriskjob.com/:path*',
-        permanent: false,
-      },
-    ];
-  },
-};
+    // それ以外は wwwへ
+    {
+      source: '/:path*',
+      destination: 'https://www.asteriskjob.com/:path*',
+      permanent: false,
+    },
+  ];
+}
+}
+
 
 export default nextConfig;
