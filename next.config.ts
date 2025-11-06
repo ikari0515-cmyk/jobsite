@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: ["lucide-react"],
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -11,22 +11,20 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    formats: ['image/webp', 'image/avif'],
+    formats: ["image/webp", "image/avif"],
   },
-
-  async redirects() {
-  return [
-    // ① /admin/login → /admin だけ許可
-    {
-      source: '/admin/login',
-      destination: '/admin',
-      permanent: true,
-    },
-    // ② 他は一切リダイレクトしない（/service は触らない）
-  ];
-}
-
-}
-
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-XSS-Protection", value: "1; mode=block" },
+        ],
+      },
+    ];
+  },
+};
 
 export default nextConfig;
