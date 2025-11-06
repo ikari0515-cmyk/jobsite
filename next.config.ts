@@ -30,10 +30,10 @@ const nextConfig: NextConfig = {
       
     {
   source: '/service/:path*',
-  destination: '/service/:path*',
-  has: [],  // ← これがあると上書きされず確実に例外になる
+  destination: '/service',
   permanent: false,
 },
+
 
 
       // ✅ /service 以外のすべては job.asteriskjob.com へ
