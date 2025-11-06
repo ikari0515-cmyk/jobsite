@@ -16,36 +16,13 @@ const nextConfig: NextConfig = {
 
   async redirects() {
   return [
-    // ✅ /service はリダイレクトせず残す
+    // ① /admin/login → /admin だけ許可
     {
-      source: '/service/:path*',
-      destination: '/service/:path*',
-      permanent: false,
+      source: '/admin/login',
+      destination: '/admin',
+      permanent: true,
     },
-
-    // ✅ adminも保持したい
-    {
-      source: '/admin/:path*',
-      destination: '/admin/:path*',
-      permanent: false,
-    },
-
-    // ✅ それ以外すべて Canva (job.asteriskjob.com) へ
-    {
-      source: '/:path*',
-      has: [
-        {
-          type: 'host',
-          value: 'asteriskjob.com',
-        },
-        {
-          type: 'host',
-          value: 'www.asteriskjob.com',
-        },
-      ],
-      destination: 'https://job.asteriskjob.com/:path*',
-      permanent: false,
-    },
+    // ② 他は一切リダイレクトしない（/service は触らない）
   ];
 }
 
