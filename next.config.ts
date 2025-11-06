@@ -27,11 +27,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: '/admin/login',
-        destination: '/admin',
-        permanent: true,
-      },
+      
      {
         source: '/service/:path*',
         destination: '/service/:path*',
@@ -43,6 +39,11 @@ const nextConfig: NextConfig = {
         source: '/:path*',
         destination: 'https://job.asteriskjob.com/:path*',
         permanent: false,
+      },
+      {
+        source: '/admin/login',
+        destination: '/admin',
+        permanent: true,
       },
     ];
   },
