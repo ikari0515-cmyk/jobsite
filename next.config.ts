@@ -32,9 +32,16 @@ const nextConfig: NextConfig = {
         destination: '/admin',
         permanent: true,
       },
+     {
+        source: '/service/:path*',
+        destination: '/service/:path*',
+        permanent: false,
+      },
+
+      // ✅ /service 以外のすべては job.asteriskjob.com へ
       {
-        source: '/jobs/:path*',
-        destination: '/jobs/:path*', // ✅ job.asteriskjob.com でそのまま表示
+        source: '/:path*',
+        destination: 'https://job.asteriskjob.com/:path*',
         permanent: false,
       },
     ];
