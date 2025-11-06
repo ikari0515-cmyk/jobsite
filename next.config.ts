@@ -28,11 +28,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       
-     {
-        source: '/service/:path*',
-        destination: '/service/:path*',
-        permanent: false,
-      },
+    {
+  source: '/service/:path*',
+  destination: '/service/:path*',
+  has: [],  // ← これがあると上書きされず確実に例外になる
+  permanent: false,
+},
+
 
       // ✅ /service 以外のすべては job.asteriskjob.com へ
       {
