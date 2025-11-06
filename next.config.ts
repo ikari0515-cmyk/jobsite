@@ -2,14 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
+    middlewarePrefetch: "flexible",   // ✅ middleware を有効化
     optimizePackageImports: ["lucide-react"],
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
   images: {
     formats: ["image/webp", "image/avif"],
   },
