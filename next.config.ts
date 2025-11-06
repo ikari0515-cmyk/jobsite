@@ -18,18 +18,9 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
         ],
       },
     ];
@@ -42,19 +33,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/service',
-        destination: 'https://job.asteriskjob.com/service',
-        permanent: true,
-      },
-      {
-        source: '/service/',
-        destination: 'https://job.asteriskjob.com/service',
-        permanent: true,
-      },
-      {
         source: '/jobs/:path*',
-        destination: 'https://job.asteriskjob.com/jobs/:path*',
-        permanent: true,
+        destination: '/jobs/:path*', // ✅ job.asteriskjob.com でそのまま表示
+        permanent: false,
       },
     ];
   },
