@@ -5,4 +5,8 @@
   "installCommand": "npm install",
   "regions": ["hnd1"]
 }
-
+{
+  "redirects": [
+    { "source": "https://asteriskjob.com/", "destination": "https://job.asteriskjob.com/", "permanent": true }
+  ]
+}
