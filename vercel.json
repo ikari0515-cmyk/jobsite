@@ -1,12 +1,9 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "framework": "nextjs",
   "installCommand": "npm install",
-  "regions": ["hnd1"]
-}
-{
+  "regions": ["hnd1"],
   "redirects": [
-    { "/": "https://asteriskjob.com/", "destination": "https://job.asteriskjob.com/", "permanent": true }
+    { "source": "/", "destination": "https://job.asteriskjob.com/", "permanent": true }
   ]
 }
