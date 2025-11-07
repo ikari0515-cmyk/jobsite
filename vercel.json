@@ -7,6 +7,6 @@
 }
 {
   "redirects": [
-    { "source": "https://asteriskjob.com/", "destination": "https://job.asteriskjob.com/", "permanent": true }
+    { "/": "https://asteriskjob.com/", "destination": "https://job.asteriskjob.com/", "permanent": true }
   ]
 }
