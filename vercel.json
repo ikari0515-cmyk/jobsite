@@ -3,12 +3,5 @@
   "outputDirectory": ".next",
   "framework": "nextjs",
   "installCommand": "npm install",
-  "regions": ["hnd1"],
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "destination": "https://job.asteriskjob.com/$1",
-      "permanent": true
-    }
-  ]
+  "regions": ["hnd1"]
 }
