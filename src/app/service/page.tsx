@@ -17,10 +17,16 @@ export const metadata: Metadata = {
 
 export default async function ServicePage() {
   // ✅ APIから直接件数を取得
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/jobs`, {
-    cache: 'no-store',
-  })
-  const data = await res.json()
+  const apiBase = process.env.NEXT_PUBLIC_SITE_URL || '';
+const res = await fetch(`${apiBase}/api/jobs`, { cache: 'no-store' });
+
+if (!res.ok) {
+  console.error("API error:", await res.text());
+  return <div>データ取得に失敗しました</div>;
+}
+
+const data = await res.json();
+
   const jobCount = data.pagination?.total || data.jobs?.length || 0
 
   return (
