@@ -10,11 +10,11 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: {
-    default: "Asterisk+ | 保育士・幼稚園教諭の求人情報",
+    default: "【公式】Asterisk+｜保育士が働く前に体験できるお試し勤務サービス",
     template: "%s | Asterisk+"
   },
-  description: "保育士・幼稚園教諭専門の求人情報サイト。保育園、認定こども園、幼稚園など様々な施設の求人を掲載。正社員、パートなど様々な雇用形態をご紹介。",
-  keywords: ["保育士", "幼稚園教諭", "求人", "転職", "保育園", "認定こども園", "幼稚園", "正社員", "パート"],
+  description: "Asterisk+は求人サイトではありません。保育士が“就職前に職場を体験できる”新しいキャリア選択サービスです。人間関係・働き方・園の雰囲気を、働く前に知れる。",
+  keywords: ["保育士", "幼稚,園教諭", "求人", "転職", "保育園", "認定こども園", "幼稚園", "正社員", "パート","お試し勤務"],
   authors: [{ name: "Asterisk+運営事務局" }],
   creator: "Asterisk+",
   publisher: "Asterisk+",
