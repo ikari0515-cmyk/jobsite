@@ -261,26 +261,49 @@ export default async function JobDetailPage({ params }: Props) {
                   </div>
                 </div>
               )}
+             {/* お試し勤務詳細と登用制度 */}
               {showShortTermSummary && (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">お試し勤務詳細</h3>
-                  <dl className="space-y-3">
-                    <div className="flex">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">お試し勤務（トライアル）詳細</h3>
+                  
+                  {/* アピールポイントをハイライト表示 */}
+                  <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+                    <div className="flex items-start">
+                      <svg className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div>
+                        <p className="text-sm text-blue-800 font-bold mb-1">双方合意で正社員登用へ</p>
+                        <p className="text-sm text-blue-700 leading-relaxed">
+                          お試し勤務終了後、規定の採用基準を満たし、園とご本人の双方合意のもとで正規雇用へ移行します。実際の職場の雰囲気や業務内容をしっかり確認してから就業できる安心のシステムです。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <dl className="space-y-4">
+                    <div className="flex border-b border-gray-100 pb-3">
                       <dt className="w-32 flex-shrink-0 font-medium text-gray-900">給与</dt>
                       <dd className="text-gray-700">{shortTermSalaryText}</dd>
                     </div>
-                    <div className="flex">
+                    <div className="flex border-b border-gray-100 pb-3">
                       <dt className="w-32 flex-shrink-0 font-medium text-gray-900">勤務形態</dt>
-                      <dd className="text-gray-700">{shortTermWorkStyleText}</dd>
+                      <dd className="text-gray-700 whitespace-pre-line">{shortTermWorkStyleText}</dd>
                     </div>
-                    <div className="flex">
-                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">交通費支給の有無</dt>
+                    <div className="flex border-b border-gray-100 pb-3">
+                      <dt className="w-32 flex-shrink-0 font-medium text-gray-900">交通費支給</dt>
                       <dd className="text-gray-700">{shortTermTransportationText}</dd>
                     </div>
+                    {/* お試し期間の詳細や基準をここに表示 */}
+                    {job.short_term_details && (
+                      <div className="flex pt-1">
+                        <dt className="w-32 flex-shrink-0 font-medium text-gray-900">登用基準・期間等</dt>
+                        <dd className="text-gray-700 whitespace-pre-line">{job.short_term_details}</dd>
+                      </div>
+                    )}
                   </dl>
                 </div>
               )}
-
 
               {/* 選考手順 */}
               {job.selection_process && (
