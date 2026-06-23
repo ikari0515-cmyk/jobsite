@@ -144,6 +144,15 @@ export default async function JobDetailPage({ params }: Props) {
             <div className="lg:col-span-2 space-y-6">
               {/* 基本情報 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
+                {/* ▼ 追加 1: お試し勤務対象の目立つバッジ ▼ */}
+                {showShortTermSummary && (
+                  <div className="mb-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-orange-100 text-orange-800 border border-orange-200">
+                      ★ お試し勤務からスタート
+                    </span>
+                  </div>
+                )}
+                
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -154,12 +163,21 @@ export default async function JobDetailPage({ params }: Props) {
                       <span className="text-lg">{job.company}</span>
                     </div>
                   </div>
-                  <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                    {getEmploymentTypeLabel(job.employment_type)}
-                  </span>
-                </div>
+                {/* ▼ 変更 2: 雇用形態の表示 ▼ */}
+                  <div className="text-right">
+                    <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium text-center">
+                      {showShortTermSummary ? (
+                        <>
+                          <span className="text-xs block text-blue-600 mb-0.5">基準クリアで</span>
+                          {getEmploymentTypeLabel(job.employment_type)}登用
+                        </>
+                      ) : (
+                        getEmploymentTypeLabel(job.employment_type)
+                      )}
+                    </span>
+                  </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600 mb-6">
                   <div className="flex items-center">
                     <MapPin size={18} className="mr-2" />
                     <span>{job.location}</span>
@@ -183,6 +201,21 @@ export default async function JobDetailPage({ params }: Props) {
                     </div>
                   )}
                 </div>
+
+                {/* ▼ 追加 3: 以下の条件が「本採用後」のものであることの注意書き ▼ */}
+                {showShortTermSummary && (
+                  <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <p className="text-sm text-yellow-800 font-medium flex items-start">
+                      <svg className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
+                      <span>
+                        <strong className="block mb-1">【重要】本ページに記載の給与・待遇について</strong>
+                        以下の募集内容は、お試し勤務終了後、採用基準を満たし園との双方合意によって正式に登用された場合の条件となります。お試し期間中の勤務条件については、ページ下部の「お試し勤務詳細」をご確認ください。
+                      </span>
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* 企業紹介 */}
