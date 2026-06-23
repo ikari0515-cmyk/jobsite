@@ -144,7 +144,7 @@ export default async function JobDetailPage({ params }: Props) {
             <div className="lg:col-span-2 space-y-6">
               {/* 基本情報 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
-                {/* ▼ 追加 1: お試し勤務対象の目立つバッジ ▼ */}
+                {/* お試し勤務対象の目立つバッジ */}
                 {showShortTermSummary && (
                   <div className="mb-4">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-orange-100 text-orange-800 border border-orange-200">
@@ -163,6 +163,21 @@ export default async function JobDetailPage({ params }: Props) {
                       <span className="text-lg">{job.company}</span>
                     </div>
                   </div>
+                  
+                  {/* 雇用形態の表示 */}
+                  <div className="text-right">
+                    <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium text-center">
+                      {showShortTermSummary ? (
+                        <>
+                          <span className="text-xs block text-blue-600 mb-0.5">基準クリアで</span>
+                          {getEmploymentTypeLabel(job.employment_type)}登用
+                        </>
+                      ) : (
+                        getEmploymentTypeLabel(job.employment_type)
+                      )}
+                    </span>
+                  </div>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600 mb-6">
                   <div className="flex items-center">
@@ -189,7 +204,7 @@ export default async function JobDetailPage({ params }: Props) {
                   )}
                 </div>
 
-                {/* ▼ 追加 3: 以下の条件が「本採用後」のものであることの注意書き ▼ */}
+                {/* 以下の条件が「本採用後」のものであることの注意書き */}
                 {showShortTermSummary && (
                   <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
                     <p className="text-sm text-yellow-800 font-medium flex items-start">
@@ -198,20 +213,13 @@ export default async function JobDetailPage({ params }: Props) {
                       </svg>
                       <span>
                         <strong className="block mb-1">【重要】本ページに記載の給与・待遇について</strong>
-                        以下の募集内容は、お試し勤務終了後、採用基準を満たし園との双方合意によって正式に登用された場合の条件となります。お試し期間中の勤務条件については、ページ下部の「お試し勤務詳細」をご確認ください。
+                        以下の募集内容は、お試し勤務終了後、所定の採用基準を満たし正式に登用された場合の条件となります。お試し期間中の詳細については、ページ下部をご確認ください。
                       </span>
                     </p>
                   </div>
                 )}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
               </div>
->>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
-=======
-              </div>
->>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
-              </div>
+
 
               {/* 企業紹介 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
