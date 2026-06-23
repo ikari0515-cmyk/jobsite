@@ -163,44 +163,6 @@ export default async function JobDetailPage({ params }: Props) {
                       <span className="text-lg">{job.company}</span>
                     </div>
                   </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                  {/* ▼ 変更 2: 雇用形態の表示を「登用前提」などと組み合わせる ▼ */}
-=======
-                {/* ▼ 変更 2: 雇用形態の表示 ▼ */}
->>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
-=======
-                {/* ▼ 変更 2: 雇用形態の表示 ▼ */}
->>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
-                  <div className="text-right">
-                    <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium text-center">
-                      {showShortTermSummary ? (
-                        <>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                          <span className="text-xs block text-blue-600 mb-0.5">登用前提</span>
-                          {getEmploymentTypeLabel(job.employment_type)}
-=======
-                          <span className="text-xs block text-blue-600 mb-0.5">基準クリアで</span>
-                          {getEmploymentTypeLabel(job.employment_type)}登用
->>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
-=======
-                          <span className="text-xs block text-blue-600 mb-0.5">基準クリアで</span>
-                          {getEmploymentTypeLabel(job.employment_type)}登用
->>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
-                        </>
-                      ) : (
-                        getEmploymentTypeLabel(job.employment_type)
-                      )}
-                    </span>
-                  </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                </div>
-=======
->>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
-=======
->>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600 mb-6">
                   <div className="flex items-center">
