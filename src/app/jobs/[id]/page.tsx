@@ -217,6 +217,7 @@ export default async function JobDetailPage({ params }: Props) {
                   </div>
                 )}
               </div>
+              </div>
 
               {/* 企業紹介 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
