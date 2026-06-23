@@ -163,20 +163,19 @@ export default async function JobDetailPage({ params }: Props) {
                       <span className="text-lg">{job.company}</span>
                     </div>
                   </div>
-                  {/* ▼ 変更 2: 雇用形態の表示を「登用前提」などと組み合わせる ▼ */}
+                {/* ▼ 変更 2: 雇用形態の表示 ▼ */}
                   <div className="text-right">
                     <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium text-center">
                       {showShortTermSummary ? (
                         <>
-                          <span className="text-xs block text-blue-600 mb-0.5">登用前提</span>
-                          {getEmploymentTypeLabel(job.employment_type)}
+                          <span className="text-xs block text-blue-600 mb-0.5">基準クリアで</span>
+                          {getEmploymentTypeLabel(job.employment_type)}登用
                         </>
                       ) : (
                         getEmploymentTypeLabel(job.employment_type)
                       )}
                     </span>
                   </div>
-                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600 mb-6">
                   <div className="flex items-center">
