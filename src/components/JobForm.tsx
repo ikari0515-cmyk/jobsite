@@ -448,9 +448,9 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
             </div>
           </div>
 
-          {/* 短期パート・アルバイト情報 */}
+         {/* お試し勤務情報（旧：短期パート・アルバイト情報） */}
           <div className="bg-white rounded-lg shadow-sm border p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">短期パート・アルバイト情報</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">お試し勤務（トライアル）情報</h2>
             
             <div className="space-y-4">
               <div className="flex items-center">
@@ -462,7 +462,7 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
                 <label htmlFor="short_term_available" className="ml-2 block text-sm text-gray-700">
-                  短期パート・アルバイトも募集する
+                  お試し勤務を実施する
                 </label>
               </div>
 
@@ -470,40 +470,40 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
                 <div className="space-y-4 pl-6 border-l-2 border-blue-200">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      短期パート詳細
+                      お試し勤務の期間・登用基準など
                     </label>
                     <textarea
                       value={formData.short_term_details}
                       onChange={(e) => setFormData({ ...formData, short_term_details: e.target.value })}
-                      rows={3}
+                      rows={4}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="短期パートの募集内容、期間、条件などを入力してください"
+                      placeholder="例：お試し期間は最長2週間。期間終了時に面談を行い、スキル要件を満たし双方合意の場合に正社員として登用します。"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      短期パート給与
+                      お試し期間中の給与
                     </label>
                     <input
                       type="text"
                       value={formData.short_term_salary}
                       onChange={(e) => setFormData({ ...formData, short_term_salary: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="例：時給1500円、日給8000円など"
+                      placeholder="例：時給1500円など"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      短期パート勤務スタイル
+                      お試し期間中の勤務スタイル
                     </label>
                     <textarea
                       value={formData.short_term_work_style}
                       onChange={(e) => setFormData({ ...formData, short_term_work_style: e.target.value })}
                       rows={3}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="勤務日数、時間、シフトの柔軟性などを入力してください"
+                      placeholder="例：週3日〜、1日4時間から相談可能（実際のシフトに入っていただきます）"
                     />
                   </div>
 
@@ -516,7 +516,7 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
                     <label htmlFor="short_term_transportation_fee" className="ml-2 block text-sm text-gray-700">
-                      短期パートも交通費支給
+                      お試し期間中も交通費支給
                     </label>
                   </div>
                 </div>
