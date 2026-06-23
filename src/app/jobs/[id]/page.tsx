@@ -438,7 +438,6 @@ export default async function JobDetailPage({ params }: Props) {
 
   </div>
 </div>
-</main> 
 </div> 
-  );
+  )
 }
