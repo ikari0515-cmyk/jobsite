@@ -164,7 +164,11 @@ export default async function JobDetailPage({ params }: Props) {
                     </div>
                   </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                   {/* ▼ 変更 2: 雇用形態の表示を「登用前提」などと組み合わせる ▼ */}
+=======
+                {/* ▼ 変更 2: 雇用形態の表示 ▼ */}
+>>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
 =======
                 {/* ▼ 変更 2: 雇用形態の表示 ▼ */}
 >>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
@@ -173,8 +177,13 @@ export default async function JobDetailPage({ params }: Props) {
                       {showShortTermSummary ? (
                         <>
 <<<<<<< HEAD
+<<<<<<< HEAD
                           <span className="text-xs block text-blue-600 mb-0.5">登用前提</span>
                           {getEmploymentTypeLabel(job.employment_type)}
+=======
+                          <span className="text-xs block text-blue-600 mb-0.5">基準クリアで</span>
+                          {getEmploymentTypeLabel(job.employment_type)}登用
+>>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
 =======
                           <span className="text-xs block text-blue-600 mb-0.5">基準クリアで</span>
                           {getEmploymentTypeLabel(job.employment_type)}登用
@@ -186,7 +195,10 @@ export default async function JobDetailPage({ params }: Props) {
                     </span>
                   </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 </div>
+=======
+>>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
 =======
 >>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
 
@@ -230,6 +242,10 @@ export default async function JobDetailPage({ params }: Props) {
                   </div>
                 )}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+              </div>
+>>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
 =======
               </div>
 >>>>>>> 9e2d02297597c01db0dab2f96de088f40dac4d25
