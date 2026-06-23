@@ -169,15 +169,14 @@ export default async function JobDetailPage({ params }: Props) {
                     <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium text-center">
                       {showShortTermSummary ? (
                         <>
-                          <span className="text-xs block text-blue-600 mb-0.5">基準クリアで</span>
-                          {getEmploymentTypeLabel(job.employment_type)}登用
+                          <span className="text-xs block text-blue-600 mb-0.5">登用チャンスあり</span>
+                          {getEmploymentTypeLabel(job.employment_type)}採用
                         </>
                       ) : (
                         getEmploymentTypeLabel(job.employment_type)
                       )}
                     </span>
                   </div>
-                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600 mb-6">
                   <div className="flex items-center">
