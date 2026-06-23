@@ -440,6 +440,7 @@ export default async function JobDetailPage({ params }: Props) {
 </div>
 </main> 
 </div> 
+</div> 
 </>
   )
 }
