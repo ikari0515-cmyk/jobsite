@@ -68,7 +68,6 @@ const data = await res.json();
             </p>
             <p>
               お試し勤務終了後、<strong>園の採用基準をクリアし、ご自身も納得した場合のみ</strong>、各求人に記載された雇用形態（正社員・契約社員など）へ正式採用となります。<br />
-              <span className="text-xs text-blue-700">※正式採用後は、社会保険・雇用保険に加入しての勤務がスタートします。</span>
             </p>
           </div>
         </div>
