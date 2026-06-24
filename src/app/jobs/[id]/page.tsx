@@ -9,13 +9,13 @@ import {
   Calendar
 } from 'lucide-react'
 import { JobStructuredData } from '@/components/JobStructuredData'
-import { JobContactButtons } from '@/components/JobContactButtons'
 import type { Job } from '@/types/database'
+import Image from "next/image"
 
 interface Props {
   params: { id: string }
 }
-import Image from "next/image"
+
 async function getJob(id: string): Promise<Job | null> {
   // APIから求人データを取得
   try {
@@ -139,9 +139,12 @@ export default async function JobDetailPage({ params }: Props) {
 
         {/* メインコンテンツ */}
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 gap-8">
-            {/* 求人詳細 */}
+          {/* ▼ 修正：全体のグリッド枠（PCでは3カラム分割） */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            {/* ＝＝＝ 左側：求人詳細（全体の2/3の幅） ＝＝＝ */}
             <div className="lg:col-span-2 space-y-6">
+              
               {/* 基本情報 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 {/* お試し勤務対象の目立つバッジ */}
@@ -177,6 +180,7 @@ export default async function JobDetailPage({ params }: Props) {
                       )}
                     </span>
                   </div>
+                </div> {/* ← ▼修正：ここでflexを閉じる！ */}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600 mb-6">
                   <div className="flex items-center">
@@ -218,7 +222,6 @@ export default async function JobDetailPage({ params }: Props) {
                   </div>
                 )}
               </div>
-
 
               {/* 企業紹介 */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
@@ -296,7 +299,8 @@ export default async function JobDetailPage({ params }: Props) {
                   </div>
                 </div>
               )}
-             {/* お試し勤務詳細と登用制度 */}
+              
+              {/* お試し勤務詳細と登用制度 */}
               {showShortTermSummary && (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">お試し勤務（トライアル）詳細</h3>
@@ -379,68 +383,70 @@ export default async function JobDetailPage({ params }: Props) {
                 </div>
               )}
             </div>
-          </div>
-    
-{/* サイドバー */}
-<div className="lg:col-span-1">
+            {/* ＝＝＝ 左側：求人詳細 終了 ＝＝＝ */}
 
-{/* この求人について相談する */}
-<div className="bg-white rounded-lg shadow-sm border p-6">
-  <h3 className="text-lg font-semibold text-gray-900 mb-6">
-    このお試し勤務について相談する
-  </h3>
+            {/* ＝＝＝ 右側：サイドバー（全体の1/3の幅） ＝＝＝ */}
+            <div className="lg:col-span-1">
+              {/* この求人について相談する */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6">
+                  このお試し勤務について相談する
+                </h3>
 
-  {/* ボタン部分 */}
-  <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0 mb-4">
-    {/* LINE相談ボタン */}
-    <a
-      href="https://lin.ee/ro8TlMv"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex-1 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md transition-transform hover:-translate-y-0.5"
-    >
-      <Image
-        src="/line-logo.svg"
-        alt="LINE"
-        width={20}
-        height={20}
-        className="mr-2"
-      />
-      LINEで相談する
-    </a>
+                {/* ボタン部分 */}
+                <div className="flex flex-col gap-3 mb-4">
+                  {/* LINE相談ボタン */}
+                  <a
+                    href="https://lin.ee/ro8TlMv"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-transform hover:-translate-y-0.5 text-sm"
+                  >
+                    <Image
+                      src="/line-logo.svg"
+                      alt="LINE"
+                      width={20}
+                      height={20}
+                      className="mr-2"
+                    />
+                    LINEで相談する
+                  </a>
 
-    {/* WEB相談ボタン */}
-    <a
-      href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex-1 flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md transition-transform hover:-translate-y-0.5"
-    >
-      <Image
-        src="/web-logo.svg"
-        alt="WEB"
-        width={20}
-        height={20}
-        className="mr-2"
-      />
-      WEBで相談する
-    </a>
-  </div>
+                  {/* WEB相談ボタン */}
+                  <a
+                    href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-transform hover:-translate-y-0.5 text-sm"
+                  >
+                    <Image
+                      src="/web-logo.svg"
+                      alt="WEB"
+                      width={20}
+                      height={20}
+                      className="mr-2"
+                    />
+                    WEBで相談する
+                  </a>
+                </div>
 
-  {/* 補足説明 */}
-  <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100">
-    <p className="mb-2">ご相談前にご確認ください：</p>
-    <ul className="list-disc list-inside space-y-1 text-xs">
-      <li>LINEでは気軽に相談・質問が可能です</li>
-      <li>WEB相談はZoomを使ったオンライン面談です</li>
-      <li>どちらも無料でご利用いただけます</li>
-    </ul>
-</div>
+                {/* 補足説明 */}
+                <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <p className="mb-2">ご相談前にご確認ください：</p>
+                  <ul className="list-disc list-inside space-y-1 text-xs">
+                    <li>LINEでは気軽に相談・質問が可能です</li>
+                    <li>WEB相談はZoomを使ったオンライン面談です</li>
+                    <li>どちらも無料でご利用いただけます</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {/* ＝＝＝ 右側：サイドバー 終了 ＝＝＝ */}
 
-  </div>
-</div>
-</main> 
-</div> 
-</>
+          </div> 
+          {/* ▼ 修正：ここで全体のグリッド枠を閉じる！ */}
+        </main> 
+      </div> 
+    </>
   )
-};
+}
