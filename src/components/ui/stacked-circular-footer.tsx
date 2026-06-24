@@ -9,11 +9,6 @@ function StackedCircularFooter() {
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center space-y-8">
           
-          {/* Navigation */}
-          <nav className="flex flex-wrap justify-center gap-6 text-gray-600">
-            <Link href="/" className="hover:text-blue-600 transition-colors">トップページ</Link>
-          </nav>
-          
           {/* LINE Registration */}
           <div className="w-full max-w-md">
             <div className="text-center">
