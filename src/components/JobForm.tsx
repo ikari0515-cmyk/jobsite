@@ -218,7 +218,7 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
                     <option value="認可保育園">認可保育園</option>
                     <option value="認定こども園">認定こども園</option>
                     <option value="小規模保育園">小規模保育園</option>
-                    <option value="企業内保育所">企業内保育所</option>
+                    <option value="企業内保育所">企業型保育所</option>
                     <option value="幼稚園">幼稚園</option>
                     <option value="放課後等デイサービス">放課後等デイサービス</option>
                     <option value="児童発達支援">児童発達支援</option>
@@ -266,12 +266,6 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
                 <label className="block text-sm font-medium text-gray-700 mb-2">給与備考</label>
                 <textarea value={formData.salary_details} onChange={(e) => setFormData({ ...formData, salary_details: e.target.value })} rows={3} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="昇給、賞与、各種手当について" />
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">待遇（社会保険・福利厚生等）</label>
-                <textarea value={formData.welfare_benefits} onChange={(e) => setFormData({ ...formData, welfare_benefits: e.target.value })} rows={3} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="社会保険、退職金制度、研修制度など" />
-              </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">勤務時間</label>
@@ -292,7 +286,7 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
 
           {/* 4. 待遇・福利厚生（補足がある場合） */}
           <div className="bg-white rounded-lg shadow-sm border p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">4. 待遇・福利厚生（補足）</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">4. 待遇・福利厚生</h2>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">待遇・福利厚生に関する詳細な説明</label>
               <textarea value={formData.benefits} onChange={(e) => setFormData({ ...formData, benefits: e.target.value })} rows={3} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="追加情報があれば入力してください" />
@@ -330,16 +324,6 @@ export function JobForm({ job, onSuccess, onCancel }: Props) {
               )}
             </div>
           </div>
-
-          {/* 6. 選考手順 */}
-          <div className="bg-white rounded-lg shadow-sm border p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">6. 選考手順</h2>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">選考プロセス</label>
-              <textarea value={formData.selection_process} onChange={(e) => setFormData({ ...formData, selection_process: e.target.value })} rows={3} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="例：書類選考 → 面接（1回）→ 内定通知（1週間以内）" />
-            </div>
-          </div>
-
           {/* 7. 応募方法 */}
           <div className="bg-white rounded-lg shadow-sm border p-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">7. 応募方法</h2>
