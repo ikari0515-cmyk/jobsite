@@ -31,55 +31,47 @@ const data = await res.json();
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* ヘッダー */}
-      <header className="bg-white shadow-md border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* メインヘッダー */}
-          <div className="flex items-center justify-between py-3">
-            <div className="flex items-center justify-between w-full">
-              <div className="flex items-center space-x-4">
-                <h1 className="text-xl sm:text-2xl font-bold text-blue-600">
-                  <Link href="/" className="hover:text-blue-800 transition-colors">
-                    Asterisk<span className="text-green-600">+</span>
-                  </Link>
-                </h1>
-                <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
-                  <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">
-                    お試し勤務件数
-                  </span>
-                  <span className="font-bold text-gray-900">{jobCount}件</span>
-                </div>
-              </div>
-              <nav className="flex items-center space-x-4 md:space-x-6">
-                <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-                  サービス
-                </Link>
-                <Link href="/service" className="text-blue-600 font-medium">
-                  お試し勤務一覧
-                </Link>
-              </nav>
-            </div>
-          </div>
-
-          {/* サブヘッダー - エリア選択 */}
-          <div className="border-t py-2">
-            <div className="flex items-center space-x-4 text-sm">
-              <div className="flex items-center space-x-2">
-                <span className="text-gray-800 font-medium">エリア:</span>
-                <button className="text-blue-600 font-medium hover:underline">全国</button>
-                <button className="text-blue-500 hover:underline">変更</button>
-              </div>
-              <div className="hidden sm:flex items-center space-x-4">
-                <span className="text-gray-400">|</span>
-                <span className="text-gray-800">施設形態: 保育園・こども園</span>
-                <span className="text-gray-400">|</span>
-                <span className="text-gray-800">給与: こだわらない</span>
-              </div>
+      {/* ▼ 修正：ナビゲーションやエリア選択を削除し、スッキリしたヘッダーに変更 */}
+      <header className="bg-white shadow-sm border-b sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center space-x-4">
+            <h1 className="text-xl sm:text-2xl font-bold text-blue-600">
+              <Link href="/" className="hover:text-blue-800 transition-colors">
+                Asterisk<span className="text-green-600">+</span>
+              </Link>
+            </h1>
+            <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-700">
+              <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded">
+                お試し勤務件数
+              </span>
+              <span className="font-bold text-gray-900">{jobCount}件</span>
             </div>
           </div>
         </div>
       </header>
 
+      {/* メインコンテンツ */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        {/* ▼ 追加：お試し勤務から本採用への流れを解説する案内ボックス */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-5 mb-8">
+          <h2 className="text-blue-900 font-bold text-lg mb-3 flex items-center">
+            <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            </svg>
+            当サイトの「お試し勤務」から正式採用への流れ
+          </h2>
+          <div className="text-sm text-blue-800 space-y-3 leading-relaxed">
+            <p>
+              入職後のミスマッチを防ぐため、まずは<strong>短期間のお試し勤務（31日未満・週20時間未満 ※社会保険・雇用保険適用外）</strong>からスタートします。実際に働いてみて「自分には合わない」と感じた場合は、お試し期間のみで終了して構いません。
+            </p>
+            <p>
+              お試し勤務終了後、<strong>園の採用基準をクリアし、ご自身も納得した場合のみ</strong>、各求人に記載された雇用形態（正社員・契約社員など）へ正式採用となります。<br />
+              <span className="text-xs text-blue-700">※正式採用後は、社会保険・雇用保険に加入しての勤務がスタートします。</span>
+            </p>
+          </div>
+        </div>
+      </main>
       {/* メインコンテンツ */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
