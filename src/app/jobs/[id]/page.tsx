@@ -63,14 +63,25 @@ export default async function JobDetailPage({ params }: { params: { id: string }
               {showShortTermSummary && (
                 <div className="mb-4"><span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-orange-100 text-orange-800 border border-orange-200">★ お試し勤務からスタート</span></div>
               )}
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{job.title}</h2>
-                  <div className="flex items-center text-gray-600 mb-2"><Building size={20} className="mr-2" /> <span className="text-lg">{job.company}</span></div>
+              {/* ▼ 修正：スマホでバッジが崩れないようレスポンシブ（sm:）と改行防止（whitespace-nowrap）を追加 */}
+              <div className="flex justify-between items-start mb-4 gap-3">
+                <div className="flex-1 pr-2">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{job.title}</h2>
+                  <div className="flex items-center text-gray-600 mb-2">
+                    <Building size={20} className="mr-2 flex-shrink-0" /> 
+                    <span className="text-base sm:text-lg">{job.company}</span>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium text-center">
-                    {showShortTermSummary ? <><span className="text-xs block text-blue-600 mb-0.5">登用チャンスあり</span>{getEmploymentTypeLabel(job.employment_type)}採用</> : getEmploymentTypeLabel(job.employment_type)}
+                <div className="text-right flex-shrink-0">
+                  <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium text-center whitespace-nowrap">
+                    {showShortTermSummary ? (
+                      <>
+                        <span className="text-xs block text-blue-600 mb-0.5">登用チャンスあり</span>
+                        {getEmploymentTypeLabel(job.employment_type)}採用
+                      </>
+                    ) : (
+                      getEmploymentTypeLabel(job.employment_type)
+                    )}
                   </span>
                 </div>
               </div>
