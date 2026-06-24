@@ -57,7 +57,7 @@ export function JobList() {
       className="block bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-200"
     >
       <div className="p-5 sm:p-6">
-        {/* 雇用形態 */}
+       {/* 雇用形態 */}
         <div className="mb-3">
           <span
             className={`inline-block px-3 py-1 text-xs sm:text-sm font-medium rounded-full ${
@@ -65,13 +65,21 @@ export function JobList() {
                 ? 'bg-blue-50 text-blue-700 border border-blue-200'
                 : job.employment_type === 'part_time'
                 ? 'bg-green-50 text-green-700 border border-green-200'
+                : job.employment_type === 'contract'
+                ? 'bg-purple-50 text-purple-700 border border-purple-200'
+                : job.employment_type === 'temporary'
+                ? 'bg-yellow-50 text-yellow-800 border border-yellow-200'
                 : 'bg-gray-50 text-gray-600 border border-gray-200'
             }`}
           >
             {job.employment_type === 'full_time'
               ? '正社員'
               : job.employment_type === 'part_time'
-              ? 'パート'
+              ? 'アルバイト・パート'
+              : job.employment_type === 'contract'
+              ? '契約社員'
+              : job.employment_type === 'temporary'
+              ? '派遣・臨時'
               : 'その他'}
           </span>
         </div>
