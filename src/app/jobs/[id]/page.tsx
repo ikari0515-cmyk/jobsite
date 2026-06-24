@@ -379,6 +379,8 @@ export default async function JobDetailPage({ params }: Props) {
                 </div>
               )}
             </div>
+          </div>
+    
 {/* サイドバー */}
 <div className="lg:col-span-1">
 
@@ -433,11 +435,12 @@ export default async function JobDetailPage({ params }: Props) {
       <li>WEB相談はZoomを使ったオンライン面談です</li>
       <li>どちらも無料でご利用いただけます</li>
     </ul>
-  </div>
 </div>
 
   </div>
 </div>
+</main> 
 </div> 
+</>
   )
-}
+};
