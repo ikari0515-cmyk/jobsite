@@ -9,7 +9,7 @@ export const metadata = {
 export default function BusinessPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* ヘッダー部分（シンプル版） */}
+      {/* ヘッダー部分 */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
@@ -22,7 +22,7 @@ export default function BusinessPage() {
       </header>
 
       <main>
-        {/* ヒーローセクション（トップの看板） */}
+        {/* ヒーローセクション */}
         <section className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-16 sm:py-24 border-b border-gray-100">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-6 leading-tight">
@@ -83,8 +83,66 @@ export default function BusinessPage() {
           </div>
         </section>
 
+        {/* ▼ 追加：料金体系セクション ▼ */}
+        <section className="py-16 sm:py-24 bg-gray-50 border-t border-gray-200">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">明瞭で安心な料金体系</h2>
+              <div className="w-16 h-1 bg-blue-600 mx-auto rounded-full mb-6"></div>
+              <p className="text-gray-600 leading-relaxed">
+                高額な初期費用がかかる紹介モデルとは異なり、導入しやすいサイト登録料と、<br className="hidden sm:block" />
+                採用後の定着を目的とした月額制（12ヶ月間）のサポートモデルを採用しています。
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* プラン1: サイト登録料 */}
+              <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-bl-lg">導入時のみ</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">お試し勤務サイト登録料</h3>
+                <p className="text-sm text-gray-500 mb-6">求人ページの作成・永年掲載</p>
+                <div className="flex items-baseline mb-4 border-b border-gray-100 pb-4">
+                  <span className="text-4xl font-extrabold text-blue-600">100,000</span>
+                  <span className="text-lg text-gray-600 font-medium ml-1">円</span>
+                  <span className="text-sm text-gray-500 ml-2">(税抜)</span>
+                </div>
+                <ul className="space-y-3 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> 当サイトへの永年掲載</li>
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> 魅力的な求人票の作成代行</li>
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> 候補者とのマッチング・面談調整</li>
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> <span className="font-bold text-orange-600">お試し期間（1ヶ月）は費用負担なし</span></li>
+                </ul>
+              </div>
+
+              {/* プラン2: 正式採用後 */}
+              <div className="bg-white rounded-2xl p-8 border-2 border-blue-500 shadow-md relative overflow-hidden transform md:-translate-y-2 transition-transform">
+                <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">双方合意で就職決定後</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">就職後サポート料</h3>
+                <p className="text-sm text-gray-500 mb-6">正式採用後から12ヶ月間</p>
+                <div className="flex items-baseline mb-4 border-b border-gray-100 pb-4">
+                  <span className="text-4xl font-extrabold text-gray-900">50,000</span>
+                  <span className="text-lg text-gray-600 font-medium ml-1">円 / 月</span>
+                  <span className="text-sm text-gray-500 ml-2">(税抜)</span>
+                </div>
+                <ul className="space-y-3 text-sm text-gray-600">
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-blue-500 mr-2 flex-shrink-0 mt-0.5" /> 正式な就職が決定した場合のみ発生</li>
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-blue-500 mr-2 flex-shrink-0 mt-0.5" /> 毎月5万円 × 12ヶ月間の定額制</li>
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-blue-500 mr-2 flex-shrink-0 mt-0.5" /> 合計60万円(税抜)で優秀な人材を獲得</li>
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-blue-500 mr-2 flex-shrink-0 mt-0.5" /> 就職後の定着に向けたフォローアップ</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="mt-8 p-4 bg-white rounded-lg border border-gray-200 text-sm text-gray-600 text-center">
+              ※ お試し勤務期間中（1ヶ月）に発生する給与等は、貴園から求職者へ直接お支払いいただきます。<br className="hidden sm:block" />
+              当サービスへのお支払いはお試し期間中には一切発生いたしません。
+            </div>
+          </div>
+        </section>
+        {/* ▲ 追加：料金体系セクション ここまで ▲ */}
+
         {/* 導入の流れセクション */}
-        <section className="py-16 bg-gray-50 border-y border-gray-200">
+        <section className="py-16 bg-white border-t border-gray-200">
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <h2 className="text-2xl font-bold text-center text-gray-900 mb-12">導入から正式採用までの流れ</h2>
             
@@ -92,11 +150,11 @@ export default function BusinessPage() {
               {[
                 { step: '01', title: 'ヒアリング・求人作成', desc: '貴園が求める人物像や条件を丁寧にヒアリングし、求職者に響く求人票を作成します。' },
                 { step: '02', title: '経験者とのマッチング', desc: '経験豊富な保育士の中から、貴園の風土に合う候補者をご紹介・面談を実施します。' },
-                { step: '03', title: 'お試し勤務スタート（1ヶ月）', desc: '実際に現場に入り、スキルや相性を確認します。この期間の当サービスへの支払いはありません。' },
-                { step: '04', title: '双方合意で正式採用', desc: '園と保育士、双方の合意をもって正式採用（初期契約）となります。採用後の定着もサポートします。' },
+                { step: '03', title: 'お試し勤務スタート（1ヶ月）', desc: '実際に現場に入り、スキルや相性を確認します。' },
+                { step: '04', title: '双方合意で正式採用', desc: '園と保育士、双方の合意をもって正式採用（就職）となります。' },
               ].map((item, index) => (
-                <div key={index} className="flex bg-white p-6 rounded-xl shadow-sm border border-gray-100 items-center">
-                  <div className="text-3xl font-extrabold text-blue-100 mr-6 w-16 text-center">{item.step}</div>
+                <div key={index} className="flex bg-gray-50 p-6 rounded-xl border border-gray-100 items-center">
+                  <div className="text-3xl font-extrabold text-blue-200 mr-6 w-16 text-center">{item.step}</div>
                   <div>
                     <h4 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h4>
                     <p className="text-gray-600 text-sm">{item.desc}</p>
@@ -108,13 +166,13 @@ export default function BusinessPage() {
         </section>
 
         {/* お問い合わせCTA */}
-        <section id="contact" className="py-20 bg-white">
+        <section id="contact" className="py-20 bg-gray-900 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-            <ShieldCheck size={48} className="mx-auto text-green-500 mb-6" />
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+            <ShieldCheck size={48} className="mx-auto text-blue-400 mb-6" />
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">
               まずは詳しい資料・料金体系をご覧ください
             </h2>
-            <p className="text-gray-600 mb-10 leading-relaxed">
+            <p className="text-gray-300 mb-10 leading-relaxed">
               「今の採用コストを見直したい」「離職率を下げたい」など、<br className="hidden sm:block" />
               法人様・施設長様のお悩みをお気軽にご相談ください。
             </p>
