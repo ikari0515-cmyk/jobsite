@@ -170,7 +170,7 @@ export default function BusinessPage() {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
             <ShieldCheck size={48} className="mx-auto text-blue-400 mb-6" />
             <h2 className="text-2xl sm:text-3xl font-bold mb-6">
-              まずは詳しい資料・料金体系をご覧ください
+              まずは詳しい内容をご相談ください
             </h2>
             <p className="text-gray-300 mb-10 leading-relaxed">
               「今の採用コストを見直したい」「離職率を下げたい」など、<br className="hidden sm:block" />
@@ -184,7 +184,7 @@ export default function BusinessPage() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl shadow-md transition-transform hover:-translate-y-1 text-lg"
               >
-                Googleフォームでお問い合わせ
+                お問い合わせはこちら
               </a>
             </div>
           </div>
