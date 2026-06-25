@@ -205,6 +205,18 @@ export default async function JobDetailPage({ params }: { params: { id: string }
                 </a>
               </div>
 
+{/* ▼ ここに追加：プライバシーポリシー同意文言 ▼ */}
+              <div className="text-center mb-5">
+                <p className="text-xs text-gray-500">
+                  ボタンをタップすることで、当サイトの
+                  <Link href="/privacy" className="text-blue-600 underline hover:text-blue-800 mx-1">
+                    プライバシーポリシー
+                  </Link>
+                  に同意したものとみなされます。
+                </p>
+              </div>
+              {/* ▲ ここまで追加 ▲ */}
+              
               {/* 補足説明 */}
               <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100">
                 <p className="mb-2 font-medium">ご相談前にご確認ください：</p>
