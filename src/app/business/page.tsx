@@ -31,7 +31,7 @@ export default function BusinessPage() {
             </h1>
             <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Asterisk+は、従来の紹介業や派遣業とは異なる、新しい採用支援サービスです。<br className="hidden sm:block" />
-              即戦力となる経験豊富な保育士と、貴園のベストマッチを実現します。
+              即戦力となる経験豊富な保育士と、定着率を一番に考えた貴園のベストマッチを実現します。
             </p>
             <div className="mt-10 flex justify-center gap-4">
               <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform hover:-translate-y-1 text-lg">
