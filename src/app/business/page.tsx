@@ -177,24 +177,14 @@ export default function BusinessPage() {
               法人様・施設長様のお悩みをお気軽にご相談ください。
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <a
-                href="https://lin.ee/ro8TlMv"
+                href="https://forms.gle/DrnFBXTRbc2ZWHMB9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl shadow-md transition-transform hover:-translate-y-1"
+                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl shadow-md transition-transform hover:-translate-y-1 text-lg"
               >
-                <Image src="/line-logo.svg" alt="LINE" width={24} height={24} className="mr-2" />
-                LINEで担当者に相談する
-              </a>
-              <a
-                href="https://timerex.net/s/asterisk.mt.fuji_5e6a/57d94a1c"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-md transition-transform hover:-translate-y-1"
-              >
-                <Image src="/web-logo.svg" alt="WEB" width={24} height={24} className="mr-2" />
-                WEBミーティングを予約
+                Googleフォームでお問い合わせ
               </a>
             </div>
           </div>
