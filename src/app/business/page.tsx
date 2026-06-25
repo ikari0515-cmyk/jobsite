@@ -76,7 +76,7 @@ export default function BusinessPage() {
                 <TrendingDown size={40} className="text-blue-500 mb-4 mx-auto mt-2" />
                 <h3 className="text-xl font-bold text-center text-gray-900 mb-4">お試し期間は売上ゼロ設計</h3>
                 <p className="text-gray-600 leading-relaxed text-sm">
-                  1ヶ月のお試し勤務期間中は、当サービスへの費用は発生しません。双方が納得した後の初期契約と月額サポートによって成り立つモデルのため、ノーリスクで相性を確認できます。
+                  1ヶ月のお試し勤務期間中は、当サービスへの費用は発生しません。双方が納得した後のサイト登録料と月額サポートによって成り立つモデルのため、ノーリスクで相性を確認できます。
                 </p>
               </div>
             </div>
@@ -148,9 +148,9 @@ export default function BusinessPage() {
             
             <div className="space-y-6">
               {[
-                { step: '01', title: 'ヒアリング・求人作成', desc: '貴園が求める人物像や条件を丁寧にヒアリングし、求職者に響く求人票を作成します。' },
-                { step: '02', title: '経験者とのマッチング', desc: '経験豊富な保育士の中から、貴園の風土に合う候補者をご紹介・面談を実施します。' },
-                { step: '03', title: 'お試し勤務スタート（1ヶ月）', desc: '実際に現場に入り、スキルや相性を確認します。' },
+                { step: '01', title: 'ヒアリング・求人作成', desc: '貴園が求める人物像や条件を丁寧にヒアリングし、求人票を作成します。' },
+                { step: '02', title: '経験者とのマッチング', desc: '経験豊富な保育士の中から、貴園の方針に合う候補者をご紹介・面談を実施します。' },
+                { step: '03', title: 'お試し勤務スタート（1ヶ月）', desc: '実際に現場に入り、スキルやマッチングを確認します。' },
                 { step: '04', title: '双方合意で正式採用', desc: '園と保育士、双方の合意をもって正式採用（就職）となります。' },
               ].map((item, index) => (
                 <div key={index} className="flex bg-gray-50 p-6 rounded-xl border border-gray-100 items-center">
