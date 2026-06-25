@@ -79,10 +79,6 @@ export default function BusinessPage() {
                   1ヶ月のお試し勤務期間中は、当サービスへの費用は発生しません。双方が納得した後のサイト登録料と月額サポートによって成り立つモデルのため、ノーリスクで相性を確認できます。
                 </p>
               </div>
-               <div className="mt-8 p-4 bg-white rounded-lg border border-gray-200 text-sm text-gray-600 text-center">
-              ※ お試し勤務期間中（1ヶ月）に発生する給与等は、貴園から求職者へ直接お支払いいただきます。<br className="hidden sm:block" />
-              当サービスへのお支払いはお試し期間中には一切発生いたしません。
-            </div>
             </div>
           </div>
         </section>
