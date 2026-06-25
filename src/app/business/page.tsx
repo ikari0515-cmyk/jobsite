@@ -108,8 +108,8 @@ export default function BusinessPage() {
                 </div>
                 <ul className="space-y-3 text-sm text-gray-600">
                   <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> 当サイトへの永年掲載</li>
-                  <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> 魅力的な求人票の作成代行</li>
-                  <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> 候補者とのマッチング・面談調整</li>
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> 求人票の作成代行</li>
+                  <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> 候補者とのマッチング調整</li>
                   <li className="flex items-start"><CheckCircle2 size={18} className="text-green-500 mr-2 flex-shrink-0 mt-0.5" /> <span className="font-bold text-orange-600">お試し期間（1ヶ月）は費用負担なし</span></li>
                 </ul>
               </div>
