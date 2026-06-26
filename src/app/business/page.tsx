@@ -181,11 +181,11 @@ export default function BusinessPage() {
             </h2>
 
             <div className="flex justify-center">
+              {/* ▼ 修正済：コメントを<a>タグの「外側」に移動しました ▼ */}
               <a
                 href="https://forms.gle/DrnFBXTRbc2ZWHMB9"
                 target="_blank"
                 rel="noopener noreferrer"
-                {/* ▼ 修正：スマホ向けに余白と文字サイズを調整し、改行を禁止（whitespace-nowrap）にしました ▼ */}
                 className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 sm:px-10 rounded-xl shadow-md transition-transform hover:-translate-y-1 text-base sm:text-lg whitespace-nowrap"
               >
                 お問い合わせはこちら
