@@ -180,13 +180,13 @@ export default function BusinessPage() {
               まずは詳しい内容をご相談ください
             </h2>
 
-
             <div className="flex justify-center">
               <a
                 href="https://forms.gle/DrnFBXTRbc2ZWHMB9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl shadow-md transition-transform hover:-translate-y-1 text-lg"
+                {/* ▼ 修正：スマホ向けに余白と文字サイズを調整し、改行を禁止（whitespace-nowrap）にしました ▼ */}
+                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 sm:px-10 rounded-xl shadow-md transition-transform hover:-translate-y-1 text-base sm:text-lg whitespace-nowrap"
               >
                 お問い合わせはこちら
               </a>
@@ -194,6 +194,26 @@ export default function BusinessPage() {
           </div>
         </section>
       </main>
+
+      {/* ▼ 追加：会社概要等へのリンク（フッター） ▼ */}
+      <footer className="bg-white py-8 border-t border-gray-200">
+        <div className="max-w-5xl mx-auto px-4 flex flex-col items-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4 text-sm text-gray-600 text-center">
+            <Link href="/company" className="hover:text-blue-600 transition-colors underline sm:no-underline">
+              会社概要・明示事項
+            </Link>
+            <span className="hidden sm:inline text-gray-300">|</span>
+            <Link href="/privacy" className="hover:text-blue-600 transition-colors underline sm:no-underline">
+              プライバシーポリシー
+            </Link>
+          </div>
+          <p className="text-xs text-gray-400">
+            © {new Date().getFullYear()} Asterisk+ All Rights Reserved.
+          </p>
+        </div>
+      </footer>
+      {/* ▲ 追加ここまで ▲ */}
+      
     </div>
   )
 }
