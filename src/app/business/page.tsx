@@ -166,16 +166,12 @@ export default function BusinessPage() {
         </section>
 
         {/* お問い合わせCTA */}
-        <section id="contact" className="py-20 bg-gray-900 text-white">
+        <section id="contact" className="py-20 bg-white-900 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-            <ShieldCheck size={48} className="mx-auto text-blue-400 mb-6" />
             <h2 className="text-2xl sm:text-3xl font-bold mb-6">
               まずは詳しい内容をご相談ください
             </h2>
-            <p className="text-gray-300 mb-10 leading-relaxed">
-              「今の採用コストを見直したい」「離職率を下げたい」など、<br className="hidden sm:block" />
-              法人様・施設長様のお悩みをお気軽にご相談ください。
-            </p>
+
 
             <div className="flex justify-center">
               <a
