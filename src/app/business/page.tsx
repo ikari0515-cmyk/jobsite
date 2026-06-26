@@ -153,10 +153,10 @@ export default function BusinessPage() {
             
             <div className="space-y-6">
               {[
-                { step: '01', title: 'ヒアリング・求人作成', desc: '貴園が求める人物像や条件を丁寧にヒアリングし、求人票を作成します。' },
-                { step: '02', title: '経験者とのマッチング', desc: '経験豊富な保育士の中から、貴園の方針に合う候補者をご紹介・面談を実施します。' },
+                { step: '01', title: 'ヒアリング・求人作成', desc: '御社が求める人物像や条件を丁寧にヒアリングし、求人票を作成します。' },
+                { step: '02', title: '経験者とのマッチング', desc: '経験豊富な保育士を紹介いたします。' },
                 { step: '03', title: 'お試し勤務スタート（1ヶ月）', desc: '実際に現場に入り、スキルやマッチングを確認します。' },
-                { step: '04', title: '双方合意で正式採用', desc: '園と保育士、双方の合意をもって正式採用（就職）となります。' },
+                { step: '04', title: '双方合意で正式採用', desc: '御社と保育士、双方の合意をもって正式採用（就職）となります。' },
               ].map((item, index) => (
                 <div key={index} className="flex bg-gray-50 p-6 rounded-xl border border-gray-100 items-center">
                   <div className="text-3xl font-extrabold text-blue-200 mr-6 w-16 text-center">{item.step}</div>
