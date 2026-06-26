@@ -41,7 +41,7 @@ export default function BusinessPage() {
           </div>
         </section>
 
-        {/* 3つの特徴セクション */}
+       {/* 3つの特徴セクション */}
         <section className="py-16 sm:py-24 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-16">
@@ -49,6 +49,7 @@ export default function BusinessPage() {
               <div className="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
             </div>
 
+            {/* ▼ ここからが3つの箱を横に並べる大きな枠（grid） ▼ */}
             <div className="grid md:grid-cols-3 gap-8">
               {/* 特徴1 */}
               <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 relative mt-4">
@@ -79,16 +80,18 @@ export default function BusinessPage() {
                   1ヶ月のお試し勤務期間中は、当サービスへの費用は発生しません。双方が納得した後のサイト登録料と月額サポートによって成り立つモデルのため、ノーリスクで相性を確認できます。
                 </p>
               </div>
-            </div>
-            {/* ▼ ここに移動してきました ▼ */}
-{/* ▼ ③の下にのみ表示される注釈（枠なし・文字小さめ） ▼ */}
-              <div className="md:col-start-3 -mt-4 px-2">
+
+              {/* ▼ ③の下にのみ表示される注釈（大きな枠の「内側」に入れます） ▼ */}
+              <div className="md:col-start-3 px-2 pt-2 md:-mt-4">
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  ※お試し勤務期間中（1ヶ月）に発生する給与等は、貴園から求職者へ直接お支払いいただきます。<br className="hidden xl:block" />
+                  ※お試し勤務期間中（1ヶ月）に発生する給与等は、貴園から求職者へ直接お支払いいただきます。<br />
                   当サービスへのお支払いはお試し期間中には一切発生いたしません。
                 </p>
               </div>
-            {/* ▲ 移動ここまで ▲ */}
+
+            </div>
+            {/* ▲ 大きな枠（grid）はここで終わる ▲ */}
+            
           </div>
         </section>
 
