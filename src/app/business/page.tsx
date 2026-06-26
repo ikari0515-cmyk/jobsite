@@ -101,6 +101,7 @@ export default function BusinessPage() {
             {/* ▲ 大きな枠（grid）はここで終わる ▲ */}
             
           </div>
+          </div>
         </section>
 
         {/* ▼ 追加：料金体系セクション ▼ */}
