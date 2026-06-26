@@ -173,12 +173,11 @@ export default function BusinessPage() {
         {/* お問い合わせCTA */}
         <section id="contact" className="py-20 bg-blue-900 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8">
               まずは詳しい内容をご相談ください
             </h2>
 
-            <div className="flex justify-center">
-              {/* ▼ 修正済：コメントを<a>タグの「外側」に移動しました ▼ */}
+            <div className="flex justify-center mb-12">
               <a
                 href="https://forms.gle/DrnFBXTRbc2ZWHMB9"
                 target="_blank"
@@ -188,21 +187,27 @@ export default function BusinessPage() {
                 お問い合わせはこちら
               </a>
             </div>
+
+            {/* ▼ 会社概要・プライバシーへのリンクをここに移動しました ▼ */}
+            <div className="pt-8 border-t border-blue-800 flex flex-col items-center">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4 text-sm text-blue-200 text-center">
+                <Link href="/company" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline sm:no-underline">
+                  会社概要・明示事項
+                </Link>
+                <span className="hidden sm:inline text-blue-800">|</span>
+                <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline sm:no-underline">
+                  プライバシーポリシー
+                </Link>
+              </div>
+              <p className="text-xs text-blue-400">
+                © {new Date().getFullYear()} Asterisk+ All Rights Reserved.
+              </p>
+            </div>
+            {/* ▲ 移動ここまで ▲ */}
+
           </div>
         </section>
       </main>
-
-      {/* ▼ 修正：target="_blank" rel="noopener noreferrer" を追加しました ▼ */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4 text-sm text-gray-600 text-center">
-          <Link href="/company" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors underline sm:no-underline">
-            会社概要・明示事項
-          </Link>
-          <span className="hidden sm:inline text-gray-300">|</span>
-          <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors underline sm:no-underline">
-            プライバシーポリシー
-          </Link>
-        </div>
-      
     </div>
   )
 }
