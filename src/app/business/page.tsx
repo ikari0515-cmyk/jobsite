@@ -152,11 +152,6 @@ export default function BusinessPage() {
                 </ul>
               </div>
             </div>
-            
-            <div className="mt-8 p-4 bg-white rounded-lg border border-gray-200 text-sm text-gray-600 text-center">
-              ※ お試し勤務期間中（1ヶ月）に発生する給与等は、御社から求職者へ直接お支払いいただきます。<br className="hidden sm:block" />
-              当サービスへのお支払いはお試し期間中には一切発生いたしません。
-            </div>
           </div>
         </section>
         {/* ▲ 追加：料金体系セクション ここまで ▲ */}
