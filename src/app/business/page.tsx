@@ -49,6 +49,14 @@ export default function BusinessPage() {
               <div className="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
             </div>
 
+           {/* 3つの特徴セクション */}
+        <section className="py-16 sm:py-24 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Asterisk+ 選ばれる3つの理由</h2>
+              <div className="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
             {/* ▼ ここからが3つの箱を横に並べる大きな枠（grid） ▼ */}
             <div className="grid md:grid-cols-3 gap-8">
               {/* 特徴1 */}
