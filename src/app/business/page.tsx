@@ -166,7 +166,7 @@ export default function BusinessPage() {
         </section>
 
         {/* お問い合わせCTA */}
-        <section id="contact" className="py-20 bg-white-900 text-white">
+        <section id="contact" className="py-20 bg-blue-900 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold mb-6">
               まずは詳しい内容をご相談ください
