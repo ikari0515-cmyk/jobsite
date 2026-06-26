@@ -12,9 +12,6 @@ export default function BusinessPage() {
       {/* ヘッダー部分 */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-            <ArrowLeft size={20} className="mr-2" /> トップページに戻る
-          </Link>
           <span className="text-sm font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
             企業・施設様向け
           </span>
