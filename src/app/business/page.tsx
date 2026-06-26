@@ -173,7 +173,8 @@ export default function BusinessPage() {
         {/* お問い合わせCTA */}
         <section id="contact" className="py-20 bg-blue-900 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8">
+            {/* ▼ 修正：スマホ向けに文字を少し小さく(text-xl)し、改行されても綺麗に見えるように(leading-relaxed)しました ▼ */}
+            <h2 className="text-xl sm:text-3xl font-bold mb-8 leading-relaxed">
               まずは詳しい内容をご相談ください
             </h2>
 
@@ -188,7 +189,7 @@ export default function BusinessPage() {
               </a>
             </div>
 
-            {/* ▼ 会社概要・プライバシーへのリンクをここに移動しました ▼ */}
+            {/* 会社概要・プライバシーへのリンク */}
             <div className="pt-8 border-t border-blue-800 flex flex-col items-center">
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4 text-sm text-blue-200 text-center">
                 <Link href="/company" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline sm:no-underline">
@@ -203,7 +204,6 @@ export default function BusinessPage() {
                 © {new Date().getFullYear()} Asterisk+ All Rights Reserved.
               </p>
             </div>
-            {/* ▲ 移動ここまで ▲ */}
 
           </div>
         </section>
