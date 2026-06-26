@@ -81,10 +81,13 @@ export default function BusinessPage() {
               </div>
             </div>
             {/* ▼ ここに移動してきました ▼ */}
-            <div className="p-4 bg-white rounded-lg border border-gray-200 text-sm text-gray-600 text-center shadow-sm max-w-4xl mx-auto">
-              ※ お試し勤務期間中（1ヶ月）に発生する給与等は、御社から求職者へ直接お支払いいただきます。<br className="hidden sm:block" />
-              当サービスへのお支払いはお試し期間中には一切発生いたしません。
-            </div>
+{/* ▼ ③の下にのみ表示される注釈（枠なし・文字小さめ） ▼ */}
+              <div className="md:col-start-3 -mt-4 px-2">
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  ※お試し勤務期間中（1ヶ月）に発生する給与等は、貴園から求職者へ直接お支払いいただきます。<br className="hidden xl:block" />
+                  当サービスへのお支払いはお試し期間中には一切発生いたしません。
+                </p>
+              </div>
             {/* ▲ 移動ここまで ▲ */}
           </div>
         </section>
