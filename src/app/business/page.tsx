@@ -112,7 +112,7 @@ export default function BusinessPage() {
                 <h3 className="text-xl font-bold text-gray-900 mb-2">お試し勤務サイト登録料</h3>
                 <p className="text-sm text-gray-500 mb-6">求人ページの作成・永年掲載</p>
                 <div className="flex items-baseline mb-4 border-b border-gray-100 pb-4">
-                  <span className="text-4xl font-extrabold text-blue-600">100,000</span>
+                  <span className="text-4xl font-extrabold text-blue-600">50,000</span>
                   <span className="text-lg text-gray-600 font-medium ml-1">円</span>
                   <span className="text-sm text-gray-500 ml-2">(税抜)</span>
                 </div>
@@ -154,7 +154,7 @@ export default function BusinessPage() {
             <div className="space-y-6">
               {[
                 { step: '01', title: 'ヒアリング・求人作成', desc: '御社が求める人物像や条件を丁寧にヒアリングし、求人票を作成します。' },
-                { step: '02', title: '経験者とのマッチング', desc: '経験豊富な保育士を紹介いたします。' },
+                { step: '02', title: '経験者から応募', desc: '求職者から直接応募。' },
                 { step: '03', title: 'お試し勤務スタート（1ヶ月）', desc: '実際に現場に入り、スキルやマッチングを確認します。' },
                 { step: '04', title: '双方合意で正式採用', desc: '御社と保育士、双方の合意をもって正式採用（就職）となります。' },
               ].map((item, index) => (
