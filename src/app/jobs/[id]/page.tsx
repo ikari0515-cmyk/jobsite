@@ -142,8 +142,14 @@ export default async function JobDetailPage({ params }: { params: { id: string }
                   <div className="flex items-start">
                     <svg className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     <div>
-                      <p className="text-sm text-blue-800 font-bold mb-1">双方合意で正社員登用へ</p>
-                      <p className="text-sm text-blue-700 leading-relaxed">お試し勤務終了後、規定の採用基準を満たし、園とご本人の双方合意のもとで正規雇用へ移行します。実際の職場の雰囲気や業務内容をしっかり確認してから就業できる安心のシステムです。</p>
+                      {/* ▼ ここを変更：雇用形態に応じて動的に表示 ▼ */}
+                      <p className="text-sm text-blue-800 font-bold mb-1">
+                        双方合意で{getEmploymentTypeLabel(job.employment_type)}登用へ
+                      </p>
+                      <p className="text-sm text-blue-700 leading-relaxed">
+                        お試し勤務終了後、規定の採用基準を満たし、園とご本人の双方合意のもとで{getEmploymentTypeLabel(job.employment_type)}雇用へ移行します。実際の職場の雰囲気や業務内容をしっかり確認してから就業できる安心のシステムです。
+                      </p>
+                      {/* ▲ ここまで変更 ▲ */}
                     </div>
                   </div>
                 </div>
@@ -205,7 +211,7 @@ export default async function JobDetailPage({ params }: { params: { id: string }
                 </a>
               </div>
 
-{/* ▼ ここに追加：プライバシーポリシー同意文言 ▼ */}
+              {/* ▼ ここに追加：プライバシーポリシー同意文言 ▼ */}
               <div className="text-center mb-5">
                 <p className="text-xs text-gray-500">
                   ボタンをタップすることで、当サイトの
