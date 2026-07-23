@@ -41,6 +41,13 @@ export default async function JobDetailPage({ params }: { params: { id: string }
 
   const getEmploymentTypeLabel = (type: string) => ({ full_time: '正社員', part_time: 'アルバイト・パート', contract: '契約社員', temporary: '派遣・臨時' }[type] || type)
 
+  // ▼ ここを追加：サービス形態の表記揺れを補正する関数 ▼
+  const getServiceTypeLabel = (type: string) => {
+    if (type === '企業内保育所') return '企業型保育所'
+    return type
+  }
+  // ▲ ここまで追加 ▲
+
   return (
     <>
       <JobStructuredData job={job} />
@@ -55,7 +62,6 @@ export default async function JobDetailPage({ params }: { params: { id: string }
         </header>
 
         <main className="max-w-4xl mx-auto px-4 py-8">
-          {/* ▼ 修正: grid(横並び)設定を削除し、space-y-6(縦並びの余白)のみに変更しました */}
           <div className="space-y-6">
             
             {/* 基本情報 */}
@@ -63,7 +69,6 @@ export default async function JobDetailPage({ params }: { params: { id: string }
               {showShortTermSummary && (
                 <div className="mb-4"><span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-orange-100 text-orange-800 border border-orange-200">★ お試し勤務からスタート</span></div>
               )}
-              {/* ▼ 修正：スマホでバッジが崩れないようレスポンシブ（sm:）と改行防止（whitespace-nowrap）を追加 */}
               <div className="flex justify-between items-start mb-4 gap-3">
                 <div className="flex-1 pr-2">
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{job.title}</h2>
@@ -114,7 +119,9 @@ export default async function JobDetailPage({ params }: { params: { id: string }
               <div className="space-y-4">
                 {job.job_category && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">募集職種</dt><dd className="text-gray-700">{job.job_category}</dd></div>}
                 {job.job_content && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">仕事内容</dt><dd className="text-gray-700 whitespace-pre-line">{job.job_content}</dd></div>}
-                {job.service_type && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">サービス形態</dt><dd className="text-gray-700">{job.service_type}</dd></div>}
+                {/* ▼ ここを変更：上で作った getServiceTypeLabel を通して出力するようにしました ▼ */}
+                {job.service_type && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">サービス形態</dt><dd className="text-gray-700">{getServiceTypeLabel(job.service_type)}</dd></div>}
+                {/* ▲ ここまで変更 ▲ */}
                 <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">給与</dt><dd className="text-gray-700">{formatSalary()}</dd></div>
                 {job.salary_details && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">給与備考</dt><dd className="text-gray-700 whitespace-pre-line">{job.salary_details}</dd></div>}
                 {job.welfare_benefits && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">待遇</dt><dd className="text-gray-700 whitespace-pre-line">{job.welfare_benefits}</dd></div>}
@@ -142,14 +149,12 @@ export default async function JobDetailPage({ params }: { params: { id: string }
                   <div className="flex items-start">
                     <svg className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     <div>
-                      {/* ▼ ここを変更：雇用形態に応じて動的に表示 ▼ */}
                       <p className="text-sm text-blue-800 font-bold mb-1">
                         双方合意で{getEmploymentTypeLabel(job.employment_type)}登用へ
                       </p>
                       <p className="text-sm text-blue-700 leading-relaxed">
                         お試し勤務終了後、規定の採用基準を満たし、園とご本人の双方合意のもとで{getEmploymentTypeLabel(job.employment_type)}雇用へ移行します。実際の職場の雰囲気や業務内容をしっかり確認してから就業できる安心のシステムです。
                       </p>
-                      {/* ▲ ここまで変更 ▲ */}
                     </div>
                   </div>
                 </div>
@@ -211,7 +216,6 @@ export default async function JobDetailPage({ params }: { params: { id: string }
                 </a>
               </div>
 
-              {/* ▼ ここに追加：プライバシーポリシー同意文言 ▼ */}
               <div className="text-center mb-5">
                 <p className="text-xs text-gray-500">
                   ボタンをタップすることで、当サイトの
@@ -221,7 +225,6 @@ export default async function JobDetailPage({ params }: { params: { id: string }
                   に同意したものとみなされます。
                 </p>
               </div>
-              {/* ▲ ここまで追加 ▲ */}
               
               {/* 補足説明 */}
               <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100">
