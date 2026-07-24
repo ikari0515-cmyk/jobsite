@@ -41,12 +41,10 @@ export default async function JobDetailPage({ params }: { params: { id: string }
 
   const getEmploymentTypeLabel = (type: string) => ({ full_time: '正社員', part_time: 'アルバイト・パート', contract: '契約社員', temporary: '派遣・臨時' }[type] || type)
 
-  // ▼ ここを追加：サービス形態の表記揺れを補正する関数 ▼
   const getServiceTypeLabel = (type: string) => {
     if (type === '企業内保育所') return '企業型保育所'
     return type
   }
-  // ▲ ここまで追加 ▲
 
   return (
     <>
@@ -54,9 +52,13 @@ export default async function JobDetailPage({ params }: { params: { id: string }
       <div className="min-h-screen bg-gray-50">
         <header className="bg-white shadow-sm border-b">
           <div className="max-w-4xl mx-auto px-4 py-4">
+            {/* ▼ 一時的に非表示（求人数が増えたらコメントアウトを解除してください） ▼ */}
+            {/* 
             <Link href="/service" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4">
               <ArrowLeft size={20} className="mr-2" /> お試し勤務一覧に戻る
             </Link>
+            */}
+            {/* ▲ ここまで ▲ */}
             <h1 className="text-2xl font-bold text-gray-900">求人詳細</h1>
           </div>
         </header>
@@ -119,9 +121,7 @@ export default async function JobDetailPage({ params }: { params: { id: string }
               <div className="space-y-4">
                 {job.job_category && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">募集職種</dt><dd className="text-gray-700">{job.job_category}</dd></div>}
                 {job.job_content && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">仕事内容</dt><dd className="text-gray-700 whitespace-pre-line">{job.job_content}</dd></div>}
-                {/* ▼ ここを変更：上で作った getServiceTypeLabel を通して出力するようにしました ▼ */}
                 {job.service_type && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">サービス形態</dt><dd className="text-gray-700">{getServiceTypeLabel(job.service_type)}</dd></div>}
-                {/* ▲ ここまで変更 ▲ */}
                 <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">給与</dt><dd className="text-gray-700">{formatSalary()}</dd></div>
                 {job.salary_details && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">給与備考</dt><dd className="text-gray-700 whitespace-pre-line">{job.salary_details}</dd></div>}
                 {job.welfare_benefits && <div className="flex"><dt className="w-24 flex-shrink-0 font-medium text-gray-900">待遇</dt><dd className="text-gray-700 whitespace-pre-line">{job.welfare_benefits}</dd></div>}
