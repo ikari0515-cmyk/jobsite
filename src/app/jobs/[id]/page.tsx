@@ -81,14 +81,13 @@ export default async function JobDetailPage({ params }: { params: { id: string }
                 </div>
                 <div className="text-right flex-shrink-0">
                   <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium text-center whitespace-nowrap">
+                    {/* ▼ 修正: 「登用チャンスあり」のテキストを削除しました ▼ */}
                     {showShortTermSummary ? (
-                      <>
-                        <span className="text-xs block text-blue-600 mb-0.5">登用チャンスあり</span>
-                        {getEmploymentTypeLabel(job.employment_type)}採用
-                      </>
+                      <>{getEmploymentTypeLabel(job.employment_type)}採用</>
                     ) : (
                       getEmploymentTypeLabel(job.employment_type)
                     )}
+                    {/* ▲ ここまで修正 ▲ */}
                   </span>
                 </div>
               </div>
